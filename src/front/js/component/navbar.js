@@ -1,35 +1,48 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import runestLogo.png from "//src/front/img/runestLogo.png";
+import logo from "../../img/runestLogo.png";
+import profile from "../../img/profile.png";
 
 export const Navbar = () => {
   return (
-    <div>
-      <nav class="navbar bg-body-tertiary">
-        <div class="container">
-          <a class="navbar-brand" href="#">
-            <img src={runestLogo.png} width="30" height="24" />
-          </a>
+    <nav className="navbar navbar-light bg-light">
+      <div className="container">
+        <div>
+          <Link to="/">
+            <img src={logo} />
+          </Link>
         </div>
-      </nav>
-    </div>
-
-    // <nav className="navbar navbar-light bg-light">
-    // 	<div className="container">
-    // 		<Link to="/">
-    // 			<span className="navbar-brand mb-0 h1">React Boilerplate</span>
-    // 		</Link>
-    // 		<div className="ml-auto">
-    // 			<Link to="/demo">
-    // 				<button className="btn btn-primary">Check the Context in action</button>
-    // 			</Link>
-    // 			<div>
-    // 				<Link to="/signUp">
-    // 					Sign Up
-    // 				</Link>
-    // 			</div>
-    // 		</div>
-    // 	</div>
-    // </nav>
+        <div>
+          <Link to="/">
+            <span>Carreras</span>
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <span>Favoritos</span>
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <span>Contacto</span>
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <button>iniciar sesión</button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <button>Registrarse</button>
+          </Link>
+        </div>
+        <div>
+          <Link to="/">
+            <img src={profile} />
+          </Link>
+        </div>
+      </div>
+    </nav>
   );
 };
