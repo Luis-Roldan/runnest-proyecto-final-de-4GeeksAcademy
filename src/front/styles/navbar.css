@@ -1,0 +1,26 @@
+button {
+  background-color: #34393e;
+  color: aliceblue;
+  padding: 5px;
+  padding-right: 10px;
+  padding-left: 10px;
+  transition: color 0.3s ease;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #23ce6b;
+  font-size: larger;
+}
+
+.otherPages {
+  text-decoration: none;
+  color: #34393e;
+  font-size: large;
+  transition: color 0.3s ease;
+}
+
+.otherPages:hover {
+  color: #23ce6b;
+  font-size: larger;
+}

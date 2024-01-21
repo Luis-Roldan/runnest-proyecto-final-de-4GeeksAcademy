@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/runestLogo.png";
 import profile from "../../img/profile.png";
+import "../../styles/navbar.css";
 
 export const Navbar = () => {
   return (
@@ -13,17 +14,17 @@ export const Navbar = () => {
           </Link>
         </div>
         <div>
-          <Link to="/">
+          <Link to="/" className="otherPages">
             <span>Carreras</span>
           </Link>
         </div>
         <div>
-          <Link to="/">
+          <Link to="/" className="otherPages">
             <span>Favoritos</span>
           </Link>
         </div>
         <div>
-          <Link to="/">
+          <Link to="/" className="otherPages">
             <span>Contacto</span>
           </Link>
         </div>
