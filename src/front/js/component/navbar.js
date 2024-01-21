@@ -40,7 +40,7 @@ export const Navbar = () => {
         </div>
         <div>
           <Link to="/">
-            <img src={profile} />
+            <img src={profile} className="profileImg" />
           </Link>
         </div>
       </div>

@@ -24,3 +24,8 @@ button:hover {
   color: #23ce6b;
   font-size: larger;
 }
+
+.profileImg {
+  height: 50px;
+  width: 50px;
+}
