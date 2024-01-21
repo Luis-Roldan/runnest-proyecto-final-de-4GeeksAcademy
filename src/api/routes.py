@@ -7,6 +7,7 @@ from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
 from flask_bcrypt import check_password_hash, generate_password_hash
+from flask_jwt_extended import create_access_token, jwt_required, get_jwt_identity
 
 api = Blueprint('api', __name__)
 
@@ -59,7 +60,47 @@ def handle_user():
             "msg": "Ha ocurrido un error con la base de datos"
         }), 500
     
-    return jsonify({
-        "salt": salt,
-        "password": hashed_password
-    }), 201
+    return jsonify({}), 201
+
+@api.route("/user")
+@jwt_required()
+def obtener_usuario():
+    id = get_jwt_identity()
+    usuario = User.query.get(id)
+    return jsonify(usuario.serialize()), 200
+
+@api.route("/token", methods=["POST"])
+def handle_login():
+    #obtener data de la solicitud
+    data = request.json
+    email = data.get("email")
+    password = data.get("password")
+    
+    #verificar que la data esta completa
+    data_check = [email, password]
+    if None in data_check:
+        return jsonify({
+            "msg": "datos no completos"
+        }), 400
+    
+    #verificar que es usuario ya existe
+    usuario = User.query.filter_by(email=email).one_or_none()
+    if usuario is None:
+        return jsonify({
+            "msg": "El correo no existe en la base de datos"
+        }), 404
+    
+    #verificar el password
+    password_es_correcta = check_password_hash(
+        usuario.hashed_password,
+        password + usuario.salt
+    )
+    if not password_es_correcta:
+        return jsonify({
+            "msg": "Contraseña incorrecta"
+        }), 400
+    
+    #crear el token y retornarlo
+    if password_es_correcta:
+        token = create_access_token(identity=usuario.id)
+        return jsonify(token), 201
