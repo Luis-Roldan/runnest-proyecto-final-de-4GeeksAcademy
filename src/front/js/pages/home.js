@@ -8,7 +8,7 @@ export const Home = () => {
   const { store, actions } = useContext(Context);
 
   return (
-    <div className="container">
+    <div>
       <div className="insideHero">
         <div>
           <h2>Descubre la carrera que mas se ajuste a ti</h2>
