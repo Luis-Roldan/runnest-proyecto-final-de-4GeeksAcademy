@@ -29,13 +29,13 @@ export const Navbar = () => {
           </Link>
         </div>
         <div>
-          <Link to="/">
-            <button>iniciar sesión</button>
+          <Link to="/" className="btn">
+            iniciar sesión
           </Link>
         </div>
         <div>
-          <Link to="/">
-            <button>Registrarse</button>
+          <Link to="/" className="btn">
+            Registrarse
           </Link>
         </div>
         <div>
