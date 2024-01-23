@@ -1,18 +1,3 @@
-button {
-  background-color: #34393e;
-  color: aliceblue;
-  padding: 5px;
-  padding-right: 10px;
-  padding-left: 10px;
-  transition: color 0.3s ease;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: #23ce6b;
-  font-size: larger;
-}
-
 .otherPages {
   text-decoration: none;
   color: #34393e;
@@ -28,4 +13,15 @@ button:hover {
 .profileImg {
   height: 50px;
   width: 50px;
+}
+
+.btnNav {
+  border: black solid;
+  background-color: #34393e;
+  color: aliceblue;
+}
+
+.btnNav:hover {
+  background-color: #23ce6b;
+  font-size: larger;
 }

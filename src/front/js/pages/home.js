@@ -22,7 +22,7 @@ export const Home = () => {
           <span>¿Dónde te gustaría correr?</span>
           <span>Fechas</span>
           <span>Elige tu distancia</span>
-          <button>Buscar</button>
+          <button className="btn btnSearch">Buscar</button>
         </div>
       </div>
       <div>

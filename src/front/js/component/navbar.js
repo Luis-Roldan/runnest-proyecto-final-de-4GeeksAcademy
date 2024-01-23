@@ -29,12 +29,12 @@ export const Navbar = () => {
           </Link>
         </div>
         <div>
-          <Link to="/" className="btn">
+          <Link to="/" className="btn btnNav">
             iniciar sesión
           </Link>
         </div>
         <div>
-          <Link to="/" className="btn">
+          <Link to="/" className="btn btnNav">
             Registrarse
           </Link>
         </div>

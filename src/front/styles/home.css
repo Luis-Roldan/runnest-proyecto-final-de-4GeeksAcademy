@@ -51,3 +51,14 @@ h2 {
 .TitleSecondPartOfHome {
   padding-left: 50px;
 }
+
+.btnSearch {
+  border: black solid;
+  background-color: #34393e;
+  color: aliceblue;
+}
+
+.btnSearch:hover {
+  background-color: #23ce6b;
+  font-size: larger;
+}
