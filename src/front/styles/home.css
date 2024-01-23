@@ -17,3 +17,27 @@
   color: aliceblue;
   padding: 30px;
 }
+
+h2 {
+  margin: 50px;
+}
+
+p {
+  margin-left: 50px;
+  width: 50vw;
+}
+
+.insideHero {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.filters {
+  margin-left: 50px;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}

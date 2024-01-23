@@ -52,7 +52,11 @@ export const Home = () => {
           </div>
           <div className="carousel-inner">
             <div className="carousel-item active">
-              <img src="..." className="d-block w-100" alt="..." />
+              <img
+                src="https://scontentr4p-d772.kxcdn.com/wp-content/uploads/2023/08/media-maraton-de-lima-y-10k-2024-390x220.webp"
+                className="d-block w-100"
+                alt="img"
+              />
               <div className="carousel-caption d-none d-md-block">
                 <h5>First slide label</h5>
                 <p>
@@ -61,7 +65,11 @@ export const Home = () => {
               </div>
             </div>
             <div className="carousel-item">
-              <img src="..." className="d-block w-100" alt="..." />
+              <img
+                src="https://scontentr4p-d772.kxcdn.com/wp-content/uploads/2023/08/media-maraton-de-lima-y-10k-2024-390x220.webp"
+                className="d-block w-100"
+                alt="img"
+              />
               <div className="carousel-caption d-none d-md-block">
                 <h5>Second slide label</h5>
                 <p>
@@ -70,7 +78,11 @@ export const Home = () => {
               </div>
             </div>
             <div className="carousel-item">
-              <img src="..." className="d-block w-100" alt="..." />
+              <img
+                src="https://scontentr4p-d772.kxcdn.com/wp-content/uploads/2023/08/media-maraton-de-lima-y-10k-2024-390x220.webp"
+                className="d-block w-100"
+                alt="img"
+              />
               <div className="carousel-caption d-none d-md-block">
                 <h5>Third slide label</h5>
                 <p>
