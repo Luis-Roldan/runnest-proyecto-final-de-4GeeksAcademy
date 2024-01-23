@@ -9,7 +9,7 @@
 .insideHero {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
     url("https://pbs.twimg.com/media/F1EqKl5XoAMWWD0?format=jpg&name=medium");
-  height: 50vh;
+  min-height: 100vh;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
