@@ -12,7 +12,7 @@ export const Home = () => {
       <div className="insideHero">
         <div>
           <h2>Descubre la carrera que mas se ajuste a ti</h2>
-          <p>
+          <p className="HeroDescriptiveText">
             Busca y encuentra carreras al rededor del mundo y encuentra la
             perfecta para ti. Además de encontrar información adicional de la
             carrera y reseñas de las personas que ya la han realizado.{" "}
@@ -26,7 +26,9 @@ export const Home = () => {
         </div>
       </div>
       <div>
-        <h2>Disfruta la carrera de tus sueños</h2>
+        <h2 className="TitleSecondPartOfHome">
+          Disfruta la carrera de tus sueños
+        </h2>
         <div id="carouselExampleCaptions" className="carousel slide">
           <div className="carousel-indicators">
             <button
@@ -54,7 +56,7 @@ export const Home = () => {
             <div className="carousel-item active">
               <img
                 src="https://scontentr4p-d772.kxcdn.com/wp-content/uploads/2023/08/media-maraton-de-lima-y-10k-2024-390x220.webp"
-                className="d-block w-100"
+                className="carrouselImg d-block w-100"
                 alt="img"
               />
               <div className="carousel-caption d-none d-md-block">
@@ -67,7 +69,7 @@ export const Home = () => {
             <div className="carousel-item">
               <img
                 src="https://scontentr4p-d772.kxcdn.com/wp-content/uploads/2023/08/media-maraton-de-lima-y-10k-2024-390x220.webp"
-                className="d-block w-100"
+                className="carrouselImg d-block w-100"
                 alt="img"
               />
               <div className="carousel-caption d-none d-md-block">
@@ -80,7 +82,7 @@ export const Home = () => {
             <div className="carousel-item">
               <img
                 src="https://scontentr4p-d772.kxcdn.com/wp-content/uploads/2023/08/media-maraton-de-lima-y-10k-2024-390x220.webp"
-                className="d-block w-100"
+                className="carrouselImg d-block w-100"
                 alt="img"
               />
               <div className="carousel-caption d-none d-md-block">

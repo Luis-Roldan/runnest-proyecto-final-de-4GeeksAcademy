@@ -22,7 +22,7 @@ h2 {
   margin: 50px;
 }
 
-p {
+.HeroDescriptiveText {
   margin-left: 50px;
   width: 50vw;
 }
@@ -40,4 +40,14 @@ p {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: space-evenly;
+}
+
+.carrouselImg {
+  width: 50vw !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.TitleSecondPartOfHome {
+  padding-left: 50px;
 }
