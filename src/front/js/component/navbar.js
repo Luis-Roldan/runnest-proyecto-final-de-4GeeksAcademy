@@ -7,7 +7,7 @@ import "../../styles/navbar.css";
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-light bg-light">
-      <div className="container">
+      <div className="container mb-3 mt-3">
         <div>
           <Link to="/">
             <img src={logo} />
