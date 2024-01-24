@@ -7,25 +7,41 @@ export const SignUpForOrganizers = () => {
 
 
     return (
-        <div className="">
-            <h1>
+        <div className="SignUpForOrganizersContainer">
+            <h1 className="TitleSignUpForOrganizers">
                 Registro para organizadores
             </h1>
             <form>
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" />
-                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                <div className="mb-3">
+                    <label htmlFor="fullName" className="form-label">Nombre completo</label>
+                    <input type="text" className="form-control" id="fullName" />
                 </div>
-                <div class="mb-3">
-                    <label for="exampleInputPassword1" class="form-label">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" />
+                <div className="mb-3">
+                    <label htmlFor="InputEmail" className="form-label">Email address</label>
+                    <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" />
+                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
                 </div>
-                <div class="mb-3 form-check">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1" />
-                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <div className="mb-3">
+                    <label htmlFor="phone" className="form-label">Teléfono</label>
+                    <input type="number" className="form-control" id="phone" />
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div className="mb-3">
+                    <label htmlFor="OrganizationName" className="form-label">Nombre de la organización</label>
+                    <input type="text" className="form-control" id="OrganizationName" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="OrganizationsWeb" className="form-label">Página Web o red social de la organización</label>
+                    <input type="text" className="form-control" id="OrganizationsWeb" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="InputPassword" className="form-label">Contraseña</label>
+                    <input type="password" className="form-control" id="InputPassword" />
+                </div>
+                <div className="mb-3 form-check CheckBoxContainer">
+                    <input type="checkbox" className="form-check-input" id="exampleCheck" />
+                    <label className="form-check-label" htmlFor="exampleCheck">Acepto terminos y condiciones</label>
+                </div>
+                <button type="submit" className="btn btn-primary SubmitButtonForOrganizersSignUp">Submit</button>
             </form>
         </div>
     );
