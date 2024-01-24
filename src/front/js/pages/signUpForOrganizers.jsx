@@ -17,9 +17,9 @@ export const SignUpForOrganizers = () => {
                     <input type="text" className="form-control" id="fullName" />
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="InputEmail" className="form-label">Email address</label>
+                    <label htmlFor="InputEmail" className="form-label">Correo electrónico</label>
                     <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" />
-                    <div id="emailHelp" className="form-text">We'll never share your email with anyone else.</div>
+                    <div id="emailHelp" className="form-text">Nostros nunca compartiremos tu correo con nadie</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="phone" className="form-label">Teléfono</label>
@@ -39,9 +39,9 @@ export const SignUpForOrganizers = () => {
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
                     <input type="checkbox" className="form-check-input" id="exampleCheck" />
-                    <label className="form-check-label" htmlFor="exampleCheck">Acepto terminos y condiciones</label>
+                    <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
-                <button type="submit" className="btn btn-primary SubmitButtonForOrganizersSignUp">Submit</button>
+                <button type="submit" className="btn btn-primary SubmitButtonForOrganizersSignUp">Enviar</button>
             </form>
         </div>
     );
