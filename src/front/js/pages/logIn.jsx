@@ -4,9 +4,9 @@ import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 
-const LogIn = () => {
+export const LogIn = () => {
   const { store, actions } = useContext(Context);
   const [loginError, setLoginError] = useState("");
   let navigate = useNavigate();
@@ -25,7 +25,7 @@ const LogIn = () => {
         try {
           let isLogged = await actions.login(values.email, values.password);
           if (isLogged) {
-            
+
             setTimeout(() => {
               Swal.fire({
                 title: `Welcome back, ${store.user.username || store.business_user.business_name}!`,
@@ -33,7 +33,7 @@ const LogIn = () => {
                 icon: 'info',
                 timer: 1000
               });
-            }, 0); 
+            }, 0);
 
             navigate("/");
           } else {
