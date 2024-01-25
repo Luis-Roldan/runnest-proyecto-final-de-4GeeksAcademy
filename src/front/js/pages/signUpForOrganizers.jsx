@@ -6,26 +6,38 @@ import "../../styles/signUpForOrganizers.css";
 
 export const SignUpForOrganizers = () => {
     const [email, setEmail] = useState("")
-    console.log(email)
+    const [password, setPassword] = useState("")
+    const [nombre, setNombre] = useState("")
+    const [telefono, setTelefono] = useState("")
+    const [organizacion, setOrganizacion] = useState("")
+    const [pagina, setPagina] = useState("")
+
 
     const [formData, setFormData] = useState({
         email: email,
-        password: "asdasdsa",
-        nombre: "",
-        telefono: 15215,
-        organizacion: "saDASDASD",
-        pagina: "dsadsad",
+        password: password,
+        nombre: nombre,
+        telefono: telefono,
+        organizacion: organizacion,
+        pagina: pagina,
     });
 
+    const data = {
+        email: email,
+        password: password,
+        nombre: nombre,
+        telefono: telefono,
+        organizacion: organizacion,
+        pagina: pagina,
+    }
 
-
-    const handleChange = (e) => {
-        const { name, value, type, checked } = e.target;
-        setFormData({
-            ...formData,
-            [name]: type === "checkbox" ? checked : value,
-        });
-    };
+    // const handleChange = (e) => {
+    //     const { name, value, type, checked } = e.target;
+    //     setFormData({
+    //         ...formData,
+    //         [name]: type === "checkbox" ? checked : value,
+    //     });
+    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -35,7 +47,7 @@ export const SignUpForOrganizers = () => {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(formData),
+            body: JSON.stringify(data),
         })
             .then((response) => {
                 if (!response.ok) {
@@ -59,8 +71,8 @@ export const SignUpForOrganizers = () => {
             <form >
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Nombre</label>
-                    <input type="text" className="form-control" id="Name" onChange={handleChange}
-                        value={formData.nombre} name="name" />
+                    <input type="text" className="form-control" id="Name" onChange={(e) => setNombre(e.target.value)}
+                        value={nombre} name="name" />
                 </div>
                 {/* <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">Apellido</label>
@@ -69,29 +81,29 @@ export const SignUpForOrganizers = () => {
                 </div> */}
                 <div className="mb-3">
                     <label htmlFor="InputEmail" className="form-label">Correo electrónico</label>
-                    <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" onChange={(e) => setEmail(e.targe.value)}
+                    <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" onChange={(e) => setEmail(e.target.value)}
                         value={email} />
                     <div id="emailHelp" className="form-text">Nostros nunca compartiremos tu correo con nadie</div>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="phone" className="form-label">Teléfono</label>
-                    <input type="number" className="form-control" id="phone" onChange={handleChange}
-                        value={formData.telefono} />
+                    <input type="number" className="form-control" id="phone" onChange={(e) => setTelefono(e.target.value)}
+                        value={telefono} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="OrganizationName" className="form-label">Nombre de la organización</label>
-                    <input type="text" className="form-control" id="OrganizationName" onChange={handleChange}
-                        value={formData.organizacion} />
+                    <input type="text" className="form-control" id="OrganizationName" onChange={(e) => setOrganizacion(e.target.value)}
+                        value={organizacion} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="OrganizationsWeb" className="form-label">Página Web o red social de la organización</label>
-                    <input type="text" className="form-control" id="OrganizationsWeb" onChange={handleChange}
-                        value={formData.pagina_web} />
+                    <input type="text" className="form-control" id="OrganizationsWeb" onChange={(e) => setPagina(e.target.value)}
+                        value={pagina} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="InputPassword" className="form-label">Contraseña</label>
-                    <input type="password" className="form-control" id="InputPassword" onChange={handleChange}
-                        value={formData.hashed_password} />
+                    <input type="password" className="form-control" id="InputPassword" onChange={(e) => setPassword(e.target.value)}
+                        value={password} />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
                     <input type="checkbox" className="form-check-input" id="exampleCheck" />
