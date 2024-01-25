@@ -33,10 +33,10 @@ export const Navbar = () => {
             Iniciar sesión
           </button>
           <ul className="dropdown-menu">
-            <li><Link to="/logIn" className="btn">
+            <li><Link to="/logIn" className="btn ScrollDownButtonNav">
               para usuarios
             </Link></li>
-            <li><Link to="/logInForOrganizers" className="btn">
+            <li><Link to="/logInForOrganizers" className="btn ScrollDownButtonNav">
               para organizadores
             </Link></li>
           </ul>
@@ -46,10 +46,10 @@ export const Navbar = () => {
             Registrarse
           </button>
           <ul className="dropdown-menu">
-            <li><Link to="/signUp" className="btn">
+            <li><Link to="/signUp" className="btn ScrollDownButtonNav">
               para usuarios
             </Link></li>
-            <li><Link to="/signUpForOrganizers" className="btn">
+            <li><Link to="/signUpForOrganizers" className="btn ScrollDownButtonNav">
               para organizadores
             </Link></li>
           </ul>
