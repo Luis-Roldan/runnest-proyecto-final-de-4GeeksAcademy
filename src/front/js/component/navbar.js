@@ -46,7 +46,7 @@ export const Navbar = () => {
             Registrarse
           </button>
           <ul className="dropdown-menu">
-            <li><Link to="/signUp" className="btn ScrollDownButtonNav">
+            <li><Link to="/SignUpUsers" className="btn ScrollDownButtonNav">
               para usuarios
             </Link></li>
             <li><Link to="/signUpForOrganizers" className="btn ScrollDownButtonNav">
