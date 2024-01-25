@@ -28,28 +28,28 @@ export const Navbar = () => {
             <span>Contacto</span>
           </Link>
         </div>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle btnNav" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Iniciar sesión
           </button>
-          <ul class="dropdown-menu">
-            <li><Link to="/logIn" className="btn btnNav">
+          <ul className="dropdown-menu">
+            <li><Link to="/logIn" className="btn">
               para usuarios
             </Link></li>
-            <li><Link to="/logIn" className="btn btnNav">
+            <li><Link to="/logInForOrganizers" className="btn">
               para organizadores
             </Link></li>
           </ul>
         </div>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <div className="dropdown">
+          <button className="btn btn-secondary dropdown-toggle btnNav" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Registrarse
           </button>
-          <ul class="dropdown-menu">
-            <li><Link to="/signUp" className="btn btnNav">
+          <ul className="dropdown-menu">
+            <li><Link to="/signUp" className="btn">
               para usuarios
             </Link></li>
-            <li><Link to="/signUpForOrganizers" className="btn btnNav">
+            <li><Link to="/signUpForOrganizers" className="btn">
               para organizadores
             </Link></li>
           </ul>

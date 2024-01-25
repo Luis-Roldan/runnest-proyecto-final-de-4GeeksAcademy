@@ -19,6 +19,7 @@
   border: black solid;
   background-color: #34393e;
   color: aliceblue;
+  width: 12rem;
 }
 
 .btnNav:hover {
