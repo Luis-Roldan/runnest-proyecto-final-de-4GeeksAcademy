@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
@@ -14,6 +14,36 @@ export const SignUp = () => {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const { store, actions } = useContext(Context);
   const [passwordsMatch, setPasswordsMatch] = useState(false);
+
+  useEffect(() => {
+    createUser();
+  }, []);
+
+  const createUser = async () => {
+    try {
+      const resp = await fetch("https://literate-space-potato-r5jxp4x4grxc5qq6-3000.app.github.dev/api/user", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          "email": "ejemplo@gmail.com",
+          "password": "********",
+          "nombre": "Pepito"
+        })
+      });
+  
+      if (resp.status === 200) {
+        console.log('Registro exitoso');
+      }
+  
+    } catch (error) {
+      console.log('Error en el registro:', error)
+    }
+  };
+  
+
+
 
   let navigate = useNavigate();
 
