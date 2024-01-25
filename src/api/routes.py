@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User
+from api.models import db, User, Organizador
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -95,6 +95,7 @@ def handle_login():
     
     #verificar que es usuario ya existe
     usuario = User.query.filter_by(email=email).one_or_none()
+
     if usuario is None:
         return jsonify({
             "msg": "El correo no existe en la base de datos"
@@ -114,3 +115,107 @@ def handle_login():
     if password_es_correcta:
         token = create_access_token(identity=usuario.id)
         return jsonify(token), 201
+
+
+@api.route("/organizador", methods=["POST"])
+def handle_organizador():
+    #obtener data de la solicitud
+    data = request.json
+    email = data.get("email")
+    nombre = data.get("nombre")
+    telefono = data.get("telefono")
+    organizacion = data.get("organizacion")
+    pagina = data.get("pagina")
+    password = data.get("password")
+
+    #verificar que los tados esten completos
+    data_check = [email, nombre, organizacion, pagina, password]
+
+    if None in data_check:
+        return jsonify({
+            "msg": "datos no completos"
+        }), 400
+    
+    #verificar que el correo es unico
+    usuario_cliente = User.query.filter_by(email=email).one_or_none()
+    usuario_organizador = Organizador.query.filter_by(email=email).one_or_none()
+
+    if usuario_cliente or usuario_organizador:
+        return jsonify({
+            "msg": "Ya existe un usuario asociado a este correo"
+        }), 400
+
+    #generar el salt y el hashed_password
+    salt = str(gensalt(), encoding="utf-8")
+    hashed_password = str(generate_password_hash(password + salt), encoding="utf-8")
+
+    #crear el organizador
+    nuevo_organizador = Organizador(
+        email = email,
+        hashed_password = hashed_password,
+        salt = salt,
+        nombre = nombre,
+        telefono = telefono,
+        organizacion = organizacion,
+        pagina_web = pagina
+    )
+
+    #guardar el organizador en la base de datos 
+
+    try:
+        db.session.add(nuevo_organizador)
+        db.session.commit()
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({
+            "msg": "Ha ocurrido un error con la base de datos"
+        }), 500
+
+    return jsonify({}), 201
+
+@api.route("/token-org", methods=["POST"])
+def handle_login_organizador():
+    #obtener data de la solicitud
+    data = request.json
+    email = data.get("email")
+    password = data.get("password")
+    
+    #verificar que la data esta completa
+    data_check = [email, password]
+    if None in data_check:
+        return jsonify({
+            "msg": "datos no completos"
+        }), 400
+    
+    #verificar que es usuario ya existe
+    usuario_organizador = Organizador.query.filter_by(email=email).one_or_none()
+
+    if usuario_organizador is None:
+        return jsonify({
+            "msg": "El correo no existe en la base de datos"
+        }), 404
+    
+    #verificar la contraseña
+
+    password_is_valid = check_password_hash(
+        usuario_organizador.hashed_password,
+        password + usuario_organizador.salt
+    )
+
+    if not password_is_valid:
+        return jsonify({
+            "msg": "Contraseña incorrecta"
+        }), 400
+    
+    if password_is_valid:
+        token = create_access_token(identity=usuario_organizador.id)
+        return jsonify(token), 201
+    
+@api.route("/organizador")
+@jwt_required()
+def obtener_organizador():
+    id = get_jwt_identity()
+    organizador = Organizador.query.get(id)
+    return jsonify(organizador.serialize()), 200
+
+
