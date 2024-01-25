@@ -19,9 +19,20 @@
   border: black solid;
   background-color: #34393e;
   color: aliceblue;
+  width: 12rem;
 }
 
 .btnNav:hover {
   background-color: #23ce6b;
   font-size: larger;
+}
+
+.ScrollDownButtonNav {
+  width: 12rem;
+}
+
+.ScrollDownButtonNav:hover {
+  background-color: #23ce6b;
+  font-size: larger;
+  color: aliceblue;
 }
