@@ -26,7 +26,6 @@ class User(db.Model):
             "telefono": self.telefono,
             "direccion": self.direccion,
         }
-    
 
 class Organizador(db.Model):
     id = db.Column(db.Integer, primary_key=True)

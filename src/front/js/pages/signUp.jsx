@@ -5,9 +5,9 @@ import { useNavigate } from "react-router-dom";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Si lo necesitas, asegúrate de importar FontAwesome correctamente
-import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'; // Si lo necesitas, asegúrate de importar FontAwesome correctamente
-import Swal from "sweetalert2";
+// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'; // Si lo necesitas, asegúrate de importar FontAwesome correctamente
+// import { faCheckCircle } from '@fortawesome/free-solid-svg-icons'; // Si lo necesitas, asegúrate de importar FontAwesome correctamente
+// import Swal from "sweetalert2";
 
 export const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -16,7 +16,7 @@ export const SignUp = () => {
   const { store, actions } = useContext(Context);
   const navigate = useNavigate();
   const contexto = useContext(Context);
-  
+
   const [dataUser, setDataUser] = useState({
     email: "",
     first_name: "",
@@ -42,25 +42,25 @@ export const SignUp = () => {
         })
       });
 
-      await fetchData(); 
-        console.log('Registro exitoso');
+      await fetchData();
+      console.log('Registro exitoso');
     } catch (error) {
       console.log('Error en el registro:', error)
     }
   };
 
-  
-	
+
+
   async function fetchData() {
-		try {
-		  const response = await fetch("https://literate-space-potato-r5jxp4x4grxc5qq6-3000.app.github.dev/api/user");
-		  const data = await response.json();
-		  contexto.actions.signupUser(data);
-		} catch (error) {
-		  console.error("Error de información", error);
-		}
-	  }
-	
+    try {
+      const response = await fetch("https://literate-space-potato-r5jxp4x4grxc5qq6-3000.app.github.dev/api/user");
+      const data = await response.json();
+      contexto.actions.signupUser(data);
+    } catch (error) {
+      console.error("Error de información", error);
+    }
+  }
+
 
 
   function handleRedirect() {
@@ -169,144 +169,144 @@ export const SignUp = () => {
     >
       {formik => (
 
-<div className="container-signup">
-  <div className="content-signup">
-    <div className='title-password'>¿Are you a Runner?</div>
-    <div className='subtitle-password'>Rellena el formulario y empieza a disfrutar de ofertas exclusivas para nuestra comunidad!</div>
+        <div className="container-signup">
+          <div className="content-signup">
+            <div className='title-password'>¿Are you a Runner?</div>
+            <div className='subtitle-password'>Rellena el formulario y empieza a disfrutar de ofertas exclusivas para nuestra comunidad!</div>
 
-    <Form onSubmit={formik.handleSubmit}>
-      <div className=" custom-input-password">
-        <Field
-          name="email"
-          type="email"
-          className="form-control"
-        />
-        <label
-          htmlFor="email"
-          className={formik.values.email ? 'input-label has-value' : 'input-label'}
-        >
-          Correo electrónico</label>
-        <ErrorMessage name="email" />
-      </div>
+            <Form onSubmit={formik.handleSubmit}>
+              <div className=" custom-input-password">
+                <Field
+                  name="email"
+                  type="email"
+                  className="form-control"
+                />
+                <label
+                  htmlFor="email"
+                  className={formik.values.email ? 'input-label has-value' : 'input-label'}
+                >
+                  Correo electrónico</label>
+                <ErrorMessage name="email" />
+              </div>
 
-      <div className=" custom-input-password">
-        <div className="d-flex">
-          <label htmlFor="password"
-            className={formik.values.password ? 'input-label has-value' : 'input-label'}
-          >Contraseña</label>
-          <Field name="password" type={showPassword ? 'text' : 'password'} className="form-control" />
-          <button
-            type="button"
-            className="btn btn-outline-secondary"
-            onClick={() => setShowPassword(!showPassword)}
-          >
-            {showPassword ? 'Ocultar' : 'Mostrar'}
-          </button>
+              <div className=" custom-input-password">
+                <div className="d-flex">
+                  <label htmlFor="password"
+                    className={formik.values.password ? 'input-label has-value' : 'input-label'}
+                  >Contraseña</label>
+                  <Field name="password" type={showPassword ? 'text' : 'password'} className="form-control" />
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? 'Ocultar' : 'Mostrar'}
+                  </button>
+                </div>
+                <ErrorMessage name="password" />
+              </div>
+
+
+              <div className="custom-input-password">
+                <div className="d-flex">
+                  <label htmlFor="confirmPassword"
+                    className={formik.values.confirmPassword ? 'input-label has-value' : 'input-label'}
+                  >Confirmar Contraseña</label>
+
+                  <Field
+                    name="confirmPassword"
+                    type={showConfirmPassword ? 'text' : 'password'}
+                    className="form-control"
+                    onChange={(e) => {
+                      formik.handleChange(e);
+                      setPasswordsMatch(e.target.value === formik.values.password);
+                    }}
+                  />
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary"
+                    onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                  >
+                    {showConfirmPassword ? 'Ocultar' : 'Mostrar'}
+                  </button>
+                </div>
+                {passwordsMatch ? (
+                  <>
+                    <span>Las contraseñas coinciden.</span>
+                    <FontAwesomeIcon icon={faCheckCircle} style={{ color: 'green', marginLeft: '5px' }} />
+                  </>
+                ) : null}
+
+                <ErrorMessage name="confirmPassword" />
+              </div>
+
+
+              <div className=" custom-input-password">
+                <label htmlFor="username" className={formik.values.username ? 'input-label has-value' : 'input-label'}>Nombre de usuario</label>
+                <Field name="username" type="text" className="form-control" />
+                <ErrorMessage name="username" />
+              </div>
+
+              <div className=" custom-input-password">
+                <label htmlFor="firstname" className={formik.values.firstname ? 'input-label has-value' : 'input-label'}>Nombre</label>
+                <Field name="firstname" type="text" className="form-control" />
+                <ErrorMessage name="firstname" />
+              </div>
+
+              <div className=" custom-input-password">
+                <label htmlFor="lastname" className={formik.values.lastname ? 'input-label has-value' : 'input-label'}>Apellido</label>
+                <Field name="lastname" type="text" className="form-control" />
+                <ErrorMessage name="lastname" />
+              </div>
+
+
+              <div className=" custom-input-password">
+                <label htmlFor="address" className={formik.values.address ? 'input-label has-value' : 'input-label'}>Dirección</label>
+                <Field name="address" type="text" className="form-control" />
+                <ErrorMessage name="address" />
+              </div>
+
+              <div className="d-flex">
+
+
+                <div className=" custom-input-signup-phone">
+                  <label htmlFor="phone_number" className={formik.values.phone_number ? 'input-label has-value' : 'input-label'}>Número de Teléfono</label>
+                  <Field name="phone_number" type="text" className="form-control" />
+                </div>
+
+              </div>
+              <div>
+
+                <ErrorMessage name="phone_prefix" /> <br />
+                <ErrorMessage name="phone_number" />
+              </div>
+
+
+
+              <div className="d-flex">
+                <div className="me-2">
+                  <Field type="checkbox" name="acceptTerms" />
+                </div>
+                <div>
+                  <span> Acepto los
+                    <Link to="/terms">
+                      <strong> términos y condiciones</strong>
+                    </Link>
+                  </span>
+                </div>
+
+
+              </div>
+              <ErrorMessage name="acceptTerms" />
+              <button type="submit" className="btn btn-primary reset-button-signup mt-2">Crear mi cuenta</button>
+              <button type="button" onClick={handleRedirect} className='back-button-signup mt-2'>Volver</button>
+
+            </Form>
+          </div>
         </div>
-        <ErrorMessage name="password" />
-      </div>
-
-
-      <div className="custom-input-password">
-        <div className="d-flex">
-          <label htmlFor="confirmPassword"
-            className={formik.values.confirmPassword ? 'input-label has-value' : 'input-label'}
-          >Confirmar Contraseña</label>
-
-          <Field
-            name="confirmPassword"
-            type={showConfirmPassword ? 'text' : 'password'}
-            className="form-control"
-            onChange={(e) => {
-              formik.handleChange(e);
-              setPasswordsMatch(e.target.value === formik.values.password);
-            }}
-          />
-          <button
-            type="button"
-            className="btn btn-outline-secondary"
-            onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-          >
-            {showConfirmPassword ? 'Ocultar' : 'Mostrar'}
-          </button>
-        </div>
-        {passwordsMatch ? (
-          <>
-            <span>Las contraseñas coinciden.</span>
-            <FontAwesomeIcon icon={faCheckCircle} style={{ color: 'green', marginLeft: '5px' }} />
-          </>
-        ) : null}
-
-        <ErrorMessage name="confirmPassword" />
-      </div>
-
-
-      <div className=" custom-input-password">
-        <label htmlFor="username" className={formik.values.username ? 'input-label has-value' : 'input-label'}>Nombre de usuario</label>
-        <Field name="username" type="text" className="form-control" />
-        <ErrorMessage name="username" />
-      </div>
-
-      <div className=" custom-input-password">
-        <label htmlFor="firstname" className={formik.values.firstname ? 'input-label has-value' : 'input-label'}>Nombre</label>
-        <Field name="firstname" type="text" className="form-control" />
-        <ErrorMessage name="firstname" />
-      </div>
-
-      <div className=" custom-input-password">
-        <label htmlFor="lastname" className={formik.values.lastname ? 'input-label has-value' : 'input-label'}>Apellido</label>
-        <Field name="lastname" type="text" className="form-control" />
-        <ErrorMessage name="lastname" />
-      </div>
-
-
-      <div className=" custom-input-password">
-        <label htmlFor="address" className={formik.values.address ? 'input-label has-value' : 'input-label'}>Dirección</label>
-        <Field name="address" type="text" className="form-control" />
-        <ErrorMessage name="address" />
-      </div>
-
-      <div className="d-flex">
-
-  
-        <div className=" custom-input-signup-phone">
-          <label htmlFor="phone_number" className={formik.values.phone_number ? 'input-label has-value' : 'input-label'}>Número de Teléfono</label>
-          <Field name="phone_number" type="text" className="form-control" />
-        </div>
-
-      </div>
-      <div>
-
-        <ErrorMessage name="phone_prefix" /> <br />
-        <ErrorMessage name="phone_number" />
-      </div>
-
-
-      
-      <div className="d-flex">
-        <div className="me-2">
-          <Field type="checkbox" name="acceptTerms" />
-        </div>
-        <div>
-          <span> Acepto los
-            <Link to="/terms">
-              <strong> términos y condiciones</strong>
-            </Link>
-          </span>
-        </div>
-
-
-      </div>
-      <ErrorMessage name="acceptTerms" />
-      <button type="submit" className="btn btn-primary reset-button-signup mt-2">Crear mi cuenta</button>
-      <button type="button" onClick={handleRedirect} className='back-button-signup mt-2'>Volver</button>
-
-    </Form>
-  </div>
-</div>
-)}
-</Formik>
-);
+      )}
+    </Formik>
+  );
 };
 
 export default SignUp

@@ -7,13 +7,12 @@ import "../../styles/signUpForOrganizers.css";
 export const SignUpForOrganizers = () => {
 
     const [formData, setFormData] = useState({
-        email: "",
-        password: "",
-        nombre: "",
-        apellido: "",
-        telefono: "",
-        direccion: "",
-        terminos: false,
+        email: "correo@com",
+        password: "asdasdsa",
+        nombre: "asdasdsad",
+        telefono: 15215,
+        organizacion: "saDASDASD",
+        pagina: "dsadsad",
     });
 
     const handleChange = (e) => {
@@ -27,7 +26,7 @@ export const SignUpForOrganizers = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("http://localhost:5000/user", {
+        fetch("https://fictional-enigma-6qv7vr5w9g4c5j4-3001.app.github.dev/api/organizador", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -59,11 +58,11 @@ export const SignUpForOrganizers = () => {
                     <input type="text" className="form-control" id="Name" onChange={handleChange}
                         value={formData.nombre} />
                 </div>
-                <div className="mb-3">
+                {/* <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">Apellido</label>
                     <input type="text" className="form-control" id="lastName" onChange={handleChange}
                         value={formData.apellido} />
-                </div>
+                </div> */}
                 <div className="mb-3">
                     <label htmlFor="InputEmail" className="form-label">Correo electrónico</label>
                     <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" onChange={handleChange}
@@ -77,22 +76,24 @@ export const SignUpForOrganizers = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="OrganizationName" className="form-label">Nombre de la organización</label>
-                    <input type="text" className="form-control" id="OrganizationName" />
+                    <input type="text" className="form-control" id="OrganizationName" onChange={handleChange}
+                        value={formData.organizacion} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="OrganizationsWeb" className="form-label">Página Web o red social de la organización</label>
-                    <input type="text" className="form-control" id="OrganizationsWeb" />
+                    <input type="text" className="form-control" id="OrganizationsWeb" onChange={handleChange}
+                        value={formData.pagina_web} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="InputPassword" className="form-label">Contraseña</label>
                     <input type="password" className="form-control" id="InputPassword" onChange={handleChange}
-                        value={formData.password} />
+                        value={formData.hashed_password} />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
                     <input type="checkbox" className="form-check-input" id="exampleCheck" />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
-                <button type="submit" className="btn btn-primary SubmitButtonForOrganizersSignUp">Enviar</button>
+                <button type="submit" className="btn btn-primary SubmitButtonForOrganizersSignUp" onClick={handleSubmit}>Enviar</button>
             </form>
         </div>
     );
