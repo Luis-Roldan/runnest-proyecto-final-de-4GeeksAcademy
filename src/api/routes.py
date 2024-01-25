@@ -22,9 +22,14 @@ def handle_user():
     email = data.get("email")
     password = data.get("password")
     nombre = data.get("nombre")
+    telefono = data.get("telefono")
+    direccion = data.get("direccion")
+    apellido = data.get("apellido")
+    terminos = data.get("terminos")
+
 
     # verificar que la data este completa
-    data_check = [email, password, nombre]
+    data_check = [email, password, nombre, apellido, terminos]
     if None in data_check:
         return jsonify({
             "msg": "Faltan datos, por favor verifica tu solicitud"
@@ -47,8 +52,13 @@ def handle_user():
         email = email,
         hashed_password = hashed_password,
         salt = salt,
-        nombre = nombre
+        nombre = nombre,
+        apellido = apellido,
+        terminos = terminos,
+        direccion = direccion,
+        telefono = telefono
     )
+    print(data)
 
     #guardar en la base de datos 
     try:
