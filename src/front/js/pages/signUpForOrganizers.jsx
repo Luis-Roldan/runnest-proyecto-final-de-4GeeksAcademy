@@ -13,8 +13,12 @@ export const SignUpForOrganizers = () => {
             </h1>
             <form>
                 <div className="mb-3">
-                    <label htmlFor="fullName" className="form-label">Nombre completo</label>
-                    <input type="text" className="form-control" id="fullName" />
+                    <label htmlFor="Name" className="form-label">Nombre</label>
+                    <input type="text" className="form-control" id="Name" />
+                </div>
+                <div className="mb-3">
+                    <label htmlFor="lastName" className="form-label">Apellido</label>
+                    <input type="text" className="form-control" id="lastName" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="InputEmail" className="form-label">Correo electrónico</label>
