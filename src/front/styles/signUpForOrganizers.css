@@ -1,0 +1,25 @@
+.TitleSignUpForOrganizers {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin: 50px;
+}
+
+.SubmitButtonForOrganizersSignUp {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.CheckBoxContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.SignUpForOrganizersContainer {
+  padding-left: 30px;
+  padding-right: 30px;
+}
