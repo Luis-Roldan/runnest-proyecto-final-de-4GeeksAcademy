@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/signUpForOrganizers.css";
-import axios from "axios";
+
 
 export const SignUpForOrganizers = () => {
 
@@ -24,18 +24,28 @@ export const SignUpForOrganizers = () => {
         });
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
-        try {
-            const response = await axios.post(
-                "http://localhost:5000/user",
-                formData
-            );
-            console.log(response.data);
-        } catch (error) {
-            console.error("Error al enviar el formulario", error);
-        }
+        fetch("http://localhost:5000/user", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+            })
+            .catch((error) => {
+                console.error("Error submitting form:", error);
+            });
     };
 
     return (
