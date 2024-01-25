@@ -5,15 +5,19 @@ import "../../styles/signUpForOrganizers.css";
 
 
 export const SignUpForOrganizers = () => {
+    const [email, setEmail] = useState("")
+    console.log(email)
 
     const [formData, setFormData] = useState({
-        email: "correo@com",
+        email: email,
         password: "asdasdsa",
-        nombre: "asdasdsad",
+        nombre: "",
         telefono: 15215,
         organizacion: "saDASDASD",
         pagina: "dsadsad",
     });
+
+
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -52,11 +56,11 @@ export const SignUpForOrganizers = () => {
             <h1 className="TitleSignUpForOrganizers">
                 Registro para organizadores
             </h1>
-            <form onSubmit={handleSubmit}>
+            <form >
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Nombre</label>
                     <input type="text" className="form-control" id="Name" onChange={handleChange}
-                        value={formData.nombre} />
+                        value={formData.nombre} name="name" />
                 </div>
                 {/* <div className="mb-3">
                     <label htmlFor="lastName" className="form-label">Apellido</label>
@@ -65,8 +69,8 @@ export const SignUpForOrganizers = () => {
                 </div> */}
                 <div className="mb-3">
                     <label htmlFor="InputEmail" className="form-label">Correo electrónico</label>
-                    <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" onChange={handleChange}
-                        value={formData.email} />
+                    <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" onChange={(e) => setEmail(e.targe.value)}
+                        value={email} />
                     <div id="emailHelp" className="form-text">Nostros nunca compartiremos tu correo con nadie</div>
                 </div>
                 <div className="mb-3">
