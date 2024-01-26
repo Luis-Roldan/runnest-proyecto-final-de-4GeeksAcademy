@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 
+import { LoginUsers } from "./pages/logInUsers.js";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
 import { Single } from "./pages/single";
@@ -35,6 +36,7 @@ const Layout = () => {
                         <Route element={<LogIn />} path="/logIn" />
                         <Route element={<SignUpForOrganizers />} path="/signUpForOrganizers" />
                         <Route element={<Single />} path="/single/:theid" />
+                        <Route element={<LoginUsers />} path="/Login-users" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
