@@ -64,6 +64,13 @@ export const SignUpUsers = () => {
             .then((data) => {
 
                 console.log(data);
+                setNombre("");
+                setApellido("");
+                setEmail("");
+                setTelefono("");
+                setDireccion("");
+                setPassword("");
+                setTerminos("")
             })
 
             .catch((error) => {

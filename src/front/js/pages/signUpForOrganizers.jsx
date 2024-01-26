@@ -66,6 +66,7 @@ export const SignUpForOrganizers = () => {
                 setOrganizacion("");
                 setPagina("");
                 setPassword("");
+                setTerminos("")
 
             })
             .catch((error) => {
