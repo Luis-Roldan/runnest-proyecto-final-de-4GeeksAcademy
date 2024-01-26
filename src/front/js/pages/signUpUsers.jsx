@@ -11,7 +11,7 @@ export const SignUpUsers = () => {
     const [apellido, setApellido] = useState("")
     const [telefono, setTelefono] = useState("")
     const [direccion, setDireccion] = useState("")
-    const [terminos, setTerminos] = useState(false)
+    const [terminos, setTerminos] = useState("")
 
 
     const [formData, setFormData] = useState({
@@ -31,7 +31,7 @@ export const SignUpUsers = () => {
         apellido: apellido,
         telefono: telefono,
         direccion: direccion,
-        terminos: true,
+        terminos: terminos,
     }
 
     // const handleChange = (e) => {
@@ -52,17 +52,23 @@ export const SignUpUsers = () => {
             },
             body: JSON.stringify(data),
         })
+
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
+
                 return response.json();
             })
+
             .then((data) => {
+
                 console.log(data);
             })
+
             .catch((error) => {
                 console.error("Error submitting form:", error);
+
             });
     };
 
@@ -104,7 +110,7 @@ export const SignUpUsers = () => {
                         value={password} />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck" onChange={(e) => setTerminos(e.target.value)}
+                    <input type="checkbox" className="form-check-input" id="exampleCheck" onChange={(e) => setTerminos(true)}
                         value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
