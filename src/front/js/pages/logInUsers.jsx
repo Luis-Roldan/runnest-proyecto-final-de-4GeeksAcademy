@@ -53,14 +53,14 @@ export const LoginUsers = () => {
         <div className="d-flex p-5 justify-content-center align-items-center">
             <form
                 onSubmit={handleSubmit}
-                className="shadow p-5"
+                className="shadow p-5 logInForm"
             >
                 <div className="">
                     <div className="mb-3">
                         <label htmlFor="exampleFormControlInput1" className="form-label">Email</label>
                         <input
                             type="email"
-                            className="form-control"
+                            className="form-control logInInput"
                             id="exampleFormControlInput1"
                             placeholder="name@example.com"
                             onChange={(e) => setEmail(e.target.value)}
@@ -71,7 +71,7 @@ export const LoginUsers = () => {
                         <label htmlFor="password" className="form-label">Contraseña</label>
                         <input
                             type="password"
-                            className="form-control"
+                            className="form-control logInInput"
                             id="password"
                             placeholder="contraseña"
                             value={password}
