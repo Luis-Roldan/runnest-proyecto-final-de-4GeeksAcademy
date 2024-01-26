@@ -36,6 +36,7 @@ class Organizador(db.Model):
     telefono = db.Column(db.BigInteger, unique=False, nullable=True)
     organizacion = db.Column(db.String(200), unique=False, nullable=False)
     pagina_web = db.Column(db.String(500), unique=False, nullable=False)
+    terminos = db.Column(db.Boolean(), unique=False, nullable=False)
 
 
     def __repr__(self):

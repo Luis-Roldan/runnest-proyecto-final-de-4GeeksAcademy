@@ -127,9 +127,10 @@ def handle_organizador():
     organizacion = data.get("organizacion")
     pagina = data.get("pagina")
     password = data.get("password")
+    terminos = data.get("terminos")
 
     #verificar que los tados esten completos
-    data_check = [email, nombre, organizacion, pagina, password]
+    data_check = [email, nombre, organizacion, pagina, password, terminos]
 
     if None in data_check:
         return jsonify({
@@ -157,7 +158,8 @@ def handle_organizador():
         nombre = nombre,
         telefono = telefono,
         organizacion = organizacion,
-        pagina_web = pagina
+        pagina_web = pagina,
+        terminos = terminos
     )
 
     #guardar el organizador en la base de datos 
