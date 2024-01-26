@@ -52,7 +52,7 @@ export const LoginUsers = () => {
         <div className="d-flex p-5 justify-content-center align-items-center">
             <form 
                 onSubmit={handleSubmit}
-                className="shadow p-5"
+                className="shadow p-5 logInForm"
             >
                 <div className="">
                     <div className="mb-3">
