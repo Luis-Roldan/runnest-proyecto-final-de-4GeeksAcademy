@@ -70,7 +70,7 @@ export const SignUpUsers = () => {
                 setTelefono("");
                 setDireccion("");
                 setPassword("");
-                setTerminos("")
+                setTerminos(false)
             })
 
             .catch((error) => {
