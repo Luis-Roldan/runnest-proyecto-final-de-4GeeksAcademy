@@ -11,6 +11,7 @@ export const SignUpForOrganizers = () => {
     const [telefono, setTelefono] = useState("")
     const [organizacion, setOrganizacion] = useState("")
     const [pagina, setPagina] = useState("")
+    const [terminos, setTerminos] = useState("")
 
 
     const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ export const SignUpForOrganizers = () => {
         telefono: telefono,
         organizacion: organizacion,
         pagina: pagina,
+        terminos: terminos,
     });
 
     const data = {
@@ -29,6 +31,7 @@ export const SignUpForOrganizers = () => {
         telefono: telefono,
         organizacion: organizacion,
         pagina: pagina,
+        terminos: terminos,
     }
 
     // const handleChange = (e) => {
@@ -57,10 +60,19 @@ export const SignUpForOrganizers = () => {
             })
             .then((data) => {
                 console.log(data);
+                setNombre("");
+                setEmail("");
+                setTelefono("");
+                setOrganizacion("");
+                setPagina("");
+                setPassword("");
+                setTerminos("")
+
             })
             .catch((error) => {
                 console.error("Error submitting form:", error);
             });
+        e.target.value = "";
     };
 
     return (
@@ -106,7 +118,8 @@ export const SignUpForOrganizers = () => {
                         value={password} />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck" />
+                    <input type="checkbox" className="form-check-input" id="exampleCheck" onChange={(e) => setTerminos(e.target.value)}
+                        value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
                 <button type="submit" className="btn btn-primary SubmitButtonForOrganizersSignUp" onClick={handleSubmit}>Enviar</button>

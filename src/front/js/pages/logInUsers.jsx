@@ -2,16 +2,18 @@ import React, { useState, useEffect, useContext } from "react";
 import "../../styles/logInUser.css"
 
 export const LoginUsers = () => {
-
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
     const url = "https://reimagined-space-spoon-qpjvjgqr7x936569-3001.app.github.dev/api/token"
 
     const data = {
         "email": email,
-        "password": password, 
+        "password": password,
     }
     
+    console.log(email)
+    console.log(password)
+
 
     const handleLogIn = async (requestData) => {
         try {
