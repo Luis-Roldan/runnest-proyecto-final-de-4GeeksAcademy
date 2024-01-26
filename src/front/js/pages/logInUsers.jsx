@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/logInUser.css"
+import { Link } from "react-router-dom";
 
 export const LoginUsers = () => {
     const [email, setEmail] = useState("");
@@ -88,7 +89,10 @@ export const LoginUsers = () => {
                 </div>
                 <div>
                     <h3 className="pt-5">No tienes cuenta?</h3>
-                    <button type="submit" className="btn btn-light">Regístrate</button>
+                    <Link to="/SignUpUsers" className="btn">
+                        <button type="submit" className="btn btn-light">Regístrate</button>
+                    </Link>
+
                 </div>
             </div>
         </div>
