@@ -33,7 +33,7 @@ export const Navbar = () => {
             Iniciar sesión
           </button>
           <ul className="dropdown-menu">
-            <li><Link to="/logIn" className="btn ScrollDownButtonNav">
+            <li><Link to="/LoginUsers" className="btn ScrollDownButtonNav">
               para usuarios
             </Link></li>
             <li><Link to="/logInForOrganizers" className="btn ScrollDownButtonNav">
