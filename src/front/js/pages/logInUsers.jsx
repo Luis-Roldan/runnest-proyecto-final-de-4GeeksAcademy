@@ -1,18 +1,24 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/logInUser.css"
+import { Context } from "../store/appContext";
 
 export const LoginUsers = () => {
+
+    //estados para tener imputs controlados
     const [ email, setEmail ] = useState("");
     const [ password, setPassword ] = useState("");
-    const url = "https://reimagined-space-spoon-qpjvjgqr7x936569-3001.app.github.dev/api/token"
 
+    //url para hacer la solicitud
+    const url = "https://reimagined-space-spoon-qpjvjgqr7x936569-3001.app.github.dev/api/token"
+    const { store, actions } = useContext(Context)
+
+
+    //objeto para enviar como prop a la funcion handleLogIn
     const data = {
         "email": email,
         "password": password,
     }
     
-    console.log(email)
-    console.log(password)
 
 
     const handleLogIn = async (requestData) => {
@@ -26,7 +32,10 @@ export const LoginUsers = () => {
             })
             const token = await response.json()
             if (response.status == 201) {
+                //guardar el token y el tipo de usuario en el session storage
                 sessionStorage.setItem("accessToken", token)
+                sessionStorage.setItem("role", "usuario")
+                actions.setIsLoggedIn()
             }
 
             if (response.status !== 201) {

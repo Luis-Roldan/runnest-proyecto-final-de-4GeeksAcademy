@@ -1,7 +1,15 @@
 const getState = ({ getStore, getActions, setStore }) => {
+
+
+	// obtener el token del usuario para actualizar el store.isLoggedIn 
+	//para saber cundo el usuario tiene un session abierta
+	const token = sessionStorage.getItem("accessToken")
+
+
 	return {
 		store: {
 			message: null,
+			isLoggedIn: token,
 			demo: [
 				{
 					title: "FIRST",
@@ -21,6 +29,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 
+			//funcion para actualizar el isLoggedIn y renderizar el componente navBar
+			//solo cuando el usuario inicia session
+			setIsLoggedIn: () => {
+				setStore({
+					isLoggedIn: true,
+				})
+			},
+
+			//funcion para actualizar el isLoggedIn y renderizar el componente navBar
+			//solo cuando el usuario cierra session
+			setIsLoggedOut: () => {
+				setStore({
+					isLoggedIn: false,
+				})
+			},
 			// getMessage: async () => {
 			// 	try{
 			// 		// fetching data from the backend

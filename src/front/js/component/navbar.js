@@ -1,10 +1,15 @@
-import React from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../img/runestLogo.png";
-import profile from "../../img/profile.png";
 import "../../styles/navbar.css";
+import "../../styles/burgerMenu.css"
+import { BurgerMenu } from "./burgerMenu";
+import { Context } from "../store/appContext";
 
 export const Navbar = () => {
+  const { store, actions } = useContext(Context)
+  const isLoggedIn = store.isLoggedIn
+
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container mb-3 mt-3">
@@ -64,10 +69,9 @@ export const Navbar = () => {
             Registrarse
           </Link>
         </div> */}
-        <div>
-          <Link to="/">
-            <img src={profile} className="profileImg" />
-          </Link>
+
+        <div className="burger-menu">
+            {isLoggedIn ? <BurgerMenu /> : null}
         </div>
       </div>
     </nav>
