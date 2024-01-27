@@ -12,6 +12,7 @@ export const SignUpForOrganizers = () => {
     const [organizacion, setOrganizacion] = useState("")
     const [pagina, setPagina] = useState("")
     const [terminos, setTerminos] = useState("")
+    const [isChecked, setIsChecked] = useState("");
 
 
     const [formData, setFormData] = useState({
@@ -33,6 +34,11 @@ export const SignUpForOrganizers = () => {
         pagina: pagina,
         terminos: terminos,
     }
+
+    // const handleCheckboxChange = (e) => {
+    //     setIsChecked(e.target.checked);
+    //     setTerminos(e.target.checked ? "aceptado" : ""); // O cualquier otra lógica que necesites
+    // };
 
     // const handleChange = (e) => {
     //     const { name, value, type, checked } = e.target;
@@ -66,13 +72,14 @@ export const SignUpForOrganizers = () => {
                 setOrganizacion("");
                 setPagina("");
                 setPassword("");
-                setTerminos("")
+                setTerminos(false);
+
 
             })
             .catch((error) => {
                 console.error("Error submitting form:", error);
             });
-        e.target.value = "";
+
     };
 
     return (
@@ -91,6 +98,9 @@ export const SignUpForOrganizers = () => {
                     <input type="text" className="form-control" id="lastName" onChange={handleChange}
                         value={formData.apellido} />
                 </div> */}
+
+
+
                 <div className="mb-3">
                     <label htmlFor="InputEmail" className="form-label">Correo electrónico</label>
                     <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" onChange={(e) => setEmail(e.target.value)}
@@ -118,7 +128,7 @@ export const SignUpForOrganizers = () => {
                         value={password} />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck" onChange={(e) => setTerminos(e.target.value)}
+                    <input type="checkbox" className="form-check-input" id="exampleCheck" onChange={(e) => setTerminos(true)}
                         value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
