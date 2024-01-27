@@ -4,12 +4,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 	// obtener el token del usuario para actualizar el store.isLoggedIn 
 	//para saber cundo el usuario tiene un session abierta
 	const token = sessionStorage.getItem("accessToken")
+	//obtener el tipo de usuario desde el session storage
+	const userTypeInStorage = sessionStorage.getItem("userType")
 
 
 	return {
 		store: {
 			message: null,
 			isLoggedIn: token,
+			userType: userTypeInStorage,
+
+			usuario: {
+				apellido: "",
+				direccion: "",
+				email: "",
+				id: "",
+				nombre: "",
+				telefono: ""
+			},
 			demo: [
 				{
 					title: "FIRST",
@@ -44,6 +56,48 @@ const getState = ({ getStore, getActions, setStore }) => {
 					isLoggedIn: false,
 				})
 			},
+			//funciones para modificar el tipo de usuario en el session storage
+			setUserTypeToUsuario: () => {
+				setStore({
+					userType: "usuario"
+				})
+			},
+
+			setUserTypeToOrganizador: () => {
+				setStore({
+					userType: "Organizador"
+				})
+			},
+			
+			//funcion para obtener la data del usuario una vez haya iniciado session
+			getUserData: async () => {
+				try {
+					const token2 = sessionStorage.getItem("accessToken")
+    				const url = "https://reimagined-space-spoon-qpjvjgqr7x936569-3001.app.github.dev/api/user"
+					const response = await fetch(url, {
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token2
+						}
+					});
+		
+					const responseToJson = await response.json()
+					if (response.status == 200) {
+						setStore({
+							usuario: responseToJson
+						})
+						return responseToJson
+					} else {
+						return "hubo un error"
+					}
+		
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
+
+
 			// getMessage: async () => {
 			// 	try{
 			// 		// fetching data from the backend

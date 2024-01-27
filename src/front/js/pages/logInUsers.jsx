@@ -10,7 +10,7 @@ export const LoginUsers = () => {
 
     //url para hacer la solicitud
     const url = "https://reimagined-space-spoon-qpjvjgqr7x936569-3001.app.github.dev/api/token"
-    const { store, actions } = useContext(Context)
+    const { store, actions } = useContext(Context);
 
 
     //objeto para enviar como prop a la funcion handleLogIn
@@ -33,13 +33,14 @@ export const LoginUsers = () => {
             const token = await response.json()
             if (response.status == 201) {
                 //guardar el token y el tipo de usuario en el session storage
-                sessionStorage.setItem("accessToken", token)
-                sessionStorage.setItem("role", "usuario")
-                actions.setIsLoggedIn()
+                sessionStorage.setItem("accessToken", token);
+                sessionStorage.setItem("userType", "usuario");
+                actions.setIsLoggedIn();
+                actions.setUserTypeToUsuario();
             }
 
             if (response.status !== 201) {
-                const respuestaDelBackend = await response.json()
+                const respuestaDelBackend = await response.json();
                 return respuestaDelBackend
             }
             return token
@@ -52,7 +53,7 @@ export const LoginUsers = () => {
         event.preventDefault();
         handleLogIn(data);
         setEmail("");
-        setPassword("")
+        setPassword("");
     }
 
 

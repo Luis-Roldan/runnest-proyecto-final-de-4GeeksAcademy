@@ -3,7 +3,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
-
+import { PerfilUsuario } from "./pages/perfilUsuario.js";
 import { LoginUsers } from "./pages/logInUsers.jsx";
 import { Home } from "./pages/home";
 import { Demo } from "./pages/demo";
@@ -37,6 +37,7 @@ const Layout = () => {
                         <Route element={<SignUpForOrganizers />} path="/signUpForOrganizers" />
                         {/* <Route element={<Single />} path="/single/:theid" /> */}
                         <Route element={<LoginUsers />} path="/LoginUsers" />
+                        <Route element={<PerfilUsuario />} path="/perfil" />
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />
