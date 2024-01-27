@@ -35,7 +35,6 @@ h2 {
 
 .filters {
   margin-left: 50px;
-  width: 100vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
