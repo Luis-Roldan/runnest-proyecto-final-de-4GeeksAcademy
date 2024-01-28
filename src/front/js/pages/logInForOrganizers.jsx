@@ -9,7 +9,7 @@ export const LoginForOrganizers = () => {
     const [password, setPassword] = useState("");
 
     //url para hacer la solicitud
-    const url = "https://fictional-enigma-6qv7vr5w9g4c5j4-3001.app.github.dev/api/token"
+    const url = "https://fictional-enigma-6qv7vr5w9g4c5j4-3001.app.github.dev/api/token-org"
     const { store, actions } = useContext(Context);
 
 
@@ -34,9 +34,9 @@ export const LoginForOrganizers = () => {
             if (response.status == 201) {
                 //guardar el token y el tipo de usuario en el session storage
                 sessionStorage.setItem("accessToken", token);
-                sessionStorage.setItem("userType", "usuario");
+                sessionStorage.setItem("organizerType", "usuario_organizador");
                 actions.setIsLoggedIn();
-                actions.setUserTypeToUsuario();
+                actions.setOrganizerTypeToOrganizador();
             }
 
             if (response.status !== 201) {

@@ -23,11 +23,11 @@ export const Navbar = () => {
             <span>Carreras</span>
           </Link>
         </div>
-        <div>
+        {/* <div>
           <Link to="/" className="otherPages">
             <span>Favoritos</span>
           </Link>
-        </div>
+        </div> */}
         <div>
           <Link to="/" className="otherPages">
             <span>Contacto</span>
@@ -71,7 +71,7 @@ export const Navbar = () => {
         </div> */}
 
         <div className="burger-menu">
-            {isLoggedIn ? <BurgerMenu /> : null}
+          {isLoggedIn ? <BurgerMenu /> : null}
         </div>
       </div>
     </nav>
