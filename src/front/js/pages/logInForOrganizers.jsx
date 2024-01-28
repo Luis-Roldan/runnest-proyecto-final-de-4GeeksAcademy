@@ -34,9 +34,9 @@ export const LoginForOrganizers = () => {
             if (response.status == 201) {
                 //guardar el token y el tipo de usuario en el session storage
                 sessionStorage.setItem("accessToken", token);
-                sessionStorage.setItem("organizerType", "usuario_organizador");
+                sessionStorage.setItem("userType", "organizador");
                 actions.setIsLoggedIn();
-                actions.setOrganizerTypeToOrganizador();
+                actions.setUserTypeToOrganizador();
             }
 
             if (response.status !== 201) {
