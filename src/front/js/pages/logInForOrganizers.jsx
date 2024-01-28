@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import "../../styles/logInUser.css"
+import "../../styles/logInForOrganizers.css"
 import { Context } from "../store/appContext";
 
-export const LoginUsers = () => {
+export const LoginForOrganizers = () => {
 
     //estados para tener imputs controlados
     const [email, setEmail] = useState("");
@@ -93,7 +93,7 @@ export const LoginUsers = () => {
             <div className="w-50 shadow p-5 side-div text-center d-flex flex-column justify-content-evenly">
                 <div>
                     <h3>Bienvenido a Runnest</h3>
-                    <h6>inicia sesión de usuario para continuar</h6>
+                    <h6>inicia sesión de organizador para continuar</h6>
                 </div>
                 <div>
                     <h3 className="pt-5">No tienes cuenta?</h3>
