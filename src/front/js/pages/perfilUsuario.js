@@ -23,7 +23,7 @@ export const PerfilUsuario = () => {
         }
     }
     
-
+    
     return(
         <div>
             <h1 className="text-center pt-4">{`Bienvenido, ${store.usuario.nombre}`}</h1>

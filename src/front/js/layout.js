@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
@@ -7,23 +7,21 @@ import { PerfilUsuario } from "./pages/perfilUsuario.js";
 import { LoginUsers } from "./pages/logInUsers.jsx";
 import { LoginForOrganizers } from "./pages/logInForOrganizers.jsx";
 import { Home } from "./pages/home";
-import { Demo } from "./pages/demo";
-import { Single } from "./pages/single";
 import { SignUpUsers } from "./pages/signUpUsers.jsx";
-import { LogIn } from "./pages/logIn.jsx";
 import { SignUpForOrganizers } from "./pages/signUpForOrganizers.jsx";
 import injectContext from "./store/appContext";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
+import { PanelOrg } from "./pages/panelOrg.js";
 
-//create your first component
+
 const Layout = () => {
-    //the basename is used when your project is published in a subdirectory and not in the root of the domain
-    // you can set the basename on the .env file located at the root of this project, E.g: BASENAME=/react-hello-webapp/
     const basename = process.env.BASENAME || "";
-
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
+
+    const userType = sessionStorage.getItem("userType")
+
 
     return (
         <div>
@@ -32,14 +30,15 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
-                        {/* <Route element={<Demo />} path="/demo" /> */}
+
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
-                        <Route element={<LogIn />} path="/logIn" />
-                        <Route element={<SignUpForOrganizers />} path="/signUpForOrganizers" />
-                        {/* <Route element={<Single />} path="/single/:theid" /> */}
                         <Route element={<LoginUsers />} path="/LoginUsers" />
+                        <Route element={userType == "usuario" ? <PerfilUsuario /> : <Navigate to="/LoginUsers" />} path="/perfil" />
+
+                        <Route element={<SignUpForOrganizers />} path="/signUpForOrganizers" />
                         <Route element={<LoginForOrganizers />} path="/LoginForOrganizers" />
-                        <Route element={<PerfilUsuario />} path="/perfil" />
+                        <Route element={userType == "organizador" ? <PanelOrg /> : <Navigate to="/LoginForOrganizers" />} path="/panel" />
+
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
                     <Footer />

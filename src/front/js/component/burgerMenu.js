@@ -5,13 +5,11 @@ import { Link } from "react-router-dom";
 export const BurgerMenu = () => {
     const { store, actions } = useContext(Context)
     const userType = store.userType
-    console.log(userType)
 
     //ejecutar la funcion setIsLoggedOut para actualizar el isLoggedIn en el store
     //borrar el role y el token de el session storage
     const handleLogOut = () => {
         actions.setIsLoggedOut()
-        sessionStorage.removeItem("role")
         sessionStorage.removeItem("accessToken")
         sessionStorage.removeItem("userType")
     }
@@ -25,7 +23,7 @@ export const BurgerMenu = () => {
             </label>
 
             <ul className="menu__box">
-                <li>{userType == "usuario" ? <Link className="menu__item" to="/perfil">Perfil</Link> : <Link className="menu__item" to="/">Panel</Link>}</li>
+                <li>{userType == "usuario" ? <Link className="menu__item" to="/perfil">Perfil</Link> : <Link className="menu__item" to="/panel">Panel</Link>}</li>
                 <li><a className="menu__item" href="#">About</a></li>
                 <li><a className="menu__item" href="#">Team</a></li>
                 <li><a className="menu__item" href="#">Contact</a></li>

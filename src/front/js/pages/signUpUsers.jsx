@@ -34,6 +34,8 @@ export const SignUpUsers = () => {
         terminos: terminos,
     }
 
+    const url = process.env.REACT_ENV_URL
+
     // const handleChange = (e) => {
     //     const { name, value, type, checked } = e.target;
     //     setFormData({
@@ -45,7 +47,7 @@ export const SignUpUsers = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch("https://fictional-enigma-6qv7vr5w9g4c5j4-3001.app.github.dev/api/user", {
+        fetch(url + "user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
