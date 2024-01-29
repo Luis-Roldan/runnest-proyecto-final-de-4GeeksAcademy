@@ -220,4 +220,113 @@ def obtener_organizador():
     organizador = Organizador.query.get(id)
     return jsonify(organizador.serialize()), 200
 
+# //////////////////////////////////////
 
+
+@api.route('/carrera', methods=['POST'])
+def crear_carrera():
+    # Obtener datos de la solicitud
+    data = request.json
+
+    # Extraer datos específicos para la carrera
+    nombre = data.get("nombre")
+    distancia = data.get("distancia")
+    ciudad = data.get("ciudad")
+    pais = data.get("pais")
+    fecha = data.get("fecha")
+    capacidad = data.get("capacidad")
+    costo = data.get("costo")
+    dificultad = data.get("dificultad")
+    terminos = data.get("terminos")
+    organizador_id = data.get("organizador_id")
+
+    # Verificar que la data esté completa
+    data_check = [nombre, distancia, ciudad, pais, fecha, capacidad, costo, dificultad, terminos, organizador_id]
+    if None in data_check:
+        return jsonify({
+            "msg": "Faltan datos, por favor verifica tu solicitud"
+        }), 400
+    
+     #verificar que el nombre de la carrera es unico
+    nombre_carrera = nombre.query.filter_by(nombre=nombre).one_or_none()
+    if nombre_carrera:
+        return jsonify({
+            "msg": "Ya existe una carrera con este nombre, favor de seleccionar otro"
+        }), 400
+    
+
+    # Crear una nueva Carrera
+    nueva_carrera = Carrera(
+        nombre=nombre,
+        distancia=distancia,
+        ciudad=ciudad,
+        pais=pais,
+        fecha=fecha,
+        capacidad=capacidad,
+        costo=costo,
+        dificultad=dificultad,
+        terminos=terminos,
+    )
+    print(data)
+
+    # Guardar la nueva carrera en la base de datos
+    try:
+        db.session.add(nueva_carrera)
+        db.session.commit()
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({
+            "msg": "Ha ocurrido un error con la base de datos"
+        }), 500
+
+    return jsonify({}), 201
+
+
+# --------------------------
+
+# Ruta para la clase CarreraUsuario
+@api.route('/carrera_usuario', methods=['POST'])
+def inscribir_usuario_en_carrera():
+    # Obtener datos de la solicitud
+    data = request.json
+
+    # Extraer datos específicos para la inscripción
+    user_id = data.get("user_id")
+    carrera_id = data.get("carrera_id")
+    distancia = data.get("distancia")
+
+    # Verificar que la data esté completa
+    data_check = [user_id, carrera_id, distancia]
+    if None in data_check:
+        return jsonify({
+            "msg": "Faltan datos, por favor verifica tu solicitud"
+        }), 400
+
+     #verificar que el correo es unico
+    usuario = User.query.filter_by(user_id=user_id).one_or_none()
+    carrera = carrera.query.filter_by(carrera_id=carrera_id).one_or_none()
+    distancia = distancia.query.filter_by(distancia=distancia).one_or_none()
+    
+    if usuario or carrera or distancia:
+        return jsonify({
+            "msg": "Ya existe un usuario suscrito en esta carrera"
+        }), 400
+    
+    # Crear una nueva instancia de la clase CarreraUsuario
+    nueva_inscripcion = CarreraUsuario(
+        user_id=user_id,
+        carrera_id=carrera_id,
+        distancia=distancia,
+    )
+
+    # Guardar la nueva inscripción en la base de datos
+    try:
+        db.session.add(nueva_inscripcion)
+        db.session.commit()
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({
+            "msg": "Ha ocurrido un error con la base de datos"
+        }), 500
+
+    return jsonify({}), 201
