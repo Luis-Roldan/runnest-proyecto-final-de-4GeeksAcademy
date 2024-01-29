@@ -18,6 +18,7 @@ aside {
     overflow: hidden;
     font-size: 1.3vw;
     color: white;
+    cursor: pointer;
 }
 
 .panel-item:hover {
