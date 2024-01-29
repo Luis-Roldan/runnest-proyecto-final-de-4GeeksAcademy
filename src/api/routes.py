@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, User, Organizador
+from api.models import db, Carrera, CarreraUsuario, User, Organizador
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -248,8 +248,8 @@ def crear_carrera():
         }), 400
     
      #verificar que el nombre de la carrera es unico
-    nombre_carrera = nombre.query.filter_by(nombre=nombre).one_or_none()
-    if nombre_carrera:
+    carrera_existente = Carrera.query.filter_by(nombre=nombre).one_or_none()
+    if carrera_existente:
         return jsonify({
             "msg": "Ya existe una carrera con este nombre, favor de seleccionar otro"
         }), 400
@@ -293,21 +293,19 @@ def inscribir_usuario_en_carrera():
     # Extraer datos específicos para la inscripción
     user_id = data.get("user_id")
     carrera_id = data.get("carrera_id")
-    distancia = data.get("distancia")
 
     # Verificar que la data esté completa
-    data_check = [user_id, carrera_id, distancia]
+    data_check = [user_id, carrera_id]
     if None in data_check:
         return jsonify({
             "msg": "Faltan datos, por favor verifica tu solicitud"
         }), 400
 
      #verificar que el correo es unico
-    usuario = User.query.filter_by(user_id=user_id).one_or_none()
-    carrera = carrera.query.filter_by(carrera_id=carrera_id).one_or_none()
-    distancia = distancia.query.filter_by(distancia=distancia).one_or_none()
+    usuario = User.query.filter_by(id=user_id).one_or_none()
+    carrera = Carrera.query.filter_by(id=carrera_id).one_or_none()
     
-    if usuario or carrera or distancia:
+    if usuario or carrera:
         return jsonify({
             "msg": "Ya existe un usuario suscrito en esta carrera"
         }), 400
@@ -316,7 +314,7 @@ def inscribir_usuario_en_carrera():
     nueva_inscripcion = CarreraUsuario(
         user_id=user_id,
         carrera_id=carrera_id,
-        distancia=distancia,
+        
     )
 
     # Guardar la nueva inscripción en la base de datos
