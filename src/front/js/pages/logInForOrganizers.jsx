@@ -28,7 +28,7 @@ export const LoginForOrganizers = () => {
                 body: JSON.stringify(requestData),
                 headers: {
                     "Content-Type": "application/json"
-                }
+                } 
             })
             const token = await response.json()
             if (response.status == 201) {

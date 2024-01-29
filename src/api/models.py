@@ -13,7 +13,7 @@ class User(db.Model): #padre
     direccion = db.Column(db.String(500), unique=False, nullable=True)
     telefono = db.Column(db.BigInteger, unique=False, nullable=True)
     terminos = db.Column(db.Boolean(), unique=False, nullable=False)
-    carrera_usuario= db.relationship("CarreraUsuario", back_populates="User")
+    carrera_usuario = db.relationship("CarreraUsuario", back_populates="user")
 
 
     def __repr__(self):
@@ -39,7 +39,7 @@ class Organizador(db.Model): #padre
     organizacion = db.Column(db.String(200), unique=False, nullable=False)
     pagina_web = db.Column(db.String(500), unique=False, nullable=False)
     terminos = db.Column(db.Boolean(), unique=False, nullable=False)
-    carrera= db.relationship("Carrera", back_populates="Organizador")  
+    carrera = db.relationship("Carrera", back_populates="organizador")  
 
 
 
@@ -57,20 +57,20 @@ class Organizador(db.Model): #padre
             "pagina_web": self.pagina_web,
         }
     
-class Carrera(db.Model): #padre
+class Carrera(db.Model): #padre e hijo
     id = db.Column(db.Integer, primary_key=True)
-    Nombre_carrera = db.Column(db.String(250), unique=False, nullable=False)
+    nombre = db.Column(db.String(250), unique=False, nullable=False)
     distancia = db.Column(db.String(200), unique=False, nullable=False)
-    lugar = db.Column(db.String(200), unique=False, nullable=False)
-    fecha = db.Column(db.Integer, unique=False, nullable=True)
+    ciudad = db.Column(db.String(100), unique=False, nullable=False)
+    pais = db.Column(db.String(100), unique=False, nullable=False)
+    fecha = db.Column(db.String(100), unique=False, nullable=True)
     capacidad = db.Column(db.Integer, unique=False, nullable=True)
-    organizadores = db.Column(db.Integer, unique=False, nullable=False)
     costo = db.Column(db.Integer, unique=False, nullable=True)
     dificultad = db.Column(db.String(200), unique=False, nullable=False)
     terminos = db.Column(db.Boolean(), unique=False, nullable=False)
     organizador_id = db.Column(db.Integer, db.ForeignKey('organizador.id'))  
-    carrera_usuario= db.relationship("CarreraUsuario", back_populates="Carrera")  
-    organizador= db.relationship("Organizador", back_populates="Carrera")  
+    organizador= db.relationship("Organizador", back_populates="carrera")
+    carrera_usuario= db.relationship("CarreraUsuario", back_populates="carrera")  
 
     def __repr__(self):
         return f'<User {self.id}>'
@@ -78,22 +78,23 @@ class Carrera(db.Model): #padre
     def serialize(self):
         return {
             "id": self.id,
-            "Nombre_carrera": self.Nombre_carrera,
-            "lugar" : self.lugar,
+            "nombre": self.nombre,
+            "distancia": self.distancia,
+            "ciudad" : self.ciudad,
+            "pais" : self.pais,
             "fecha" : self.fecha,
             "capacidad" : self.capacidad,
-            "organizadores" : self.organizadores,
             "costo" :  self.costo,
             "dificultad" : self.dificultad,
-  
         }
 
 class CarreraUsuario(db.Model): #hijo
     id = db.Column(db.Integer, primary_key=True)
-    usuario_id= db.Column(db.Integer, db.ForeignKey("user.id"))
-    carrera_id= db.Column(db.Integer, db.ForeignKey("carrera.id"))
-    usuario= db.relationship("User", back_populates="CarreraUsuario")
-    carrera= db.relationship("Carrera", back_populates="CarreraUsuario")
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    carrera_id = db.Column(db.Integer, db.ForeignKey("carrera.id"))
+    user = db.relationship("User", back_populates="carrera_usuario")
+    carrera = db.relationship("Carrera", back_populates="carrera_usuario")
+
 
     def __repr__(self):
         return f'<User {self.id}>'
@@ -101,6 +102,6 @@ class CarreraUsuario(db.Model): #hijo
     def serialize(self):
         return {
             "id": self.id,
-            "usuario_id": self.usuario_id,
-            "carrera_id": self.carrera_id,
+            "user": self.user_id_id,
+            "carrera": self.carrera_id,
         }
