@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 export const PanelOrg = () => {
 
     const { store, actions } = useContext(Context)
-    useEffect(() => {actions.getOrganizadorData()},[])
+    useEffect(() => { actions.getOrganizadorData() }, [])
 
-    return(
+    return (
         <div>
             <aside>
                 <div className="panel-box">

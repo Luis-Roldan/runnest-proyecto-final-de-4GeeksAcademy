@@ -10,6 +10,7 @@ export const LoginForOrganizers = () => {
 
     //url para hacer la solicitud
     const url = process.env.REACT_ENV_URL
+    console.log(url)
     const { store, actions } = useContext(Context);
 
 
@@ -23,12 +24,12 @@ export const LoginForOrganizers = () => {
 
     const handleLogIn = async (requestData) => {
         try {
-            const response = await fetch(url + "token-org", {
+            const response = await fetch(url + "/token-org", {
                 method: "POST",
                 body: JSON.stringify(requestData),
                 headers: {
                     "Content-Type": "application/json"
-                } 
+                }
             })
             const token = await response.json()
             if (response.status == 201) {

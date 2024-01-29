@@ -23,7 +23,7 @@ export const LoginUsers = () => {
 
     const handleLogIn = async (requestData) => {
         try {
-            const response = await fetch(url + "token", {
+            const response = await fetch(url + "/token", {
                 method: "POST",
                 body: JSON.stringify(requestData),
                 headers: {
