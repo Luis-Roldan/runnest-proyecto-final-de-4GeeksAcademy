@@ -7,6 +7,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	//obtener el tipo de usuario desde el session storage
 	const userTypeInStorage = sessionStorage.getItem("userType")
 
+	const url = process.env.REACT_ENV_URL
 
 	return {
 		store: {
@@ -22,6 +23,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 				nombre: "",
 				telefono: ""
 			},
+
+			organizador: {
+				email: "",
+				nombre: "",
+				telefono: "",
+				telefono: "",
+				organizacion: "",
+				pagina_web: ""
+			},
+
 			demo: [
 				{
 					title: "FIRST",
@@ -68,13 +79,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 					userType: "Organizador"
 				})
 			},
+
+
 			
 			//funcion para obtener la data del usuario una vez haya iniciado session
 			getUserData: async () => {
 				try {
 					const token2 = sessionStorage.getItem("accessToken")
-    				const url = "https://reimagined-space-spoon-qpjvjgqr7x936569-3001.app.github.dev/api/user"
-					const response = await fetch(url, {
+					const response = await fetch(url + "user", {
 						headers: {
 							"Content-Type": "application/json",
 							"Authorization": "Bearer " + token2
@@ -85,14 +97,37 @@ const getState = ({ getStore, getActions, setStore }) => {
 					if (response.status == 200) {
 						setStore({
 							usuario: responseToJson
-						})
+						});
 						return responseToJson
 					} else {
-						return "hubo un error"
+						return console.log("error status code: ", response.status)
 					}
 		
 				} catch (error) {
-					console.log(error)
+					console.log(error);
+				}
+			},
+
+			//funcion para obtener la data del organizador una vez haya iniciado session
+			getOrganizadorData: async () => {
+				try {
+					const token3 = sessionStorage.getItem("accessToken")
+					const organizadorResponse = await fetch(url + "organizador",{
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token3
+						}
+					});
+					const organizadorResponseToJson = await organizadorResponse.json()
+					if (organizadorResponse.status == 200) {
+						setStore({
+							organizador: organizadorResponseToJson
+						})
+					} else {
+						return console.log("error status code: ", organizadorResponse.status)
+					}
+				} catch (error) {
+					console.log(error);
 				}
 			},
 
