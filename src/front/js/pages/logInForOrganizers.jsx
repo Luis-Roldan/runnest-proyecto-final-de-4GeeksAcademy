@@ -9,7 +9,7 @@ export const LoginForOrganizers = () => {
     const [password, setPassword] = useState("");
 
     //url para hacer la solicitud
-    const url = "https://fictional-enigma-6qv7vr5w9g4c5j4-3001.app.github.dev/api/token-org"
+    const url = process.env.REACT_ENV_URL
     const { store, actions } = useContext(Context);
 
 
@@ -23,7 +23,7 @@ export const LoginForOrganizers = () => {
 
     const handleLogIn = async (requestData) => {
         try {
-            const response = await fetch(url, {
+            const response = await fetch(url + "token-org", {
                 method: "POST",
                 body: JSON.stringify(requestData),
                 headers: {
