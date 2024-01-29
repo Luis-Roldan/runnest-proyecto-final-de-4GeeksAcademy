@@ -13,7 +13,9 @@ export const PerfilUsuario = () => {
     //funcion para renderizar en base al boton que se le hace click
     const handleConditionalRendering = () => {
         if (isClicked == "favoritos") {
-            return "favoritos"
+            return(
+                <div>Favoritos</div>
+            )
         } else if (isClicked == "carreras") {
             return "carreras"
         } else if (isClicked == "reviews") {
@@ -23,7 +25,7 @@ export const PerfilUsuario = () => {
         }
     }
     
-    
+
     return(
         <div>
             <h1 className="text-center pt-4">{`Bienvenido, ${store.usuario.nombre}`}</h1>
