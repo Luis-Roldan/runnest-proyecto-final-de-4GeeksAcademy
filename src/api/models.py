@@ -69,6 +69,7 @@ class Carrera(db.Model): #padre e hijo
     year = db.Column(db.Integer, unique=False, nullable=True)
     costo = db.Column(db.Integer, unique=False, nullable=True)
     dificultad = db.Column(db.String(200), unique=False, nullable=False)
+    capacidad = db.Column(db.Integer, unique=False, nullable=True)
     terminos = db.Column(db.Boolean(), unique=False, nullable=False)
     organizador_id = db.Column(db.Integer, db.ForeignKey('organizador.id'))  
     organizador = db.relationship("Organizador", back_populates="carrera")
@@ -88,6 +89,7 @@ class Carrera(db.Model): #padre e hijo
             "mes" : self.mes,
             "year" : self.year,
             "costo" :  self.costo,
+            "capacidad" :  self.capacidad,
             "dificultad" : self.dificultad,
             "organizador" : self.organizador_id,
         }

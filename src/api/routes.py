@@ -237,12 +237,13 @@ def crear_carrera():
     mes = data.get("mes")
     year = data.get("year")
     costo = data.get("costo")
+    capacidad = data.get("capacidad")
     dificultad = data.get("dificultad")
     terminos = data.get("terminos")
     organizador_id = data.get("organizador_id")
 
     # Verificar que la data esté completa
-    data_check = [nombre, distancia, ciudad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
+    data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
     if None in data_check:
         return jsonify({
             "msg": "Faltan datos, por favor verifica tu solicitud"
@@ -267,6 +268,7 @@ def crear_carrera():
         year = year,
         costo = costo,
         dificultad = dificultad,
+        capacidad = capacidad,
         terminos = terminos,
         organizador_id = organizador_id
     )
