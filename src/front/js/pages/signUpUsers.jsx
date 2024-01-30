@@ -47,7 +47,7 @@ export const SignUpUsers = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch(url + "user", {
+        fetch(url + "/user", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

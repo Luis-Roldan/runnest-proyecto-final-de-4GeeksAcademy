@@ -301,13 +301,13 @@ def inscribir_usuario_en_carrera():
             "msg": "Faltan datos, por favor verifica tu solicitud"
         }), 400
 
-     #verificar que el correo es unico
+    #  verificar que el usuario y la carrera (tenia un error, si en caso se va a poner falta arreglar)
     usuario = User.query.filter_by(id=user_id).one_or_none()
     carrera = Carrera.query.filter_by(id=carrera_id).one_or_none()
     
-    if usuario or carrera:
+    if usuario is not None and carrera is not None:
         return jsonify({
-            "msg": "Ya existe un usuario suscrito en esta carrera"
+            "msg": "Esta usuario ya esta inscrito en esta carrera"
         }), 400
     
     # Crear una nueva instancia de la clase CarreraUsuario

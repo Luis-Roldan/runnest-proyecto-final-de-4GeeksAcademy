@@ -49,11 +49,12 @@ export const SignUpForOrganizers = () => {
     // };
 
     const url = process.env.REACT_ENV_URL
+    console.log(url)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        fetch( url + "organizador", {
+        fetch(url + "/organizador", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
