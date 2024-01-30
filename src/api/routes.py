@@ -218,7 +218,7 @@ def handle_login_organizador():
 def obtener_organizador():
     id = get_jwt_identity()
     organizador = Organizador.query.get(id)
-    return jsonify(organizador.serialize()), 200
+    return jsonify(organizador.serialize()), 200 
 
 # //////////////////////////////////////
 
@@ -301,11 +301,10 @@ def inscribir_usuario_en_carrera():
             "msg": "Faltan datos, por favor verifica tu solicitud"
         }), 400
 
-    #  verificar que el usuario y la carrera (tenia un error, si en caso se va a poner falta arreglar)
-    usuario = User.query.filter_by(id=user_id).one_or_none()
-    carrera = Carrera.query.filter_by(id=carrera_id).one_or_none()
+    #  verificar que el usuario y la carrera
+    usuario_carrera = CarreraUsuario.query.filter_by(user_id=user_id, carrera_id=carrera_id).one_or_none()
     
-    if usuario is not None and carrera is not None:
+    if usuario_carrera:
         return jsonify({
             "msg": "Esta usuario ya esta inscrito en esta carrera"
         }), 400
