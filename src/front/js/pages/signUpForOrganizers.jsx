@@ -35,19 +35,6 @@ export const SignUpForOrganizers = () => {
         terminos: terminos,
     }
 
-    // const handleCheckboxChange = (e) => {
-    //     setIsChecked(e.target.checked);
-    //     setTerminos(e.target.checked ? "aceptado" : ""); // O cualquier otra lógica que necesites
-    // };
-
-    // const handleChange = (e) => {
-    //     const { name, value, type, checked } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: type === "checkbox" ? checked : value,
-    //     });
-    // };
-
     const url = process.env.REACT_ENV_URL
     console.log(url)
 
