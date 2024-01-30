@@ -264,7 +264,7 @@ def crear_carrera():
         pais = pais,
         dia = dia,
         mes = mes,
-        year = year
+        year = year,
         costo = costo,
         dificultad = dificultad,
         terminos = terminos,
