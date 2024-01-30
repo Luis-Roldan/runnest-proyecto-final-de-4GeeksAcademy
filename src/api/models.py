@@ -64,13 +64,14 @@ class Carrera(db.Model): #padre e hijo
     distancia = db.Column(db.String(200), unique=False, nullable=False)
     ciudad = db.Column(db.String(100), unique=False, nullable=False)
     pais = db.Column(db.String(100), unique=False, nullable=False)
-    fecha = db.Column(db.String(100), unique=False, nullable=True)
-    capacidad = db.Column(db.Integer, unique=False, nullable=True)
+    dia = db.Column(db.Integer, unique=False, nullable=True)
+    mes = db.Column(db.Integer, unique=False, nullable=True)
+    year = db.Column(db.Integer, unique=False, nullable=True)
     costo = db.Column(db.Integer, unique=False, nullable=True)
     dificultad = db.Column(db.String(200), unique=False, nullable=False)
     terminos = db.Column(db.Boolean(), unique=False, nullable=False)
     organizador_id = db.Column(db.Integer, db.ForeignKey('organizador.id'))  
-    organizador= db.relationship("Organizador", back_populates="carrera")
+    organizador = db.relationship("Organizador", back_populates="carrera")
     carrera_usuario= db.relationship("CarreraUsuario", back_populates="carrera")  
 
     def __repr__(self):
@@ -83,10 +84,12 @@ class Carrera(db.Model): #padre e hijo
             "distancia": self.distancia,
             "ciudad" : self.ciudad,
             "pais" : self.pais,
-            "fecha" : self.fecha,
-            "capacidad" : self.capacidad,
+            "dia" : self.dia,
+            "mes" : self.mes,
+            "year" : self.year,
             "costo" :  self.costo,
             "dificultad" : self.dificultad,
+            "organizador" : self.organizador_id,
         }
 
 class CarreraUsuario(db.Model): #hijo

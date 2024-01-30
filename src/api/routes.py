@@ -233,15 +233,16 @@ def crear_carrera():
     distancia = data.get("distancia")
     ciudad = data.get("ciudad")
     pais = data.get("pais")
-    fecha = data.get("fecha")
-    capacidad = data.get("capacidad")
+    dia = data.get("dia")
+    mes = data.get("mes")
+    year = data.get("year")
     costo = data.get("costo")
     dificultad = data.get("dificultad")
     terminos = data.get("terminos")
     organizador_id = data.get("organizador_id")
 
     # Verificar que la data esté completa
-    data_check = [nombre, distancia, ciudad, pais, fecha, capacidad, costo, dificultad, terminos, organizador_id]
+    data_check = [nombre, distancia, ciudad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
     if None in data_check:
         return jsonify({
             "msg": "Faltan datos, por favor verifica tu solicitud"
@@ -257,15 +258,17 @@ def crear_carrera():
 
     # Crear una nueva Carrera
     nueva_carrera = Carrera(
-        nombre=nombre,
-        distancia=distancia,
-        ciudad=ciudad,
-        pais=pais,
-        fecha=fecha,
-        capacidad=capacidad,
-        costo=costo,
-        dificultad=dificultad,
-        terminos=terminos,
+        nombre = nombre,
+        distancia = distancia,
+        ciudad = ciudad,
+        pais = pais,
+        dia = dia,
+        mes = mes,
+        year = year
+        costo = costo,
+        dificultad = dificultad,
+        terminos = terminos,
+        organizador_id = organizador_id
     )
     print(data)
 

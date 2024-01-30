@@ -19,7 +19,7 @@ export const Navbar = () => {
           </Link>
         </div>
         <div>
-          <Link to="/" className="otherPages">
+          <Link to="/carreras" className="otherPages">
             <span>Carreras</span>
           </Link>
         </div>
