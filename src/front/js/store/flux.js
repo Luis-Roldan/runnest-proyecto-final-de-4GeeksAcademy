@@ -3,9 +3,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 	// obtener el token del usuario para actualizar el store.isLoggedIn 
 	//para saber cundo el usuario tiene un session abierta
-	const token = sessionStorage.getItem("accessToken")
+	const token = localStorage.getItem("accessToken")
 	//obtener el tipo de usuario desde el session storage
-	const userTypeInStorage = sessionStorage.getItem("userType")
+	const userTypeInStorage = localStorage.getItem("userType")
 
 	const url = process.env.REACT_ENV_URL
 
@@ -85,7 +85,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//funcion para obtener la data del usuario una vez haya iniciado session
 			getUserData: async () => {
 				try {
-					const token2 = sessionStorage.getItem("accessToken")
+					const token2 = localStorage.getItem("accessToken")
 					const response = await fetch(url + "/user", {
 						headers: {
 							"Content-Type": "application/json",
@@ -111,7 +111,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			//funcion para obtener la data del organizador una vez haya iniciado session
 			getOrganizadorData: async () => {
 				try {
-					const token3 = sessionStorage.getItem("accessToken")
+					const token3 = localStorage.getItem("accessToken")
 					const organizadorResponse = await fetch(url + "/organizador",{
 						headers: {
 							"Content-Type": "application/json",

@@ -33,8 +33,8 @@ export const LoginUsers = () => {
             const token = await response.json()
             if (response.status == 201) {
                 //guardar el token y el tipo de usuario en el session storage
-                sessionStorage.setItem("accessToken", token);
-                sessionStorage.setItem("userType", "usuario");
+                localStorage.setItem("accessToken", token);
+                localStorage.setItem("userType", "usuario");
                 actions.setIsLoggedIn();
                 actions.setUserTypeToUsuario();
             }

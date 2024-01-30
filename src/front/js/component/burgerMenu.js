@@ -10,8 +10,8 @@ export const BurgerMenu = () => {
     //borrar el role y el token de el session storage
     const handleLogOut = () => {
         actions.setIsLoggedOut()
-        sessionStorage.removeItem("accessToken")
-        sessionStorage.removeItem("userType")
+        localStorage.removeItem("accessToken")
+        localStorage.removeItem("userType")
     }
 
 
