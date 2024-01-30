@@ -10,6 +10,7 @@ import { Home } from "./pages/home";
 import { SignUpUsers } from "./pages/signUpUsers.jsx";
 import { SignUpForOrganizers } from "./pages/signUpForOrganizers.jsx";
 import injectContext from "./store/appContext";
+import { Carreras } from "./pages/carreras.js";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -30,6 +31,7 @@ const Layout = () => {
                     <Navbar />
                     <Routes>
                         <Route element={<Home />} path="/" />
+                        <Route element={<Carreras />} path="/carreras" />
 
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
                         <Route element={<LoginUsers />} path="/LoginUsers" />
