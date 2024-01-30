@@ -86,7 +86,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getUserData: async () => {
 				try {
 					const token2 = sessionStorage.getItem("accessToken")
-					const response = await fetch(url + "user", {
+					const response = await fetch(url + "/user", {
 						headers: {
 							"Content-Type": "application/json",
 							"Authorization": "Bearer " + token2
@@ -112,7 +112,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getOrganizadorData: async () => {
 				try {
 					const token3 = sessionStorage.getItem("accessToken")
-					const organizadorResponse = await fetch(url + "organizador",{
+					const organizadorResponse = await fetch(url + "/organizador",{
 						headers: {
 							"Content-Type": "application/json",
 							"Authorization": "Bearer " + token3

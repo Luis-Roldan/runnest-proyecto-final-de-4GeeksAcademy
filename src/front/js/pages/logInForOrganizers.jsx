@@ -20,10 +20,11 @@ export const LoginForOrganizers = () => {
         "password": password,
     }
 
-
+    console.log(url)
 
     const handleLogIn = async (requestData) => {
         try {
+            
             const response = await fetch(url + "/token-org", {
                 method: "POST",
                 body: JSON.stringify(requestData),
