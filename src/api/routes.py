@@ -223,68 +223,84 @@ def obtener_organizador():
 # //////////////////////////////////////
 
 
-@api.route('/carrera', methods=['POST'])
+@api.route('/carrera', methods=['POST', "GET"])
 def crear_carrera():
     # Obtener datos de la solicitud
     data = request.json
 
-    # Extraer datos específicos para la carrera
-    nombre = data.get("nombre")
-    distancia = data.get("distancia")
-    ciudad = data.get("ciudad")
-    pais = data.get("pais")
-    dia = data.get("dia")
-    mes = data.get("mes")
-    year = data.get("year")
-    costo = data.get("costo")
-    capacidad = data.get("capacidad")
-    dificultad = data.get("dificultad")
-    terminos = data.get("terminos")
-    organizador_id = data.get("organizador_id")
+    if request.method == "POST":
+        # Extraer datos específicos para la carrera
+        nombre = data.get("nombre")
+        distancia = data.get("distancia")
+        ciudad = data.get("ciudad")
+        pais = data.get("pais")
+        dia = data.get("dia")
+        mes = data.get("mes")
+        year = data.get("year")
+        costo = data.get("costo")
+        capacidad = data.get("capacidad")
+        dificultad = data.get("dificultad")
+        terminos = data.get("terminos")
+        organizador_id = data.get("organizador_id")
 
-    # Verificar que la data esté completa
-    data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
-    if None in data_check:
-        return jsonify({
-            "msg": "Faltan datos, por favor verifica tu solicitud"
-        }), 400
+        # Verificar que la data esté completa
+        data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
+        if None in data_check:
+            return jsonify({
+                "msg": "Faltan datos, por favor verifica tu solicitud"
+            }), 400
+        
+        #verificar que el nombre de la carrera es unico
+        carrera_existente = Carrera.query.filter_by(nombre=nombre).one_or_none()
+        if carrera_existente:
+            return jsonify({
+                "msg": "Ya existe una carrera con este nombre, favor de seleccionar otro"
+            }), 400
+        
+
+        # Crear una nueva Carrera
+        nueva_carrera = Carrera(
+            nombre = nombre,
+            distancia = distancia,
+            ciudad = ciudad,
+            pais = pais,
+            dia = dia,
+            mes = mes,
+            year = year,
+            costo = costo,
+            dificultad = dificultad,
+            capacidad = capacidad,
+            terminos = terminos,
+            organizador_id = organizador_id
+        )
+        print(data)
+
+        # Guardar la nueva carrera en la base de datos
+        try:
+            db.session.add(nueva_carrera)
+            db.session.commit()
+        except Exception as error:
+            db.session.rollback()
+            return jsonify({
+                "msg": "Ha ocurrido un error con la base de datos"
+            }), 500
+
+        return jsonify({}), 201
     
-     #verificar que el nombre de la carrera es unico
-    carrera_existente = Carrera.query.filter_by(nombre=nombre).one_or_none()
-    if carrera_existente:
-        return jsonify({
-            "msg": "Ya existe una carrera con este nombre, favor de seleccionar otro"
-        }), 400
-    
+    if request.method == "GET":
 
-    # Crear una nueva Carrera
-    nueva_carrera = Carrera(
-        nombre = nombre,
-        distancia = distancia,
-        ciudad = ciudad,
-        pais = pais,
-        dia = dia,
-        mes = mes,
-        year = year,
-        costo = costo,
-        dificultad = dificultad,
-        capacidad = capacidad,
-        terminos = terminos,
-        organizador_id = organizador_id
-    )
-    print(data)
+        #Obtener todas las carreras
+        carreras = Carrera.query.all()
 
-    # Guardar la nueva carrera en la base de datos
-    try:
-        db.session.add(nueva_carrera)
-        db.session.commit()
-    except Exception as error:
-        db.session.rollback()
-        return jsonify({
-            "msg": "Ha ocurrido un error con la base de datos"
-        }), 500
+        #lista para colocar las carreras serializadas
+        carreras_serialized = []
 
-    return jsonify({}), 201
+        #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
+        for carreras in carreras:
+            carreras_serialized.append(carreras.serialize())
+        
+        return jsonify(carreras_serialized), 200
+
 
 
 # --------------------------
