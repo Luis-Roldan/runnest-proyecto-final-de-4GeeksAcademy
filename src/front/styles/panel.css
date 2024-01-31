@@ -1,26 +1,30 @@
 aside {
-    background-color: black;
-    width: 20%;
-    height: 85vh;
+  background-color: black;
+  width: 20%;
+  height: 85vh;
 }
 
 .panel-box {
-    list-style-type: none;
-    list-style-position: inside;
+  list-style-type: none;
+  list-style-position: inside;
 }
 .org-name {
-    overflow: hidden;
-    color: white;
-    font-size: 1.5vw;
+  overflow: hidden;
+  color: white;
+  font-size: 1.5vw;
 }
 
 .panel-item {
-    overflow: hidden;
-    font-size: 1.3vw;
-    color: white;
-    cursor: pointer;
+  overflow: hidden;
+  font-size: 1.3vw;
+  color: white;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .panel-item:hover {
-    background-color: #1c1c1b;
+  color: #23ce6b;
+  font-size: larger;
 }

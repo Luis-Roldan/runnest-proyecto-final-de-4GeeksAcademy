@@ -9,6 +9,7 @@ import { LoginForOrganizers } from "./pages/logInForOrganizers.jsx";
 import { Home } from "./pages/home";
 import { SignUpUsers } from "./pages/signUpUsers.jsx";
 import { SignUpForOrganizers } from "./pages/signUpForOrganizers.jsx";
+import { RegistroDeCarreras } from "./pages/CareerRegistration.jsx";
 import injectContext from "./store/appContext";
 import { Carreras } from "./pages/carreras.js";
 
@@ -40,6 +41,7 @@ const Layout = () => {
                         <Route element={<SignUpForOrganizers />} path="/signUpForOrganizers" />
                         <Route element={<LoginForOrganizers />} path="/LoginForOrganizers" />
                         <Route element={userType == "organizador" ? <PanelOrg /> : <Navigate to="/LoginForOrganizers" />} path="/panel" />
+                        <Route element={<RegistroDeCarreras />} path="/RegistroDeCarreras" />
 
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>
