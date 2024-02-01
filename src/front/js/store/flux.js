@@ -149,21 +149,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
-			changeColor: (index, color) => {
-				//get the store
-				const store = getStore();
+			subToRace: async (carrera_id) => {
+				try {
+					const token4 = localStorage.getItem("accessToken")
+					const fetchRace = await fetch(url + "/carrera_usuario", {
+						method: "POST",
+						body: JSON.stringify({
+							carrera_id: carrera_id
+						}),
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token4
+						}
+					})
+					if(fetchRace.status !== 201){
+						return await fetchRace.json()
+					}
+				} catch (error) {
+					console.log(error)
+				}
+			},
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
-
-				//reset the global store
-				setStore({ demo: demo });
-			}
 		}
 	};
 };

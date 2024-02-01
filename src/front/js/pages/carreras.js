@@ -1,12 +1,28 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
-import { Link, Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const Carreras = () => {
+    //importar el store y actions
     const { store, actions } = useContext(Context)
+
+    //declarar el useNavigate
+    const navigate = useNavigate()
+
+    //obtener todas las carreras desde el store
     const carreras = store.carreras
 
+    //obtener el tipo de usuario desde el local storage
     const userType = localStorage.getItem("userType")
+
+    //metodo post para subscribirse a una carrera
+    const handleSubscripcion = (carrera_id) => {
+        if (userType == "usuario") {
+            actions.subToRace(carrera_id)
+        } else {
+            navigate("/loginUsers")
+        }
+    }
 
     return(
         <div className="row row-cols-1 row-cols-md-4">
@@ -25,7 +41,7 @@ export const Carreras = () => {
                         <p>{item.costo}$</p>
                     </div>
                     <hr className="hr" />
-                    <Link to={userType !== "usuario" ? "/loginUsers" : "/" } className="btn btn-dark">Registrarme</Link>
+                    <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark m-2">Registrarme</button>
               </div>
             ))}
         </div>

@@ -314,23 +314,24 @@ def obtener_carrera():
 
 # Ruta para la clase CarreraUsuario
 @api.route('/carrera_usuario', methods=['POST'])
+@jwt_required()
 def inscribir_usuario_en_carrera():
     # Obtener datos de la solicitud
+    id = get_jwt_identity()
     data = request.json
 
     # Extraer datos específicos para la inscripción
-    user_id = data.get("user_id")
     carrera_id = data.get("carrera_id")
 
     # Verificar que la data esté completa
-    data_check = [user_id, carrera_id]
+    data_check = [carrera_id]
     if None in data_check:
         return jsonify({
             "msg": "Faltan datos, por favor verifica tu solicitud"
         }), 400
 
     #  verificar que el usuario y la carrera
-    usuario_carrera = CarreraUsuario.query.filter_by(user_id=user_id, carrera_id=carrera_id).one_or_none()
+    usuario_carrera = CarreraUsuario.query.filter_by(user_id = id, carrera_id = carrera_id).one_or_none()
     
     if usuario_carrera:
         return jsonify({
@@ -339,9 +340,8 @@ def inscribir_usuario_en_carrera():
     
     # Crear una nueva instancia de la clase CarreraUsuario
     nueva_inscripcion = CarreraUsuario(
-        user_id=user_id,
-        carrera_id=carrera_id,
-        
+        user_id = id,
+        carrera_id = carrera_id,
     )
 
     # Guardar la nueva inscripción en la base de datos
