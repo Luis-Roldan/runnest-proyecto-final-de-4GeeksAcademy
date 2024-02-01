@@ -12,12 +12,10 @@ export const PerfilOrganizador = () => {
 
     //funcion para renderizar en base al boton que se le hace click
     const handleConditionalRendering = () => {
-        if (isClicked == "favoritos") {
+        if (isClicked == "carreras") {
             return (
-                <div>Favoritos</div>
+                <div>Carreras</div>
             )
-        } else if (isClicked == "carreras") {
-            return "carreras"
         } else if (isClicked == "reviews") {
             return "Reseñas"
         } else if (isClicked == "resultados") {
@@ -42,7 +40,7 @@ export const PerfilOrganizador = () => {
                 </div>
             </section>
             <div className="d-flex justify-content-center pt-4">
-                <button onClick={() => { setIsclicked("favoritos") }} className="btn-perfil">Favoritos</button>
+
                 <button onClick={() => { setIsclicked("carreras") }} className="btn-perfil">Mis carreras</button>
                 <button onClick={() => { setIsclicked("reviews") }} className="btn-perfil">Reseñas</button>
                 <button onClick={() => { setIsclicked("resultados") }} className="btn-perfil">Resultados</button>
