@@ -286,6 +286,8 @@ def crear_carrera():
             }), 500
 
         return jsonify({}), 201
+
+    #---------------------------------------------- 
     
     if request.method == "GET":
 
