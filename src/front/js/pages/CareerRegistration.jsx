@@ -6,33 +6,45 @@ import "../../styles/CareerRegistration.css";
 
 export const RegistroDeCarreras = () => {
 
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
     const [nombre, setNombre] = useState("")
-    const [telefono, setTelefono] = useState(null)
-    const [organizacion, setOrganizacion] = useState("")
-    const [pagina, setPagina] = useState("")
-    const [terminos, setTerminos] = useState("")
-    const [isChecked, setIsChecked] = useState("");
+    const [distancia, setDistancia] = useState("")
+    const [ciudad, setCiudad] = useState("")
+    const [pais, setPais] = useState("")
+    const [dia, setDia] = useState("")
+    const [mes, setMes] = useState("")
+    const [year, setYear] = useState("")
+    const [costo, setCosto] = useState("")
+    const [capacidad, setCapacidad] = useState("")
+    const [dificultad, setDificultad] = useState("")
+    const [terminos, setTerminos] = useState("");
+    // const [isChecked, setIsChecked] = useState("");
 
 
     const [formData, setFormData] = useState({
-        email: email,
-        password: password,
         nombre: nombre,
-        telefono: telefono,
-        organizacion: organizacion,
-        pagina: pagina,
+        distancia: distancia,
+        ciudad: ciudad,
+        pais: pais,
+        dia: dia,
+        mes: mes,
+        year: year,
+        costo: costo,
+        capacidad: capacidad,
+        dificultad: dificultad,
         terminos: terminos,
     });
 
     const data = {
-        email: email,
-        password: password,
         nombre: nombre,
-        telefono: telefono,
-        organizacion: organizacion,
-        pagina: pagina,
+        distancia: distancia,
+        ciudad: ciudad,
+        pais: pais,
+        dia: dia,
+        mes: mes,
+        year: year,
+        costo: costo,
+        capacidad: capacidad,
+        dificultad: dificultad,
         terminos: terminos,
     }
 
