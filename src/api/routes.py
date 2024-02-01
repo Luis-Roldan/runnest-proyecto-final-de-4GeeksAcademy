@@ -229,7 +229,7 @@ def crear_carrera():
     # Obtener datos de la solicitud
     data = request.json
 
-    id=get_jwt_identity()
+    id = get_jwt_identity()
 
     if request.method == "POST":
         # Extraer datos específicos para la carrera
@@ -247,7 +247,7 @@ def crear_carrera():
         
 
         # Verificar que la data esté completa
-        data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
+        data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos]
         if None in data_check:
             return jsonify({
                 "msg": "Faltan datos, por favor verifica tu solicitud"
@@ -292,27 +292,23 @@ def crear_carrera():
     
 
     #---------------------------------------------- 
+
     
-    # if request.method == "GET":
-
-    #     #Obtener todas las carreras
-    #     carreras = Carrera.query.all()
-
-    #     #lista para colocar las carreras serializadas
-    #     carreras_serialized = []
-
-    #     #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
-    #     for carreras in carreras:
-    #         carreras_serialized.append(carreras.serialize())
-        
-    #     return jsonify(carreras_serialized), 200
 
 @api.route("/carrera", methods =["GET"])
-
 def obtener_carrera():
-    id = get_jwt_identity()
-    carrera = Carrera.query.get(id)
-    return jsonify(carrera.serialize()), 200
+         #Obtener todas las carreras
+         carreras = Carrera.query.all()
+
+         #lista para colocar las carreras serializadas
+         carreras_serialized = []
+
+         #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
+         for carreras in carreras:
+            carreras_serialized.append(carreras.serialize())
+        
+         return jsonify(carreras_serialized), 200
+    
 
 # --------------------------
 

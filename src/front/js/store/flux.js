@@ -135,11 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getCarreras: async () => {
 				try {
-					const carreraResponse = await fetch(url + "/carrera", {
-						headers: {
-							"Content-type": "application/json"
-						}
-					});
+					const carreraResponse = await fetch(url + "/carrera");
 					const carreraResponseToJson = await carreraResponse.json()
 					if (carreraResponse.status == 200) {
 						setStore({
