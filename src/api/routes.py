@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Carrera, CarreraUsuario, User, Organizador
+from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -223,10 +223,13 @@ def obtener_organizador():
 # //////////////////////////////////////
 
 
-@api.route('/carrera', methods=['POST', "GET"])
+@api.route('/carrera', methods=['POST'])
+@jwt_required()
 def crear_carrera():
     # Obtener datos de la solicitud
     data = request.json
+
+    id=get_jwt_identity()
 
     if request.method == "POST":
         # Extraer datos específicos para la carrera
@@ -241,7 +244,7 @@ def crear_carrera():
         capacidad = data.get("capacidad")
         dificultad = data.get("dificultad")
         terminos = data.get("terminos")
-        organizador_id = data.get("organizador_id")
+        
 
         # Verificar que la data esté completa
         data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
@@ -271,7 +274,7 @@ def crear_carrera():
             dificultad = dificultad,
             capacidad = capacidad,
             terminos = terminos,
-            organizador_id = organizador_id
+            organizador_id = id
         )
         print(data)
 
@@ -286,24 +289,30 @@ def crear_carrera():
             }), 500
 
         return jsonify({}), 201
+    
 
     #---------------------------------------------- 
     
-    if request.method == "GET":
+    # if request.method == "GET":
 
-        #Obtener todas las carreras
-        carreras = Carrera.query.all()
+    #     #Obtener todas las carreras
+    #     carreras = Carrera.query.all()
 
-        #lista para colocar las carreras serializadas
-        carreras_serialized = []
+    #     #lista para colocar las carreras serializadas
+    #     carreras_serialized = []
 
-        #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
-        for carreras in carreras:
-            carreras_serialized.append(carreras.serialize())
+    #     #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
+    #     for carreras in carreras:
+    #         carreras_serialized.append(carreras.serialize())
         
-        return jsonify(carreras_serialized), 200
+    #     return jsonify(carreras_serialized), 200
 
+@api.route("/carrera", methods =["GET"])
 
+def obtener_carrera():
+    id = get_jwt_identity()
+    carrera = Carrera.query.get(id)
+    return jsonify(carrera.serialize()), 200
 
 # --------------------------
 
@@ -350,3 +359,65 @@ def inscribir_usuario_en_carrera():
         }), 500
 
     return jsonify({}), 201
+
+# --------------------------
+
+# Ruta para la clase Puntuacion
+@api.route('/puntuacion', methods=['POST', "GET"])
+def puntuacion():
+    data = request.json
+    if request.method=="GET":
+        # Extraer datos específicos para la inscripción
+        user_id = data.get("user_id")
+        carrera_id = data.get("carrera_id")
+        puntuacion= data.get("puntuacion")
+
+        # Verificar que la data esté completa
+        data_check = [user_id, carrera_id, puntuacion]
+        if None in data_check:
+            return jsonify({
+                "msg": "Intenta de nuevo!"
+            }), 400
+
+        #  verificar que el usuario y la carrera
+        puntuacion = puntuacion.query.filter_by(user_id=user_id, carrera_id=carrera_id).one_or_none()
+        
+        if puntuacion:
+            return jsonify({
+                "msg": "Ya calificaste esta carrera"
+            }), 400
+        
+        # Crear una nueva instancia de la clase Puntuacion
+        nueva_puntuacion = Puntuacion(
+            user_id=user_id,
+            carrera_id=carrera_id,
+            puntuacion=puntuacion
+            
+        )
+
+        # Guardar la nueva puntuacion en la base de datos
+        try:
+            db.session.add(nueva_puntuacion)
+            db.session.commit()
+        except Exception as error:
+            db.session.rollback()
+            return jsonify({
+                "msg": "Ha ocurrido un error con la base de datos"
+            }), 500
+
+        return jsonify({}), 201
+
+    if request.method == "GET":
+
+        #Obtener todas las puntuaciones
+        puntuacion = Puntuacion.query.filter_by(carrera_id=carrera_id)
+
+        #lista para colocar las puntuaciones serializadas
+        puntuacion_serialized = []
+
+        #loop para transformar cada puntuacion en json y agregalas a la lista puntuacion_serialized
+        for puntuacion in puntuacion:
+            puntuacion_serialized.append(puntuacion.serialize())
+        
+        return jsonify(puntuacion_serialized), 200
+
