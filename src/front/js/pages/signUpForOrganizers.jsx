@@ -12,18 +12,7 @@ export const SignUpForOrganizers = () => {
     const [organizacion, setOrganizacion] = useState("")
     const [pagina, setPagina] = useState("")
     const [terminos, setTerminos] = useState("")
-    const [isChecked, setIsChecked] = useState("");
 
-
-    const [formData, setFormData] = useState({
-        email: email,
-        password: password,
-        nombre: nombre,
-        telefono: telefono,
-        organizacion: organizacion,
-        pagina: pagina,
-        terminos: terminos,
-    });
 
     const data = {
         email: email,
@@ -83,14 +72,6 @@ export const SignUpForOrganizers = () => {
                     <input type="text" className="form-control" id="Name" onChange={(e) => setNombre(e.target.value)}
                         value={nombre} name="name" />
                 </div>
-                {/* <div className="mb-3">
-                    <label htmlFor="lastName" className="form-label">Apellido</label>
-                    <input type="text" className="form-control" id="lastName" onChange={handleChange}
-                        value={formData.apellido} />
-                </div> */}
-
-
-
                 <div className="mb-3">
                     <label htmlFor="InputEmail" className="form-label">Correo electrónico</label>
                     <input type="email" className="form-control" id="InputEmail" aria-describedby="emailHelp" name="email" onChange={(e) => setEmail(e.target.value)}

@@ -324,8 +324,7 @@ def inscribir_usuario_en_carrera():
     carrera_id = data.get("carrera_id")
 
     # Verificar que la data esté completa
-    data_check = [carrera_id]
-    if None in data_check:
+    if carrera_id is None:
         return jsonify({
             "msg": "Faltan datos, por favor verifica tu solicitud"
         }), 400

@@ -13,17 +13,6 @@ export const SignUpUsers = () => {
     const [direccion, setDireccion] = useState("")
     const [terminos, setTerminos] = useState("")
 
-
-    const [formData, setFormData] = useState({
-        email: email,
-        password: password,
-        nombre: nombre,
-        apellido: apellido,
-        telefono: telefono,
-        direccion: direccion,
-        terminos: terminos,
-    });
-
     const data = {
         email: email,
         password: password,
@@ -35,14 +24,6 @@ export const SignUpUsers = () => {
     }
 
     const url = process.env.REACT_ENV_URL
-
-    // const handleChange = (e) => {
-    //     const { name, value, type, checked } = e.target;
-    //     setFormData({
-    //         ...formData,
-    //         [name]: type === "checkbox" ? checked : value,
-    //     });
-    // };
 
     const handleSubmit = (e) => {
         e.preventDefault();
