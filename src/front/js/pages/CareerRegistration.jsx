@@ -1,15 +1,81 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
-import "../../styles/signUpForOrganizers.css";
+import "../../styles/CareerRegistration.css";
 
 
 export const RegistroDeCarreras = () => {
 
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [nombre, setNombre] = useState("")
+    const [telefono, setTelefono] = useState(null)
+    const [organizacion, setOrganizacion] = useState("")
+    const [pagina, setPagina] = useState("")
+    const [terminos, setTerminos] = useState("")
+    const [isChecked, setIsChecked] = useState("");
+
+
+    const [formData, setFormData] = useState({
+        email: email,
+        password: password,
+        nombre: nombre,
+        telefono: telefono,
+        organizacion: organizacion,
+        pagina: pagina,
+        terminos: terminos,
+    });
+
+    const data = {
+        email: email,
+        password: password,
+        nombre: nombre,
+        telefono: telefono,
+        organizacion: organizacion,
+        pagina: pagina,
+        terminos: terminos,
+    }
+
+    const url = process.env.REACT_ENV_URL
+    console.log(url)
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        fetch(url + "/organizador", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+                setNombre("");
+                setEmail("");
+                setTelefono("");
+                setOrganizacion("");
+                setPagina("");
+                setPassword("");
+                setTerminos(false);
+
+
+            })
+            .catch((error) => {
+                console.error("Error submitting form:", error);
+            });
+
+    };
 
     return (
-        <div className="SignUpForOrganizersContainer">
-            <h1 className="TitleSignUpForOrganizers">
+        <div className="CareerRegistrationContainer">
+            <h1 className="TitleSignUpForCareerRegistration">
                 Registrar una nueva carrera
             </h1>
             <form >
@@ -48,11 +114,12 @@ export const RegistroDeCarreras = () => {
                     <input type="text" className="form-control" id="Name" />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
-                    <input type="checkbox" className="form-check-input" id="exampleCheck" />
+                    <input type="checkbox" className="form-check-input" id="exampleCheck" onChange={(e) => setTerminos(true)}
+                        value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
 
-                <button type="submit" className="btn btn-primary SubmitButtonForOrganizersSignUp">Enviar</button>
+                <button type="submit" className="btn btn-primary SubmitButtonForCareerRegistration" onClick={handleSubmit}>Enviar</button>
             </form>
         </div>
     );
