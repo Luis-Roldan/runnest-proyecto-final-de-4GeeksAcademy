@@ -23,13 +23,8 @@ export const Navbar = () => {
             <span>Carreras</span>
           </Link>
         </div>
-        {/* <div>
-          <Link to="/" className="otherPages">
-            <span>Favoritos</span>
-          </Link>
-        </div> */}
         <div>
-          <Link to="/" className="otherPages">
+          <Link to="/contacto" className="otherPages">
             <span>Contacto</span>
           </Link>
         </div>
@@ -59,17 +54,6 @@ export const Navbar = () => {
             </Link></li>
           </ul>
         </div>
-        {/* <div>
-          <Link to="/logIn" className="btn btnNav">
-            iniciar sesión
-          </Link>
-        </div>
-        <div>
-          <Link to="/signUp" className="btn btnNav">
-            Registrarse
-          </Link>
-        </div> */}
-
         <div className="burger-menu">
           {isLoggedIn ? <BurgerMenu /> : null}
         </div>
