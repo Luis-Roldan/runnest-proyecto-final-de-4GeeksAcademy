@@ -23,7 +23,7 @@ export const BurgerMenu = () => {
             </label>
 
             <ul className="menu__box">
-                <li>{userType == "usuario" ? <Link className="menu__item" to="/perfil">Perfil</Link> : <Link className="menu__item" to="/panel">Panel</Link>}</li>
+                <li>{userType == "usuario" ? <Link className="menu__item" to="/perfil">Perfil</Link> : <Link className="menu__item" to="/perfilOrganizador">Perfil</Link>}</li>
                 <li><a className="menu__item" href="#">About</a></li>
                 <li><a className="menu__item" href="#">Team</a></li>
                 <li><a className="menu__item" href="#">Contact</a></li>

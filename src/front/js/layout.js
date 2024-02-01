@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
 import { PerfilUsuario } from "./pages/perfilUsuario.js";
+import { PerfilOrganizador } from "./pages/PerfilOrganizador.jsx";
 import { LoginUsers } from "./pages/logInUsers.jsx";
 import { LoginForOrganizers } from "./pages/logInForOrganizers.jsx";
 import { Home } from "./pages/home";
@@ -42,7 +43,7 @@ const Layout = () => {
 
                         <Route element={<SignUpForOrganizers />} path="/signUpForOrganizers" />
                         <Route element={<LoginForOrganizers />} path="/LoginForOrganizers" />
-                        <Route element={userType == "organizador" ? <PanelOrg /> : <Navigate to="/LoginForOrganizers" />} path="/panel" />
+                        <Route element={userType == "organizador" ? <PerfilOrganizador /> : <Navigate to="/LoginForOrganizers" />} path="/PerfilOrganizador" />
                         <Route element={<RegistroDeCarreras />} path="/RegistroDeCarreras" />
 
                         <Route element={<h1>Not found!</h1>} />
