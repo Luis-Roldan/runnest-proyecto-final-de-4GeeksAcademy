@@ -30,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: "",
 				nombre: "",
 				telefono: "",
-				telefono: "",
+				// telefono: "",
 				organizacion: "",
 				pagina_web: ""
 			},
@@ -83,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 
-			
+
 			//funcion para obtener la data del usuario una vez haya iniciado session
 			getUserData: async () => {
 				try {
@@ -94,7 +94,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": "Bearer " + token2
 						}
 					});
-		
+
 					const responseToJson = await response.json()
 					if (response.status == 200) {
 						setStore({
@@ -104,7 +104,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					} else {
 						return console.log("error status code: ", response.status)
 					}
-		
+
 				} catch (error) {
 					console.log(error);
 				}
@@ -114,7 +114,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			getOrganizadorData: async () => {
 				try {
 					const token3 = localStorage.getItem("accessToken")
-					const organizadorResponse = await fetch(url + "/organizador",{
+					const organizadorResponse = await fetch(url + "/organizador", {
 						headers: {
 							"Content-Type": "application/json",
 							"Authorization": "Bearer " + token3
@@ -162,7 +162,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 							"Authorization": "Bearer " + token4
 						}
 					})
-					if(fetchRace.status !== 201){
+					if (fetchRace.status !== 201) {
 						return await fetchRace.json()
 					}
 				} catch (error) {
