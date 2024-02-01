@@ -1,13 +1,55 @@
 .btn-perfil {
-    border: none;
-    border-bottom: 2px black solid;
-    background: transparent;
-    padding: 30px 40px 30px 35px;
-    font-size: 20px;
-    transition: all ease-in 0.3s;
+  border: none;
+  border-bottom: 2px black solid;
+  background: transparent;
+  padding: 30px 40px 30px 35px;
+  font-size: 20px;
+  transition: all ease-in 0.3s;
 }
 
 .btn-perfil:focus {
-    border-bottom: 2px #23ce6b solid;
-    color: #23ce6b;
+  border-bottom: 2px #23ce6b solid;
+  color: #23ce6b;
+}
+
+.Title {
+  text-align: center;
+}
+
+.ImgProfile {
+  height: 100px;
+  width: 100px;
+  align-self: center;
+}
+
+.TopProfilePartContainer {
+  display: flex;
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.LeftSideProfileTop {
+  width: 30vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: black;
+  color: aliceblue;
+  border: solid white;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.RightSideProfileTop {
+  width: 70vw;
+  background-color: black;
+  color: aliceblue;
+  border: solid white;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
 }
