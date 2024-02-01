@@ -23,27 +23,29 @@ export const RegistroDeCarreras = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Ciudad</label>
-                    <input type="text" className="form-control" id="Name" onChange />
+                    <input type="text" className="form-control" id="Name" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">País</label>
-                    <input type="text" className="form-control" id="Name" onChange />
+                    <input type="text" className="form-control" id="Name" />
                 </div>
-                <div className="mb-3">
-                    <label htmlFor="Name" className="form-label">Fecha</label>
-                    <input type="text" className="form-control" id="Name" onChange />
+                <div className="mb-3 d-flex justify-content-between">
+                    <label htmlFor="Name" className="form-label">Fecha:</label>
+                    <div><input type="number" className="form-control" id="Name" placeholder="Dia" min="0" max="31" /></div><p>/</p>
+                    <div><input type="number" className="form-control" id="Name" placeholder="mes" min="0" max="12" /></div><p>/</p>
+                    <div><input type="number" className="form-control" id="Name" placeholder="año" min="2024" /></div><p>/</p>
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Costo</label>
-                    <input type="text" className="form-control" id="Name" onChange />
+                    <input type="text" className="form-control" id="Name" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Dificultad</label>
-                    <input type="text" className="form-control" id="Name" onChange />
+                    <input type="text" className="form-control" id="Name" />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Capacidad</label>
-                    <input type="text" className="form-control" id="Name" onChange />
+                    <input type="text" className="form-control" id="Name" />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
                     <input type="checkbox" className="form-check-input" id="exampleCheck" />
