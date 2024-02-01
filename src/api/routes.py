@@ -247,7 +247,7 @@ def crear_carrera():
         
 
         # Verificar que la data esté completa
-        data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
+        data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos]
         if None in data_check:
             return jsonify({
                 "msg": "Faltan datos, por favor verifica tu solicitud"

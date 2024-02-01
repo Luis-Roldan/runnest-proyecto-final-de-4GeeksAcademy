@@ -62,6 +62,8 @@ export const RegistroDeCarreras = () => {
         const token = localStorage.getItem("accessToken")
         console.log(token)
 
+
+
         fetch(url + "/carrera", {
             method: "POST",
             headers: {
