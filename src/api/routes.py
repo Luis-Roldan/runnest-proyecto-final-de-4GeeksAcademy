@@ -223,10 +223,13 @@ def obtener_organizador():
 # //////////////////////////////////////
 
 
-@api.route('/carrera', methods=['POST', "GET"])
+@api.route('/carrera', methods=['POST'])
+@jwt_required()
 def crear_carrera():
     # Obtener datos de la solicitud
     data = request.json
+
+    id=get_jwt_identity()
 
     if request.method == "POST":
         # Extraer datos específicos para la carrera
@@ -241,7 +244,7 @@ def crear_carrera():
         capacidad = data.get("capacidad")
         dificultad = data.get("dificultad")
         terminos = data.get("terminos")
-        organizador_id = data.get("organizador_id")
+        
 
         # Verificar que la data esté completa
         data_check = [nombre, distancia, ciudad, capacidad, pais, costo, dia, mes, year, dificultad, terminos, organizador_id]
@@ -271,7 +274,7 @@ def crear_carrera():
             dificultad = dificultad,
             capacidad = capacidad,
             terminos = terminos,
-            organizador_id = organizador_id
+            organizador_id = id
         )
         print(data)
 
@@ -286,24 +289,30 @@ def crear_carrera():
             }), 500
 
         return jsonify({}), 201
+    
 
     #---------------------------------------------- 
     
-    if request.method == "GET":
+    # if request.method == "GET":
 
-        #Obtener todas las carreras
-        carreras = Carrera.query.all()
+    #     #Obtener todas las carreras
+    #     carreras = Carrera.query.all()
 
-        #lista para colocar las carreras serializadas
-        carreras_serialized = []
+    #     #lista para colocar las carreras serializadas
+    #     carreras_serialized = []
 
-        #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
-        for carreras in carreras:
-            carreras_serialized.append(carreras.serialize())
+    #     #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
+    #     for carreras in carreras:
+    #         carreras_serialized.append(carreras.serialize())
         
-        return jsonify(carreras_serialized), 200
+    #     return jsonify(carreras_serialized), 200
 
+@api.route("/carrera", methods =["GET"])
 
+def obtener_carrera():
+    id = get_jwt_identity()
+    carrera = Carrera.query.get(id)
+    return jsonify(carrera.serialize()), 200
 
 # --------------------------
 

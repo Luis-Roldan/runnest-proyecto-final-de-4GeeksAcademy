@@ -16,7 +16,8 @@ export const RegistroDeCarreras = () => {
     const [costo, setCosto] = useState("")
     const [capacidad, setCapacidad] = useState("")
     const [dificultad, setDificultad] = useState("")
-    const [terminos, setTerminos] = useState("");
+    const [terminos, setTerminos] = useState("")
+
     // const [isChecked, setIsChecked] = useState("");
 
 
@@ -32,6 +33,7 @@ export const RegistroDeCarreras = () => {
         capacidad: capacidad,
         dificultad: dificultad,
         terminos: terminos,
+
     });
 
     const data = {
@@ -46,7 +48,10 @@ export const RegistroDeCarreras = () => {
         capacidad: capacidad,
         dificultad: dificultad,
         terminos: terminos,
+
     }
+
+
 
     const url = process.env.REACT_ENV_URL
     console.log(url)
@@ -54,10 +59,14 @@ export const RegistroDeCarreras = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
+        const token = localStorage.getItem("accessToken")
+        console.log(token)
+
         fetch(url + "/carrera", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer " + token,
             },
             body: JSON.stringify(data),
         })
@@ -81,6 +90,7 @@ export const RegistroDeCarreras = () => {
                 setCapacidad("");
                 setDificultad("");
                 setTerminos(false);
+                setOrganizadorId("");
 
 
             })
@@ -145,7 +155,6 @@ export const RegistroDeCarreras = () => {
                         value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
-
                 <button type="submit" className="btn btn-primary SubmitButtonForCareerRegistration" onClick={handleSubmit}>Enviar</button>
             </form>
         </div>
