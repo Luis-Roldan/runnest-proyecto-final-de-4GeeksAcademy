@@ -15,6 +15,7 @@ class User(db.Model): #padre
     telefono = db.Column(db.BigInteger, unique=False, nullable=True)
     terminos = db.Column(db.Boolean(), unique=False, nullable=False)
     carrera_usuario = db.relationship("CarreraUsuario", back_populates="user")
+    puntuacion= db.relationship("Puntuacion", back_populates="user")
 
 
     def __repr__(self):
@@ -74,6 +75,7 @@ class Carrera(db.Model): #padre e hijo
     organizador_id = db.Column(db.Integer, db.ForeignKey('organizador.id'))  
     organizador = db.relationship("Organizador", back_populates="carrera")
     carrera_usuario= db.relationship("CarreraUsuario", back_populates="carrera")  
+    puntuacion=db.relationship("Puntuacion", back_populates="carrera")
 
     def __repr__(self):
         return f'<User {self.id}>'
@@ -108,6 +110,27 @@ class CarreraUsuario(db.Model): #hijo
     def serialize(self):
         return {
             "id": self.id,
-            "user": self.user_id_id,
+            "user": self.user_id,
             "carrera": self.carrera_id,
         }
+    
+class Puntuacion(db.Model):
+    id =db.Column(db.Integer, primary_key=True)
+    puntuacion= db.Column(db.Integer, unique=False, nullable= False)
+    carrera_id = db.Column(db.Integer, db.ForeignKey("carrera.id"))
+    carrera = db.relationship("Carrera", back_populates="puntuacion")
+    user = db.relationship("User", back_populates="puntuacion")
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    
+    
+    def __repr__(self):
+        return f'<User {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user_id,
+            "carrera_id": self.carrera_id,
+            "puntuacion": self.puntuacion,
+        }
+    
