@@ -1,36 +1,64 @@
-.rate_widget {
-    border:     1px solid #CCC;
-    overflow:   visible;
-    padding:    10px;
-    position:   relative;
-    width:      180px;
-    height:     32px;
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
-.ratings_stars {
-    background: url('https://tse2.mm.bing.net/th?id=OIP.00tNHeMKBVxYKEiUn-atlQHaHa&pid=Api&P=0&h=180') no-repeat;
-    float:      left;
-    height:     28px;
-    padding:    2px;
-    width:      32px;
+body{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: rgb(133, 121, 75);
 }
-.ratings_vote {
-    background: url('https://tse4.explicit.bing.net/th?id=OIP.xLd0JTL0v-9ZzPnU1whA4QHaHa&pid=Api&P=0&h=180') no-repeat;
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap:40px;
 }
-.total_votes {
-    background: #eaeaea;
-    top: 58px;
-    left: 0;
-    padding: 5px;
-    position:   absolute;  
-} 
-.movie_choice {
-    font: 10px verdana, sans-serif;
-    margin: 0 auto 40px auto;
-    width: 180px;
+.rating{
+    position:relative;
+    display: flex;
+    flex-direction:row-reverse;
+    padding: 30px 40px;
+    border: 3px solid rgba(0, 0, 0, 0.719);
+    gap:4px;
+    border-radius: 30px;
+    background-color: aquamarine;
+    box-shadow: 30px 30px 30px -10px rgba(0, 0, 0, .5),
+    inset 15px 15px 3px rgba(149, 148, 148, 0.963),
+    -4px -4px  15px rgba(157, 155, 155, 0.1),
+    inset -2px -2px 12px rgba(0, 0 ,0 ,0.75),
 }
+.rating:nth-child(1){
+    transform: translateX(-80);
+}
+.rating:nth-child(3){
+    transform: translateX(-80);
+}
+.rating input{
+    position:relative;
+    width:40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    cursor:pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+.rating input::before{
+    content:'\f005';
+    position:absolute;
+    font-family: fontAwesome;
+    font-size: 34px;
+    color:black;
+    transition: .5s;
+}
+.rating input:hover ~ input:before,
+.rating input:hover::before,
+.rating input:checked ~ input:before
+.rating input:checked::before{
+    color: var(--c);
 
-.Rate {
-    font: 10px verdana, sans-serif;
-    margin: 0 auto 40px auto;
-    width: 180px;
 }
