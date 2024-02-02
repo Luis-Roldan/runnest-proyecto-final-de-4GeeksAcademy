@@ -28,6 +28,11 @@ export const Navbar = () => {
             <span>Contacto</span>
           </Link>
         </div>
+        <div>
+          <Link to="/puntuacion" className="otherPages">
+            <span>puntuacion</span>
+          </Link>
+        </div>
         <div className="dropdown">
           <button className="btn btn-secondary dropdown-toggle btnNav" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             Iniciar sesión
