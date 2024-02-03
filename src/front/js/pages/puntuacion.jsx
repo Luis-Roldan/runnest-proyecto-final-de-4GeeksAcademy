@@ -30,8 +30,8 @@ export const Puntuacion = () => {
   };
 
   const handleSubmit = () => {
-    // Aquí realizas la solicitud POST
-    fetch("https://ejemplo-api.com/calificar", {
+    // Solicitud POST
+    fetch("https:", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
