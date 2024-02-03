@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion
+from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -361,7 +361,7 @@ def inscribir_usuario_en_carrera():
 @api.route('/puntuacion', methods=['POST', "GET"])
 def puntuacion():
     data = request.json
-    if request.method=="GET":
+    if request.method == "GET":
         # Extraer datos específicos para la inscripción
         user_id = data.get("user_id")
         carrera_id = data.get("carrera_id")
@@ -384,9 +384,9 @@ def puntuacion():
         
         # Crear una nueva instancia de la clase Puntuacion
         nueva_puntuacion = Puntuacion(
-            user_id=user_id,
-            carrera_id=carrera_id,
-            puntuacion=puntuacion
+            user_id = user_id,
+            carrera_id = carrera_id,
+            puntuacion = puntuacion
             
         )
 
@@ -415,4 +415,99 @@ def puntuacion():
             puntuacion_serialized.append(puntuacion.serialize())
         
         return jsonify(puntuacion_serialized), 200
+    
+@api.route("/favorito", methods=["GET", "DELETE", "POST"])
+@jwt_required()
+def handle_favoritos():
+    
+    data = request.json
+
+    #-------------------------------------------------------
+    if request.method == "POST":
+        
+        #obtener los datos de la solicitud
+        carrera = data.get("carrera")
+        user = get_jwt_identity()
+
+        #verificar que los datos esten completos
+        data_check = [carrera, user]
+
+        if None in data_check:
+            return jsonify({
+                "msg": "datos incompletos"
+            }), 400
+        
+        #verificar que el favorito no esta en la base de datos
+        favorito = Favoritos.query.filter_by(user_id = user, carrera_id = carrera).one_or_none()
+
+        if favorito:
+            return jsonify({
+                "msg": "Esta carrera ya esta en favoritos"
+            }), 400
+        
+        #crear un nuevo favorito y guardarlo en una variable
+        new_favorito = Favoritos(
+            user_id = user,
+            carrera_id = carrera
+        )
+
+        #enviar el nuevo favorito a la base de datos 
+        try:
+            db.session.add(new_favorito)
+            db.session.commit()
+        except Exception as error:
+            db.session.rollback()
+            return jsonify({
+                "msg": "Ha ocurrido un error con la base de datos"
+            }), 500
+
+        return jsonify({}), 201
+    
+
+    #--------------------------------------------------
+    if request.method == "DELETE":
+
+        #obtener la data del request
+        favorito_id = data.get("favorito")
+
+        #verificar que la dat esta completa
+        if favorito_id is None:
+            return jsonify({
+                "msg": "datos incompletos"
+            }), 400
+
+        #variable del favorito que se va a borrar de la base de datos
+        favorite = Favoritos.query.get(favorito_id)
+
+        #borrar el favorito de la base de datos
+        try:
+            db.session.delete(favorite)
+            db.session.commit()
+            return jsonify({
+                "msg": "Favorito ha sido borrado satisfactoriamente"
+            }), 200
+        except Exception as error:
+            db.session.rollback()
+            return jsonify({
+                "msg": "Ha ocurrido un error con la base de datos"
+            }), 500
+        
+        #---------------------------------------------
+    
+    if request.method == "GET":
+
+        #obtener el usuario
+        user_id = data.get("user")
+
+        #obterner favoritos de un usuario en especifico
+        favoritos_usuario = Favoritos.query.filter_by(user_id = user_id)
+
+        #lista de favoritos para incluirlos ya serializados
+        user_favorites = []
+
+        for favoritos in favoritos_usuario:
+            user_favorites.append(favoritos.serialize())
+        
+        return jsonify(user_favorites), 200
+
 

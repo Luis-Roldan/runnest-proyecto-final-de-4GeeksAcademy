@@ -14,6 +14,7 @@ export const Puntuacion = () => {
   const url = process.env.REACT_ENV_URL
 
   const handleClick = (value) => {
+  
     setCurrentValue(value);
   };
 

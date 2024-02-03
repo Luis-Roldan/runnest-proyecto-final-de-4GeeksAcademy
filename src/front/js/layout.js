@@ -37,7 +37,7 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Carreras />} path="/carreras" />
                         <Route element={<Contacto />} path="/contacto" />
-                        <Route element={<Puntuacion />} path="/puntuacion" />
+                        <Route element={<Puntuacion />} path="/puntuacion" /> 
 
                         
 

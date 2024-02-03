@@ -16,6 +16,7 @@ class User(db.Model): #padre
     terminos = db.Column(db.Boolean(), unique=False, nullable=False)
     carrera_usuario = db.relationship("CarreraUsuario", back_populates="user")
     puntuacion= db.relationship("Puntuacion", back_populates="user")
+    favoritos = db.relationship("Favoritos", back_populates="user")
 
 
     def __repr__(self):
@@ -47,7 +48,7 @@ class Organizador(db.Model): #padre
 
 
     def __repr__(self):
-        return f'<User {self.email}>'
+        return f'<Organizador {self.email}>'
 
     def serialize(self):
         return {
@@ -75,10 +76,11 @@ class Carrera(db.Model): #padre e hijo
     organizador_id = db.Column(db.Integer, db.ForeignKey('organizador.id'))  
     organizador = db.relationship("Organizador", back_populates="carrera")
     carrera_usuario= db.relationship("CarreraUsuario", back_populates="carrera")  
-    puntuacion=db.relationship("Puntuacion", back_populates="carrera")
+    puntuacion = db.relationship("Puntuacion", back_populates="carrera")
+    favoritos = db.relationship("Favoritos", back_populates="carrera") 
 
     def __repr__(self):
-        return f'<User {self.id}>'
+        return f'<Carrera {self.id}>'
 
     def serialize(self):
         return {
@@ -105,7 +107,7 @@ class CarreraUsuario(db.Model): #hijo
 
 
     def __repr__(self):
-        return f'<User {self.id}>'
+        return f'<{self.id}>'
 
     def serialize(self):
         return {
@@ -124,7 +126,7 @@ class Puntuacion(db.Model):
     
     
     def __repr__(self):
-        return f'<User {self.id}>'
+        return f'<Puntuacion {self.id}>'
 
     def serialize(self):
         return {
@@ -133,4 +135,20 @@ class Puntuacion(db.Model):
             "carrera_id": self.carrera_id,
             "puntuacion": self.puntuacion,
         }
-    
+
+class Favoritos(db.Model): # 
+    id =db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    carrera_id = db.Column(db.Integer, db.ForeignKey("carrera.id"))
+    user = db.relationship("User", back_populates="favoritos")
+    carrera = db.relationship("Carrera", back_populates="favoritos")
+
+    def __repr__(self):
+        return f'<Favoritos {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user_id,
+            "carrera_id": self.carrera_id,
+        }
