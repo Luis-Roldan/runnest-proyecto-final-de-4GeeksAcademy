@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { Context } from "../store/appContext";
+import "../../styles/puntuacion.css"
 
 export const Puntuacion = () => {
   const colors = {
@@ -12,6 +14,10 @@ export const Puntuacion = () => {
   const [hoverValue, setHoverValue] = useState(undefined);
   const [feedback, setFeedback] = useState("");
   const url = process.env.REACT_ENV_URL
+
+  const { store, actions } = useContext(Context)
+
+  // useEffect(() => { actions.getCarreras(); }, [])
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -31,7 +37,7 @@ export const Puntuacion = () => {
 
   const handleSubmit = () => {
     // Solicitud POST
-    fetch("https:", {
+    fetch(url + "/puntuacion", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,7 +58,10 @@ export const Puntuacion = () => {
 
   return (
     <div className="container">
-      <h1>Califica tu carrera!</h1>
+      <h1 className="title">Califica tu carrera!</h1>
+      <h3 className="text-center pt-4">{`nombre: ${store.carreras[1]?.nombre}`}</h3>
+      <h3 className="text-center pt-4">{`ciudad: ${store.carreras[1]?.ciudad}`}</h3>
+      <h3 className="text-center pt-4">{`distancia: ${store.carreras[1]?.distancia}`}</h3>
       <div className="stars">
         {stars.map((_, index) => (
           <FaStar
@@ -65,7 +74,6 @@ export const Puntuacion = () => {
           />
         ))}
       </div>
-
       <div className="feedback">
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
           What's your feedback?
