@@ -149,27 +149,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			subToRace: async (carrera_id) => {
-				try {
-					const token4 = localStorage.getItem("accessToken")
-					const fetchRace = await fetch(url + "/carrera_usuario", {
-						method: "POST",
-						body: JSON.stringify({
-							carrera_id: carrera_id
-						}),
-						headers: {
-							"Content-Type": "application/json",
-							"Authorization": "Bearer " + token4
-						}
-					})
-					if (fetchRace.status !== 201) {
-						return await fetchRace.json()
-					}
-				} catch (error) {
-					console.log(error)
-				}
-			},
-
 		}
 	};
 };

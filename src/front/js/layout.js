@@ -14,6 +14,7 @@ import { RegistroDeCarreras } from "./pages/CareerRegistration.jsx";
 import injectContext from "./store/appContext";
 import { Carreras } from "./pages/carreras.js";
 import { Contacto } from "./pages/contacto.js";
+import { Puntuacion } from "./pages/puntuacion.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -36,6 +37,9 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Carreras />} path="/carreras" />
                         <Route element={<Contacto />} path="/contacto" />
+                        <Route element={<Puntuacion />} path="/puntuacion" />
+
+                        
 
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
                         <Route element={<LoginUsers />} path="/loginUsers" />
