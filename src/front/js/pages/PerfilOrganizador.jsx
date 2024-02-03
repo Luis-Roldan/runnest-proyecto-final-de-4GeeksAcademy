@@ -1,6 +1,8 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/perfil.css"
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 export const PerfilOrganizador = () => {
@@ -14,10 +16,16 @@ export const PerfilOrganizador = () => {
     const handleConditionalRendering = () => {
         if (isClicked == "carreras") {
             return (
-                <div>Carreras</div>
+                <div >
+                    <Link to="/RegistroDeCarreras" className="panel-item ps-3 py-2" >
+                        <FontAwesomeIcon className="me-2" icon="fa-solid fa-person-running" />
+                        <span>Publicar carrera</span>
+                    </Link>
+                </div>
             )
         } else if (isClicked == "reviews") {
-            return "Reseñas"
+            return "reseñas"
+
         } else if (isClicked == "resultados") {
             return "resultados"
         }

@@ -22,9 +22,14 @@ aside {
   text-decoration: none;
   margin-top: 10px;
   margin-bottom: 10px;
+  background-color: black;
 }
 
 .panel-item:hover {
   color: #23ce6b;
-  font-size: larger;
+  font-size: 1.5vw;
+}
+
+.title {
+  margin: 10px;
 }
