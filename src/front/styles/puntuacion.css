@@ -1,64 +1,20 @@
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-body{
-    display:flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: rgb(133, 121, 75);
-}
 .container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display:flex;
     flex-direction: column;
-    gap:40px;
+    align-items: center;
+    padding:50px;
 }
-.rating{
-    position:relative;
-    display: flex;
-    flex-direction:row-reverse;
-    padding: 30px 40px;
-    border: 3px solid rgba(0, 0, 0, 0.719);
-    gap:4px;
-    border-radius: 30px;
-    background-color: aquamarine;
-    box-shadow: 30px 30px 30px -10px rgba(0, 0, 0, .5),
-    inset 15px 15px 3px rgba(149, 148, 148, 0.963),
-    -4px -4px  15px rgba(157, 155, 155, 0.1),
-    inset -2px -2px 12px rgba(0, 0 ,0 ,0.75),
+.stars{
+    margin-right: 10;
+    cursor: pointer;
+
 }
-.rating:nth-child(1){
-    transform: translateX(-80);
-}
-.rating:nth-child(3){
-    transform: translateX(-80);
-}
-.rating input{
-    position:relative;
-    width:40px;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-    cursor:pointer;
-    appearance: none;
-    -webkit-appearance: none;
-}
-.rating input::before{
-    content:'\f005';
-    position:absolute;
-    font-family: fontAwesome;
-    font-size: 34px;
-    color:black;
-    transition: .5s;
-}
-.rating input:hover ~ input:before,
-.rating input:hover::before,
-.rating input:checked ~ input:before
-.rating input:checked::before{
-    color: var(--c);
+.feedback{
+    border: 1px solid black;
+    border-radius: 5;
+    width: 300;
+    margin:20px, 0;
+    min-height: 100;
+    padding:20px;
 
 }
