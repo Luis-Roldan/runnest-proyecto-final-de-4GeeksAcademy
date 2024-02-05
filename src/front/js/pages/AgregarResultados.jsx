@@ -22,15 +22,19 @@ export const AgregarResultados = () => {
                 <tbody>
                     <tr>
                         <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>22</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Jacob</td>
-                        <td>Otto</td>
-                        <td>@fat</td>
+                        <td className="Participante">
+                            <input type="text" placeholder="nombre" className="inputParticipante" />
+                        </td>
+                        <td className="Edad">
+                            <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" />
+                        </td>
+                        <td className="Time">
+                            <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" />
+                            <span>:</span>
+                            <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" />
+                            <span>:</span>
+                            <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" />
+                        </td>
                     </tr>
                     {/* <tr>
                         <th scope="row">3</th>
