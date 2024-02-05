@@ -5,6 +5,11 @@ import "../../styles/AgregarResultados.css";
 
 export const AgregarResultados = () => {
 
+    const { store, actions } = useContext(Context)
+
+    useEffect(() => { actions.getCarreras(); }, [])
+
+    // funcion para repetir el Tbody cierta cantidad de veces //
     const ListaDeParticipantes = Array.from({ length: 100 }, (_, index) => (
         <tr key={index}>
             <th scope="row">{index + 1}</th>
@@ -27,9 +32,11 @@ export const AgregarResultados = () => {
 
     return (
         <div>
-            <h1>Nombre de la carrera</h1>
-            <h2>Distancia</h2>
-            <h2>Lugar</h2>
+            <div className="DatosDeLaCarrera">
+                <h1>{`Nombre de la carrera: ${store.carreras[0]?.nombre}`}</h1>
+                <h2>{`Distancia: ${store.carreras[0]?.distancia}`}</h2>
+                <h2>{`Lugar: ${store.carreras[0]?.ciudad}`}</h2>
+            </div>
             <table className="table ">
                 <thead>
                     <tr className="table-dark">
