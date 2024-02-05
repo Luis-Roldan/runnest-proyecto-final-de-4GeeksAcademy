@@ -420,10 +420,10 @@ def puntuacion():
 @jwt_required()
 def handle_favoritos():
     
-    data = request.json
-
     #-------------------------------------------------------
     if request.method == "POST":
+        
+        data = request.json
         
         #obtener los datos de la solicitud
         carrera = data.get("carrera")
@@ -467,8 +467,10 @@ def handle_favoritos():
     #--------------------------------------------------
     if request.method == "DELETE":
 
+        data_favorite = request.json
+
         #obtener la data del request
-        favorito_id = data.get("favorito")
+        favorito_id = data_favorite.get("favorito")
 
         #verificar que la dat esta completa
         if favorito_id is None:
@@ -497,7 +499,7 @@ def handle_favoritos():
     if request.method == "GET":
 
         #obtener el usuario
-        user_id = data.get("user")
+        user_id = get_jwt_identity()
 
         #obterner favoritos de un usuario en especifico
         favoritos_usuario = Favoritos.query.filter_by(user_id = user_id)

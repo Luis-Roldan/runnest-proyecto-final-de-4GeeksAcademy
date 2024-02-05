@@ -1,5 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
 
+	
+
 
 	// obtener el token del usuario para actualizar el store.isLoggedIn 
 	//para saber cundo el usuario tiene un session abierta
@@ -14,6 +16,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 			message: null,
 			isLoggedIn: token,
 			userType: userTypeInStorage,
+
+			favoritos: [],
 
 			carreras: [],
 
@@ -35,18 +39,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				pagina_web: ""
 			},
 
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -149,6 +141,26 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			//funcion para obtener los favoritos
+			getFavorites: async () => {
+				try {
+					const token4 = localStorage.getItem("accessToken")
+					const favoritoResponse = await fetch(url + "/favorito", {
+						headers: {
+							"Content-Type": "application/json",
+							"Authorization": "Bearer " + token4
+						}
+					})
+					const favoritoResponseToJson = await favoritoResponse.json()
+					if (favoritoResponse.status == 200) {
+						setStore({
+							favoritos: favoritoResponseToJson
+						})
+					}
+				} catch (error) {
+					console.log(error)
+				}
+			}
 		}
 	};
 };
