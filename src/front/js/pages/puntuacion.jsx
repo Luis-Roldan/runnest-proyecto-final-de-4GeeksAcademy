@@ -14,13 +14,14 @@ export const Puntuacion = () => {
   const [hoverValue, setHoverValue] = useState(undefined);
   const [feedback, setFeedback] = useState("");
   const url = process.env.REACT_ENV_URL
-
+  
   const { store, actions } = useContext(Context)
 
   // useEffect(() => { actions.getCarreras(); }, [])
 
+
+
   const handleClick = (value) => {
-  
     setCurrentValue(value);
   };
 

@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos
+from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos, Feedback
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -511,5 +511,65 @@ def handle_favoritos():
             user_favorites.append(favoritos.serialize())
         
         return jsonify(user_favorites), 200
+    
+# --------------------------
 
 
+@api.route('/feedback', methods=['POST', "GET"])
+def feedback():
+    data = request.json
+    if request.method == "GET":
+        # Extraer datos específicos para la inscripción
+        user_id = data.get("user_id")
+        carrera_id = data.get("carrera_id")
+        feedback= data.get("feedback")
+
+        # Verificar que la data esté completa
+        data_check = [user_id, carrera_id, feedback]
+        if None in data_check:
+            return jsonify({
+                "msg": "Intenta de nuevo!"
+            }), 400
+
+        #  verificar que el usuario y la carrera
+        feedback = feedback.query.filter_by(user_id=user_id, carrera_id=carrera_id).one_or_none()
+        
+        if feedback:
+            return jsonify({
+                "msg": "Ya comentaste esta carrera"
+            }), 400
+        
+        # Crear una nueva instancia de la clase feedback
+        nuevo_feedback = Feedback(
+            user_id = user_id,
+            carrera_id = carrera_id,
+            feedback = feedback,
+            
+        )
+
+        # Guardar el nuevo feedback en la base de datos
+        try:
+            db.session.add(nuevo_feedback)
+            db.session.commit()
+        except Exception as error:
+            db.session.rollback()
+            return jsonify({
+                "msg": "Ha ocurrido un error con la base de datos"
+            }), 500
+
+        return jsonify({}), 201
+
+    if request.method == "GET":
+
+        #Obtener todas las puntuaciones
+        feedback = Feedback.query.filter_by(carrera_id=carrera_id)
+
+        #lista para colocar las puntuaciones serializadas
+        feedback_serialized = []
+
+        #loop para transformar cada puntuacion en json y agregalas a la lista puntuacion_serialized
+        for feedback in feedback:
+            feedback_serialized.append(feedback.serialize())
+        
+        return jsonify(feedback_serialized), 200
+    
