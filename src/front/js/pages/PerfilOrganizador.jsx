@@ -27,7 +27,7 @@ export const PerfilOrganizador = () => {
         } else if (isClicked == "resultados") {
             return (
                 <div >
-                    <Link to="/RegistroDeCarreras" className="panel-item ps-3 py-2 " >
+                    <Link to="/AgregarResultados" className="panel-item ps-3 py-2 " >
                         <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
                         <span>Agregar Resultado</span>
                     </Link>

@@ -5,8 +5,8 @@ import "../../styles/AgregarResultados.css";
 
 export const AgregarResultados = () => {
 
-    return
-    <div>
-        <h1>hollaaaaaaa</h1>
-    </div>
+    return (
+        <div>
+            <h1>hollaaaaaaa</h1>
+        </div>)
 }
