@@ -10,7 +10,7 @@ export const AgregarResultados = () => {
     useEffect(() => { actions.getCarreras(); }, [])
 
     // funcion para repetir el Tbody cierta cantidad de veces //
-    const ListaDeParticipantes = Array.from({ length: 100 }, (_, index) => (
+    const ListaDeParticipantes = Array.from({ length: store.carreras[0]?.capacidad }, (_, index) => (
         <tr key={index}>
             <th scope="row">{index + 1}</th>
             <td className="Participante">
