@@ -58,6 +58,7 @@ export const Puntuacion = () => {
       });
   };
 
+
   return (
     <div className="container">
       <h1 className="title">Califica tu carrera!</h1>

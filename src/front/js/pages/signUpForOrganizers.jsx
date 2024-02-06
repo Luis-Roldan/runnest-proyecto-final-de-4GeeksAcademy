@@ -8,7 +8,7 @@ export const SignUpForOrganizers = () => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [nombre, setNombre] = useState("")
-    const [telefono, setTelefono] = useState(null)
+    const [telefono, setTelefono] = useState("")
     const [organizacion, setOrganizacion] = useState("")
     const [pagina, setPagina] = useState("")
     const [terminos, setTerminos] = useState("")

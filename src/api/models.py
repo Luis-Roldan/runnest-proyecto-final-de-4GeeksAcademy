@@ -17,7 +17,7 @@ class User(db.Model): #padre
     carrera_usuario = db.relationship("CarreraUsuario", back_populates="user")
     puntuacion= db.relationship("Puntuacion", back_populates="user")
     favoritos = db.relationship("Favoritos", back_populates="user")
-    feedback = db.relationship("Feedback", back_populates="user") 
+ 
 
 
     def __repr__(self):
@@ -79,7 +79,7 @@ class Carrera(db.Model): #padre e hijo
     carrera_usuario= db.relationship("CarreraUsuario", back_populates="carrera")  
     puntuacion = db.relationship("Puntuacion", back_populates="carrera")
     favoritos = db.relationship("Favoritos", back_populates="carrera") 
-    feedback = db.relationship("Feedback", back_populates="carrera") 
+
 
     def __repr__(self):
         return f'<Carrera {self.id}>'
@@ -121,6 +121,7 @@ class CarreraUsuario(db.Model): #hijo
 class Puntuacion(db.Model):
     id =db.Column(db.Integer, primary_key=True)
     puntuacion= db.Column(db.Integer, unique=False, nullable= False)
+    feedback= db.Column(db.String(500), unique=False, nullable= False)
     carrera_id = db.Column(db.Integer, db.ForeignKey("carrera.id"))
     carrera = db.relationship("Carrera", back_populates="puntuacion")
     user = db.relationship("User", back_populates="puntuacion")
@@ -136,6 +137,7 @@ class Puntuacion(db.Model):
             "user": self.user_id,
             "carrera_id": self.carrera_id,
             "puntuacion": self.puntuacion,
+            "feedback": self.feedback,
         }
     
 
@@ -157,22 +159,4 @@ class Favoritos(db.Model): #
             "carrera_id": self.carrera_id,
         }
     
-class Feedback(db.Model):
-    id =db.Column(db.Integer, primary_key=True)
-    feedback= db.Column(db.String(500), unique=False, nullable= False)
-    carrera_id = db.Column(db.Integer, db.ForeignKey("carrera.id"))
-    carrera = db.relationship("Carrera", back_populates="feedback")
-    user = db.relationship("User", back_populates="feedback")
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
-    
-    
-    def __repr__(self):
-        return f'<Feedback {self.id}>'
 
-    def serialize(self):
-        return {
-            "id": self.id,
-            "user": self.user_id,
-            "carrera_id": self.carrera_id,
-            "feedback": self.feedback,
-        }
