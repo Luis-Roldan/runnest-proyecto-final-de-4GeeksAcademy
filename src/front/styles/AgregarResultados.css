@@ -1,0 +1,31 @@
+.inputParticipante {
+  width: 100%;
+}
+
+.inputEdad {
+  width: 100%;
+}
+
+.Participante {
+  width: 60%;
+}
+
+.Edad {
+  width: 20%;
+}
+
+.Time {
+  width: 20%;
+}
+
+.TimeInput {
+  width: 30%;
+  margin-left: 4px;
+  margin-right: 4px;
+}
+
+.DatosDeLaCarrera {
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 40px;
+}

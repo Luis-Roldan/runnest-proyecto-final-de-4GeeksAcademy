@@ -155,7 +155,6 @@ class Favoritos(db.Model): #
     def serialize(self):
         return {
             "id": self.id,
-            "user": self.user_id,
             "carrera_id": self.carrera_id,
         }
     

@@ -5,6 +5,7 @@ import { BackendURL } from "./component/backendURL";
 
 import { PerfilUsuario } from "./pages/perfilUsuario.js";
 import { PerfilOrganizador } from "./pages/PerfilOrganizador.jsx";
+import { AgregarResultados } from "./pages/AgregarResultados.jsx";
 import { LoginUsers } from "./pages/logInUsers.jsx";
 import { LoginForOrganizers } from "./pages/logInForOrganizers.jsx";
 import { Home } from "./pages/home";
@@ -37,9 +38,9 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Carreras />} path="/carreras" />
                         <Route element={<Contacto />} path="/contacto" />
-                        <Route element={<Puntuacion />} path="/puntuacion" /> 
+                        <Route element={<Puntuacion />} path="/puntuacion" />
 
-                        
+
 
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
                         <Route element={<LoginUsers />} path="/loginUsers" />
@@ -49,6 +50,7 @@ const Layout = () => {
                         <Route element={<LoginForOrganizers />} path="/LoginForOrganizers" />
                         <Route element={userType == "organizador" ? <PerfilOrganizador /> : <Navigate to="/LoginForOrganizers" />} path="/PerfilOrganizador" />
                         <Route element={<RegistroDeCarreras />} path="/RegistroDeCarreras" />
+                        <Route element={<AgregarResultados />} path="/AgregarResultados" />
 
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

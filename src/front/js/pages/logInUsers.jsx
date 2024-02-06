@@ -37,6 +37,7 @@ export const LoginUsers = () => {
                 localStorage.setItem("userType", "usuario");
                 actions.setIsLoggedIn();
                 actions.setUserTypeToUsuario();
+                actions.getFavorites();
             }
 
             if (response.status !== 201) {
