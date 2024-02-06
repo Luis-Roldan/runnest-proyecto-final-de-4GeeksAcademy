@@ -108,7 +108,7 @@ def handle_login():
     )
     if not password_es_correcta:
         return jsonify({
-            "msg": "Contraseña incorrecta"
+            "msg": "Clave incorrecta"
         }), 400
     
     #crear el token y retornarlo

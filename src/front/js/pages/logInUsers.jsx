@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/logInUser.css"
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
+import { AlertSuccess } from "../component/alertSuccess";
+import { AlertDanger } from "../component/alertDanger";
+
 
 export const LoginUsers = () => {
 
@@ -11,6 +15,14 @@ export const LoginUsers = () => {
     //url para hacer la solicitud
     const url = process.env.REACT_ENV_URL
     const { store, actions } = useContext(Context);
+
+    //variable para declarar el useNavigate
+    const navigate = useNavigate()
+
+    //estados para los estilos de los alerts
+    const [ display, setDisplay ] = useState({display: "none"})
+    const [ displayDanger, setDisplayDanger ] = useState({display: "none"})
+    const [ errorMsg, setErrorMsg ] = useState("")
 
 
     //objeto para enviar como prop a la funcion handleLogIn
@@ -38,12 +50,16 @@ export const LoginUsers = () => {
                 actions.setIsLoggedIn();
                 actions.setUserTypeToUsuario();
                 actions.getFavorites();
+                setDisplay({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
+                setTimeout(() => {setDisplay({display: "none"})}, 3500)
+                setTimeout(() => {navigate("/carreras")}, 3500)
+                
+            } else {
+                setErrorMsg(token.msg)
+                setDisplayDanger({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
+                return  
             }
 
-            if (response.status !== 201) {
-                const respuestaDelBackend = await response.json();
-                return respuestaDelBackend
-            }
             return token
         } catch (error) {
             console.log(error)
@@ -61,6 +77,8 @@ export const LoginUsers = () => {
 
     return (
         <div className="d-flex p-5 justify-content-center align-items-center">
+            <AlertSuccess message="Bienvenido a Runnest. Seras redirigido a la vista de carreras" funcion={() => {setDisplay({display: "none"})}} estilo={display} />
+            <AlertDanger  message={errorMsg} estilo={displayDanger} funcion={() => {setDisplayDanger({display: "none"})}} />
             <form
                 onSubmit={handleSubmit}
                 className="shadow p-5 logInForm"
