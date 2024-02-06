@@ -366,6 +366,7 @@ def puntuacion():
         user_id = data.get("user_id")
         carrera_id = data.get("carrera_id")
         puntuacion= data.get("puntuacion")
+        feedback= feedback.get("feedback")
 
         # Verificar que la data esté completa
         data_check = [user_id, carrera_id, puntuacion]
@@ -386,7 +387,8 @@ def puntuacion():
         nueva_puntuacion = Puntuacion(
             user_id = user_id,
             carrera_id = carrera_id,
-            puntuacion = puntuacion
+            puntuacion = puntuacion,
+            feedback= feedback,
             
         )
 
