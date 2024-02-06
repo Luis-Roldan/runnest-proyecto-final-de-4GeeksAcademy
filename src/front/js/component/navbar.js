@@ -43,8 +43,7 @@ export const Navbar = () => {
         <div>
           <li className="nav-item dropdown">
             <a 
-              className="nav-link 
-              dropdown-toggle" href="#" 
+              className="nav-link dropdown-toggle text-white btn btn-dark" 
               role="button" 
               data-bs-toggle="dropdown"
               aria-expanded="false">
@@ -68,8 +67,8 @@ export const Navbar = () => {
         <div>
           <li className="nav-item dropdown">
             <a 
-              className="nav-link dropdown-toggle" 
-              href="#" role="button" 
+              className="nav-link dropdown-toggle text-white btn btn-dark" 
+              role="button" 
               data-bs-toggle="dropdown"
               aria-expanded="false">
               Registrarse
@@ -98,13 +97,13 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarScroll">
           <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
             <li className="nav-item">
-              <Link className="nav-link" to="/carreras">Carreras</Link>
+              <Link className="nav-link text-dark" to="/carreras">Carreras</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/contacto">Contacto</Link>
+              <Link className="nav-link text-dark" to="/contacto">Contacto</Link>
             </li>
-            {handleLogInButton()}
-            {handleSignUpButton()}
+            <div className="mx-2">{handleLogInButton()}</div>
+            <div className="mx-2">{handleSignUpButton()}</div>
           </ul>
         </div>
       </div>
