@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos
+from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos, Resultados
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -529,76 +529,49 @@ def handle_favorite():
 @api.route('/resultados', methods=['POST'])
 @jwt_required()
 def publicar_resultados():
-    try:
-        # Obtener datos de la solicitud
-        id = get_jwt_identity()
-        data = request.json
+    
+    # Obtener datos de la solicitud
+    id = get_jwt_identity()
+    data = request.json
 
-        # Verificar que la data esté completa
-        if 'resultados' not in data:
-            return jsonify({
-                "msg": "Faltan datos, por favor verifica tu solicitud"
+    
+    # Extraer datos específicos para la carrera
+    participante=data.get("participante")
+    carrera_id=data.get("carrera_id") 
+    edad=data.get("edad")
+    horas=data.get("horas")
+    minutos=data.get("minutos")
+    segundos=data.get("segundos")
+
+    data_check = [ participante,carrera_id,edad, horas, minutos, segundos ]
+
+    # Verificar que la data esté completa
+    if None in data_check:
+        return jsonify({
+            "msg": "Faltan datos, por favor verifica tu solicitud"
+        }), 400
+    
+    # Verificar que los resultados del participante no esten ya en la base de datos
+    validar_participante = Resultados.query.filter_by(participante=participante, carrera_id=carrera_id).one_or_none()
+
+    if validar_participante: 
+        return jsonify({
+                "msg": "El resultado de este participante ya se encuentra agregado en esta carrera"
             }), 400
 
-        resultados_para_relacionar = data['resultados']
+    return jsonify({}), 201
+    
 
-        for resultado_data in resultados_para_relacionar:
-            # Extraer datos específicos para la relación
-            carrera_id = resultado_data.get("carrera_id")
+@api.route("/ObtenerResultados", methods =["GET"])
+def obtener_resultados_carrera():
+         #Obtener todas las carreras
+         resultados = Resultados.query.all()
 
-            # Verificar que la data esté completa para cada resultado
-            if carrera_id is None:
-                return jsonify({
-                    "msg": "Faltan datos, por favor verifica tu solicitud"
-                }), 400
-                
-            # Verificar que el usuario está inscrito en la carrera
-            usuario_carrera = CarreraUsuario.query.filter_by(user_id=id, carrera_id=carrera_id).first()
+         #lista para colocar las carreras serializadas
+         resultados_serialized = []
 
-            if not usuario_carrera:
-                return jsonify({
-                    "msg": f"Este usuario no está inscrito en la carrera con ID {carrera_id}"
-                }), 400
-
-            # Verificar si ya existen resultados para este usuario y carrera
-            resultados_existen = Resultados.query.filter_by(
-                participante=id,
-                carrera_id=carrera_id
-            ).first()
-
-            if resultados_existen:
-                return jsonify({
-                    "msg": f"Ya se han publicado resultados para este usuario en la carrera con ID {carrera_id}"
-                }), 400
-
-            # Crear una nueva instancia de Resultados asociada a la carrera y al usuario
-            nuevos_resultados = Resultados(
-                participante=id,
-                carrera_id=carrera_id,
-                edad=resultado_data.get("edad"),
-                horas=resultado_data.get("horas"),
-                minutos=resultado_data.get("minutos"),
-                segundos=resultado_data.get("segundos"),
-            )
-
-            # Agregar los resultados a la base de datos
-            db.session.add(nuevos_resultados)
-
-            # Relacionar la carrera con los resultados (opcional, depende de tu modelo de datos)
-            carrera = Carrera.query.get(carrera_id)
-            if carrera:
-                carrera.resultados.append(nuevos_resultados)
-
-        # Commit de todas las operaciones en la base de datos
-        db.session.commit()
-
-        return jsonify({
-            "msg": "Relación Carreras-Resultados exitosa"
-        }), 200
-
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500
+         #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
+         for resultados in resultados:
+            resultados_serialized.append(resultados.serialize())
         
-    
-    
-
+         return jsonify(resultados_serialized), 200
