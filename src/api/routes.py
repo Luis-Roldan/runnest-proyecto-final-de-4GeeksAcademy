@@ -551,7 +551,7 @@ def publicar_resultados():
                 return jsonify({
                     "msg": "Faltan datos, por favor verifica tu solicitud"
                 }), 400
-
+                
             # Verificar que el usuario está inscrito en la carrera
             usuario_carrera = CarreraUsuario.query.filter_by(user_id=id, carrera_id=carrera_id).first()
 
