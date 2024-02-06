@@ -79,6 +79,7 @@ class Carrera(db.Model): #padre e hijo
     carrera_usuario= db.relationship("CarreraUsuario", back_populates="carrera")  
     puntuacion = db.relationship("Puntuacion", back_populates="carrera")
     favoritos = db.relationship("Favoritos", back_populates="carrera") 
+    resultados = db.relationship("Resultados", back_populates="carrera") 
 
 
     def __repr__(self):
@@ -159,3 +160,29 @@ class Favoritos(db.Model): #
         }
     
 
+class Resultados(db.Model):
+    id =db.Column(db.Integer, primary_key=True)
+    participante= db.Column(db.String(500), unique=False, nullable= False)
+    edad= db.Column(db.Integer, unique=False, nullable= False)
+    horas= db.Column(db.Integer, unique=False, nullable= False)
+    minutos= db.Column(db.Integer, unique=False, nullable= False)
+    segundos= db.Column(db.Integer, unique=False, nullable= False)
+    carrera_id = db.Column(db.Integer, db.ForeignKey("carrera.id"))
+    carrera = db.relationship("Carrera", back_populates="resultados")
+   
+    
+    
+    def __repr__(self):
+        return f'<Resultados {self.id}>'
+
+    def serialize(self):
+        return {
+            "id": self.id,
+            "user": self.user_id,
+            "carrera_id": self.carrera_id,
+            "edad": self.edad,
+            "participante": self.participante,
+            "horas": self.horas,
+            "minutos": self.minutos,
+            "segundos": self.segundos,
+        }

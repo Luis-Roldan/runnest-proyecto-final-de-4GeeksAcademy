@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos, Feedback
+from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos, Resultados
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -515,4 +515,83 @@ def handle_favoritos():
         return jsonify(user_favorites), 200
     
 
+# ////////////////////////////////////// dsad
+    
+
+    
+@api.route('/resultados', methods=['POST'])
+@jwt_required()
+def publicar_resultados():
+    try:
+        # Obtener datos de la solicitud
+        id = get_jwt_identity()
+        data = request.json
+
+        # Verificar que la data esté completa
+        if 'resultados' not in data:
+            return jsonify({
+                "msg": "Faltan datos, por favor verifica tu solicitud"
+            }), 400
+
+        resultados_para_relacionar = data['resultados']
+
+        for resultado_data in resultados_para_relacionar:
+            # Extraer datos específicos para la relación
+            carrera_id = resultado_data.get("carrera_id")
+
+            # Verificar que la data esté completa para cada resultado
+            if carrera_id is None:
+                return jsonify({
+                    "msg": "Faltan datos, por favor verifica tu solicitud"
+                }), 400
+
+            # Verificar que el usuario está inscrito en la carrera
+            usuario_carrera = CarreraUsuario.query.filter_by(user_id=id, carrera_id=carrera_id).first()
+
+            if not usuario_carrera:
+                return jsonify({
+                    "msg": f"Este usuario no está inscrito en la carrera con ID {carrera_id}"
+                }), 400
+
+            # Verificar si ya existen resultados para este usuario y carrera
+            resultados_existen = Resultados.query.filter_by(
+                participante=id,
+                carrera_id=carrera_id
+            ).first()
+
+            if resultados_existen:
+                return jsonify({
+                    "msg": f"Ya se han publicado resultados para este usuario en la carrera con ID {carrera_id}"
+                }), 400
+
+            # Crear una nueva instancia de Resultados asociada a la carrera y al usuario
+            nuevos_resultados = Resultados(
+                participante=id,
+                carrera_id=carrera_id,
+                edad=resultado_data.get("edad"),
+                horas=resultado_data.get("horas"),
+                minutos=resultado_data.get("minutos"),
+                segundos=resultado_data.get("segundos"),
+            )
+
+            # Agregar los resultados a la base de datos
+            db.session.add(nuevos_resultados)
+
+            # Relacionar la carrera con los resultados (opcional, depende de tu modelo de datos)
+            carrera = Carrera.query.get(carrera_id)
+            if carrera:
+                carrera.resultados.append(nuevos_resultados)
+
+        # Commit de todas las operaciones en la base de datos
+        db.session.commit()
+
+        return jsonify({
+            "msg": "Relación Carreras-Resultados exitosa"
+        }), 200
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+        
+    
+    
 
