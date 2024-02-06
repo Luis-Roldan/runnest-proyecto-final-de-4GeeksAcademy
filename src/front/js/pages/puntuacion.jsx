@@ -37,26 +37,33 @@ export const Puntuacion = () => {
     setFeedback(event.target.value);
   };
 
-  const handleSubmit = () => {
-    // Solicitud POST
-    fetch(url + "/puntuacion", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
+
+
+  const handleSubmit = async () => {
+    // Recupera el token desde la localStorage
+    const token = localStorage.getItem('jwt-token');
+
+    const resp = await fetch(url + "/puntuacion", {
+       method: 'GET',
+       headers: { 
+         "Content-Type": "application/json",
+         'Authorization': 'Bearer ' + token // ⬅⬅⬅ authorization token
+       },
+       body: JSON.stringify({
         rating: currentValue,
         feedback: feedback,
       }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log("Respuesta del servidor:", data);
-      })
-      .catch((error) => {
-        console.error("Error al enviar la calificación:", error);
-      });
-  };
+    });
+
+    if(!resp.ok) {
+         throw Error("There was a problem in the login request")
+    } else if(resp.status === 403) {
+         throw Error("Missing or invalid token");
+    } else {
+        throw Error("Unknown error");
+    }
+
+}
 
 
   return (

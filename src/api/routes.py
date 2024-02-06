@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos, Resultados
+from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -108,7 +108,7 @@ def handle_login():
     )
     if not password_es_correcta:
         return jsonify({
-            "msg": "Contraseña incorrecta"
+            "msg": "Clave incorrecta"
         }), 400
     
     #crear el token y retornarlo
@@ -359,14 +359,18 @@ def inscribir_usuario_en_carrera():
 
 # Ruta para la clase Puntuacion
 @api.route('/puntuacion', methods=['POST', "GET"])
+@jwt_required()
 def puntuacion():
+    id = get_jwt_identity()
     data = request.json
+
     if request.method == "GET":
         # Extraer datos específicos para la inscripción
         user_id = data.get("user_id")
         carrera_id = data.get("carrera_id")
         puntuacion= data.get("puntuacion")
         feedback= feedback.get("feedback")
+        
 
         # Verificar que la data esté completa
         data_check = [user_id, carrera_id, puntuacion]
@@ -386,9 +390,10 @@ def puntuacion():
         # Crear una nueva instancia de la clase Puntuacion
         nueva_puntuacion = Puntuacion(
             user_id = user_id,
-            carrera_id = carrera_id,
+            carrera_id = id,
             puntuacion = puntuacion,
             feedback= feedback,
+
             
         )
 
@@ -415,14 +420,16 @@ def puntuacion():
         #loop para transformar cada puntuacion en json y agregalas a la lista puntuacion_serialized
         for puntuacion in puntuacion:
             puntuacion_serialized.append(puntuacion.serialize())
-        
-        return jsonify(puntuacion_serialized), 200
-    
-@api.route("/favorito", methods=["GET", "DELETE", "POST"])
-@jwt_required()
-def handle_favoritos():
+
+        return jsonify({"id": user.id, "user_id": user_id }), 200
     
     #-------------------------------------------------------
+
+@api.route("/favorito", methods=["POST", "DELETE", "GET"])
+@jwt_required()
+def handle_favorite():
+
+    
     if request.method == "POST":
         
         data = request.json

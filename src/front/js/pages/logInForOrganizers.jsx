@@ -20,7 +20,6 @@ export const LoginForOrganizers = () => {
         "password": password,
     }
 
-    console.log(url)
 
     const handleLogIn = async (requestData) => {
         try {
