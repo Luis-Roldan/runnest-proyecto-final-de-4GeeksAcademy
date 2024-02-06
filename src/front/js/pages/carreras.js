@@ -3,6 +3,8 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
+import { AlertSuccess } from "../component/alertSuccess";
+import { AlertDanger } from "../component/alertDanger";
 
 export const Carreras = () => {
 
@@ -14,6 +16,7 @@ export const Carreras = () => {
     const [ favoriteAlert, setFavoriteAlert ] = useState({display: "none"})
     const [ display, setDisplay ] = useState({display: "none"})
     const [ displayDanger, setDisplayDanger ] = useState({display: "none"})
+    const [ error, setError ] = useState("")
 
     //url de la api
 	const url = process.env.REACT_ENV_URL
@@ -27,7 +30,6 @@ export const Carreras = () => {
 
     //obtener el tipo de usuario desde el local storage
     const userType = localStorage.getItem("userType")
-
 
     //funcion para hacer el post de una nueva subscripcion
     const subToRace = async (carrera_id) => {
@@ -47,8 +49,10 @@ export const Carreras = () => {
                 setDisplay({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
             }
             if (fetchRace.status !== 201) {
+                const fetchRaceToJson = await fetchRace.json()
+                setError(fetchRaceToJson.msg)
                 setDisplayDanger({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
-                return await fetchRace.json()
+                return 
             }
         } catch (error) {
             console.log(error)
@@ -58,6 +62,7 @@ export const Carreras = () => {
     const postFavorite = async (carrera) => {
         try {
             const token2 = localStorage.getItem("accessToken")
+            console.log(token2)
             const fetchFavorite = await fetch(url + "/favorito", {
                 method: "POST",
                 body: JSON.stringify({
@@ -94,18 +99,11 @@ export const Carreras = () => {
 
     return (
         <div className="">
-            <div style={display} className="alert alert-success w-50 justify-content-between" role="alert">
-                Registrado satisfactoriamente.
-                <button onClick={() => {setDisplay({display: "none"})}} type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-            <div style={displayDanger} className="alert alert-danger w-50 justify-content-between" role="alert">
-                <p>Ha ocurrido un error, intenta de nuevo.</p>
-                <button onClick={() => {setDisplayDanger({display: "none"})}} type="button" className="btn-close text-end"></button>
-            </div>
-            <div style={favoriteAlert} className="alert alert-success w-50 justify-content-between" role="alert">
-                Favorito guardado
-                <button onClick={() => {setFavoriteAlert({display: "none"})}} type="button" className="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
+            <AlertSuccess message="Registrado satisfactoriamente." estilo={display} funcion={() => {setDisplay({display: "none"})}} />
+            <AlertDanger estilo={displayDanger} message={error} funcion={() => {setDisplayDanger({display: "none"})}} />
+            <AlertSuccess estilo={favoriteAlert} message="Favorito guardado" funcion={() => {setFavoriteAlert({display: "none"})}} />
+            
+            
             <div className="row justify-content-center row-cols-1 row-cols-md-4">
                 {carreras.map((item, index) => (
                     <div key={index} className="card m-3">

@@ -424,6 +424,12 @@ def puntuacion():
         return jsonify({"id": user.id, "user_id": user_id }), 200
     
     #-------------------------------------------------------
+
+@api.route("/favorito", methods=["POST", "DELETE", "GET"])
+@jwt_required()
+def handle_favorite():
+
+    
     if request.method == "POST":
         
         data = request.json
