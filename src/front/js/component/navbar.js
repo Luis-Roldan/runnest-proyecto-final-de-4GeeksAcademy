@@ -5,62 +5,107 @@ import "../../styles/navbar.css";
 import "../../styles/burgerMenu.css"
 import { BurgerMenu } from "./burgerMenu";
 import { Context } from "../store/appContext";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export const Navbar = () => {
   const { store, actions } = useContext(Context)
   const isLoggedIn = store.isLoggedIn
 
+  const handleMenuForNonUsers = () => {
+    if (isLoggedIn) {
+      return(
+        <div className="burger-menu me-3">
+           <BurgerMenu />
+        </div>
+      )
+    } else {
+      return (
+        <button
+          className="navbar-toggler border-2 border-dark"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarScroll"
+          aria-controls="navbarScroll"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <FontAwesomeIcon icon="fa-solid fa-bars" size="lg" style={{ color: "#000000", }} />
+        </button>
+      )
+    }
+  }
+
+  const handleLogInButton = () => {
+    if (isLoggedIn) {
+      return
+    } else {
+      return (
+        <div>
+          <li className="nav-item dropdown">
+            <a 
+              className="nav-link 
+              dropdown-toggle" href="#" 
+              role="button" 
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Iniciar sesion
+            </a>
+            <ul className="dropdown-menu">
+              <li><Link className="dropdown-item" to="/loginUsers">Usuarios</Link></li>
+              <li><Link className="dropdown-item" to="/LoginForOrganizers">Organizadores</Link></li>
+            </ul>
+          </li>
+        </div>
+      )
+    }
+  }
+
+  const handleSignUpButton = () => {
+    if (isLoggedIn) {
+      return
+    } else {
+      return (
+        <div>
+          <li className="nav-item dropdown">
+            <a 
+              className="nav-link dropdown-toggle" 
+              href="#" role="button" 
+              data-bs-toggle="dropdown"
+              aria-expanded="false">
+              Registrarse
+            </a>
+            <ul className="dropdown-menu">
+              <li>
+                <Link className="dropdown-item" to="/signUpUsers">Usuarios</Link>
+              </li>
+              <li>
+                <Link className="dropdown-item" to="/signUpForOrganizers">Organizadores</Link>
+              </li>
+            </ul>
+          </li>
+        </div>
+      )
+    }
+  }
+
   return (
-    <nav className="navbar navbar-light bg-light">
-      <div className="container mb-3 mt-3">
-        <div>
-          <Link to="/">
-            <img src={logo} />
-          </Link>
-        </div>
-        <div>
-          <Link to="/carreras" className="otherPages">
-            <span>Carreras</span>
-          </Link>
-        </div>
-        <div>
-          <Link to="/contacto" className="otherPages">
-            <span>Contacto</span>
-          </Link>
-        </div>
-        <div>
-          <Link to="/puntuacion" className="otherPages">
-            <span>puntuacion</span>
-          </Link>
-        </div>
-        <div className="dropdown">
-          <button className="btn btn-secondary dropdown-toggle btnNav" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Iniciar sesión
-          </button>
-          <ul className="dropdown-menu">
-            <li><Link to="/LoginUsers" className="btn ScrollDownButtonNav">
-              para usuarios
-            </Link></li>
-            <li><Link to="/logInForOrganizers" className="btn ScrollDownButtonNav">
-              para organizadores
-            </Link></li>
+    <nav className="navbar navbar-expand-md bg-body-tertiary">
+      <div className="container-fluid">
+        <Link className="navbar-brand" to="/">
+          <img className="img-fluid" src={logo} />
+        </Link>
+        {handleMenuForNonUsers()}
+        <div className="collapse navbar-collapse" id="navbarScroll">
+          <ul className="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll">
+            <li className="nav-item">
+              <Link className="nav-link" to="/carreras">Carreras</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link" to="/contacto">Contacto</Link>
+            </li>
+            {handleLogInButton()}
+            {handleSignUpButton()}
           </ul>
-        </div>
-        <div className="dropdown">
-          <button className="btn btn-secondary dropdown-toggle btnNav" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Registrarse
-          </button>
-          <ul className="dropdown-menu">
-            <li><Link to="/SignUpUsers" className="btn ScrollDownButtonNav">
-              para usuarios
-            </Link></li>
-            <li><Link to="/signUpForOrganizers" className="btn ScrollDownButtonNav">
-              para organizadores
-            </Link></li>
-          </ul>
-        </div>
-        <div className="burger-menu">
-          {isLoggedIn ? <BurgerMenu /> : null}
         </div>
       </div>
     </nav>

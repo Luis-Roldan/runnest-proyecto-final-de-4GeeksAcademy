@@ -17,6 +17,7 @@ export const Carreras = () => {
     const [ display, setDisplay ] = useState({display: "none"})
     const [ displayDanger, setDisplayDanger ] = useState({display: "none"})
     const [ error, setError ] = useState("")
+    const [ favoriteError, setFavoriteError ] = useState("")
 
     //url de la api
 	const url = process.env.REACT_ENV_URL
@@ -80,6 +81,7 @@ export const Carreras = () => {
             } 
 
             if (fetchFavorite.status !== 201) {
+                setError(fetchFavoriteToJson.msg)
                 setDisplayDanger({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
             }
         } catch (error) {
@@ -101,8 +103,7 @@ export const Carreras = () => {
         <div className="">
             <AlertSuccess message="Registrado satisfactoriamente." estilo={display} funcion={() => {setDisplay({display: "none"})}} />
             <AlertDanger estilo={displayDanger} message={error} funcion={() => {setDisplayDanger({display: "none"})}} />
-            <AlertSuccess estilo={favoriteAlert} message="Favorito guardado" funcion={() => {setFavoriteAlert({display: "none"})}} />
-            
+            <AlertSuccess estilo={favoriteAlert} message="Favorito guardado" funcion={() => {setFavoriteAlert({display: "none"})}} />            
             
             <div className="row justify-content-center row-cols-1 row-cols-md-4">
                 {carreras.map((item, index) => (
