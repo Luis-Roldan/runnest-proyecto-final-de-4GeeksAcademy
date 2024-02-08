@@ -49,6 +49,7 @@ export const LoginForOrganizers = () => {
                 localStorage.setItem("userType", "organizador");
                 actions.setIsLoggedIn();
                 actions.setUserTypeToOrganizador();
+
                 setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
                 setTimeout(() => { setDisplay({ display: "none" }) }, 3500)
                 setTimeout(() => { navigate("/PerfilOrganizador") }, 3500)
