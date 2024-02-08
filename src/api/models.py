@@ -17,6 +17,7 @@ class User(db.Model): #padre
     carrera_usuario = db.relationship("CarreraUsuario", back_populates="user")
     puntuacion= db.relationship("Puntuacion", back_populates="user")
     favoritos = db.relationship("Favoritos", back_populates="user")
+    
  
 
 
