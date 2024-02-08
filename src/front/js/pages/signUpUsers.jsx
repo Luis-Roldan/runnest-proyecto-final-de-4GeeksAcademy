@@ -86,7 +86,7 @@ export const SignUpUsers = () => {
             <h1 className="TitleSignUpForOrganizers">
                 Registro para Usuarios
             </h1>
-            <form >
+            <form className="formularioRegistro">
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Nombre</label>
                     <input type="text" className="form-control" id="Name" onChange={(e) => setNombre(e.target.value)}
