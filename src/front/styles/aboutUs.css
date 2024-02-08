@@ -1,0 +1,13 @@
+.cards{
+    padding:5%;
+}
+.nosotros{
+    padding:5%
+}
+p{
+    font-style: italic;
+}
+span{
+    display:block;
+    padding:.5%;
+}
