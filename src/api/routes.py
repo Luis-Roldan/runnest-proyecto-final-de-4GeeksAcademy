@@ -243,6 +243,7 @@ def crear_carrera():
         costo = data.get("costo")
         capacidad = data.get("capacidad")
         dificultad = data.get("dificultad")
+        image = data.get("image")
         terminos = data.get("terminos")
         
 
@@ -274,9 +275,9 @@ def crear_carrera():
             dificultad = dificultad,
             capacidad = capacidad,
             terminos = terminos,
-            organizador_id = id
+            organizador_id = id,
+            image = image
         )
-        print(data)
 
         # Guardar la nueva carrera en la base de datos
         try:

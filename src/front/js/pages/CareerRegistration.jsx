@@ -18,24 +18,6 @@ export const RegistroDeCarreras = () => {
     const [dificultad, setDificultad] = useState("")
     const [terminos, setTerminos] = useState("")
 
-    // const [isChecked, setIsChecked] = useState("");
-
-
-    const [formData, setFormData] = useState({
-        nombre: nombre,
-        distancia: distancia,
-        ciudad: ciudad,
-        pais: pais,
-        dia: dia,
-        mes: mes,
-        year: year,
-        costo: costo,
-        capacidad: capacidad,
-        dificultad: dificultad,
-        terminos: terminos,
-
-    });
-
     const data = {
         nombre: nombre,
         distancia: distancia,
@@ -54,14 +36,11 @@ export const RegistroDeCarreras = () => {
 
 
     const url = process.env.REACT_ENV_URL
-    console.log(url)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const token = localStorage.getItem("accessToken")
-        console.log(token)
-
 
 
         fetch(url + "/carrera", {
