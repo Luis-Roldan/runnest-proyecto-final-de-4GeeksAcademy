@@ -65,6 +65,7 @@ class Carrera(db.Model): #padre e hijo
     id = db.Column(db.Integer, primary_key=True)
     nombre = db.Column(db.String(250), unique=False, nullable=False)
     distancia = db.Column(db.String(200), unique=False, nullable=False)
+    image = db.Column(db.String(500), unique=False, nullable=False)
     ciudad = db.Column(db.String(100), unique=False, nullable=False)
     pais = db.Column(db.String(100), unique=False, nullable=False)
     dia = db.Column(db.Integer, unique=False, nullable=True)
@@ -98,6 +99,7 @@ class Carrera(db.Model): #padre e hijo
             "capacidad" :  self.capacidad,
             "dificultad" : self.dificultad,
             "organizador" : self.organizador_id,
+            "image": self.image,
         }
 
 class CarreraUsuario(db.Model): #hijo
