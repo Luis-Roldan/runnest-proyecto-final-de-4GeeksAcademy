@@ -5,30 +5,73 @@ import "../../styles/AgregarResultados.css";
 
 export const AgregarResultados = () => {
 
+
+    const [participante, setParticipante] = useState("")
+    const [edad, setEdad] = useState("")
+    const [horas, setHoras] = useState("")
+    const [minutos, setMinutos] = useState("")
+    const [Segundos, setSegundos] = useState("")
+    
+
+
+    const data = {
+        participante: participante,
+        edad: edad,
+        horas: horas,
+        minutos: minutos,
+        segundos: segundos,
+    }
+
+
     const { store, actions } = useContext(Context)
 
     useEffect(() => { actions.getCarreras(); }, [])
 
-    // funcion para repetir el Tbody cierta cantidad de veces //
-    // const ListaDeParticipantes = Array.from({ length: store.carreras[0]?.capacidad }, (_, index) => (
-    //     <tr key={3}>
-    //         <th scope="row">{index + 1}</th>
-    //         <td className="Participante">
-    //             <input type="text" placeholder="nombre" className="inputParticipante" />
-    //         </td>
-    //         <td className="Edad">
-    //             <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" />
-    //         </td>
-    //         <td className="Time">
-    //             <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" />
-    //             <span>:</span>
-    //             <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" />
-    //             <span>:</span>
-    //             <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" />
-    //         </td>
-    //     </tr>
-    // ));
+    const url = process.env.REACT_ENV_URL
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        const token = localStorage.getItem("accessToken")
+
+
+        fetch(url + "/resultados", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": "Bearer " + token,
+            },
+            body: JSON.stringify(data),
+        })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then((data) => {
+                console.log(data);
+
+                setNombre("");
+                setDistancia("");
+                setCiudad("");
+                setPais("");
+                setDia("");
+                setMes("");
+                setYear("");
+                setCosto("");
+                setCapacidad("");
+                setDificultad("");
+                setTerminos(false);
+                setOrganizadorId("");
+
+
+            })
+            .catch((error) => {
+                console.error("Error submitting form:", error);
+            });
+
+    };
 
     return (
         <div>
@@ -115,5 +158,6 @@ export const AgregarResultados = () => {
                     </tr>
                 </tbody>
             </table>
+            <button type="submit" className="btn btn-primary SubmitButtonForCareerRegistration" onClick={handleSubmit}>Enviar</button>
         </div>)
 }
