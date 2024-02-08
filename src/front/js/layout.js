@@ -16,6 +16,7 @@ import injectContext from "./store/appContext";
 import { Carreras } from "./pages/carreras.js";
 import { Contacto } from "./pages/contacto.js";
 import { Puntuacion } from "./pages/puntuacion.jsx";
+import {CarreraRender} from "./pages/carreraRender.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -29,6 +30,8 @@ const Layout = () => {
     const userType = localStorage.getItem("userType")
 
 
+
+
     return (
         <div>
             <BrowserRouter basename={basename}>
@@ -39,7 +42,8 @@ const Layout = () => {
                         <Route element={<Carreras />} path="/carreras" />
                         <Route element={<Contacto />} path="/contacto" />
                         <Route element={<Puntuacion />} path="/puntuacion" />
-
+                        <Route element={<CarreraRender />} path="/carreraRender/:id" />
+                        
 
 
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
