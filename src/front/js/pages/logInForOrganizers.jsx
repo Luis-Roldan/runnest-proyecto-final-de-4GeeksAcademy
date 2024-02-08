@@ -1,6 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import "../../styles/logInForOrganizers.css"
 import { Context } from "../store/appContext";
+import { useNavigate } from "react-router-dom";
+import { AlertSuccess } from "../component/alertSuccess";
+import { AlertDanger } from "../component/alertDanger";
 
 export const LoginForOrganizers = () => {
 
@@ -13,6 +16,14 @@ export const LoginForOrganizers = () => {
     console.log(url)
     const { store, actions } = useContext(Context);
 
+    //variable para declarar el useNavigate
+    const navigate = useNavigate()
+
+    //estados para los estilos de los alerts
+    const [display, setDisplay] = useState({ display: "none" })
+    const [displayDanger, setDisplayDanger] = useState({ display: "none" })
+    const [errorMsg, setErrorMsg] = useState("")
+
 
     //objeto para enviar como prop a la funcion handleLogIn
     const data = {
@@ -23,7 +34,7 @@ export const LoginForOrganizers = () => {
 
     const handleLogIn = async (requestData) => {
         try {
-            
+
             const response = await fetch(url + "/token-org", {
                 method: "POST",
                 body: JSON.stringify(requestData),
@@ -38,6 +49,13 @@ export const LoginForOrganizers = () => {
                 localStorage.setItem("userType", "organizador");
                 actions.setIsLoggedIn();
                 actions.setUserTypeToOrganizador();
+                setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+                setTimeout(() => { setDisplay({ display: "none" }) }, 3500)
+                setTimeout(() => { navigate("/PerfilOrganizador") }, 3500)
+            } else {
+                setErrorMsg(token.msg)
+                setDisplayDanger({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+                return
             }
 
             if (response.status !== 201) {
@@ -61,6 +79,8 @@ export const LoginForOrganizers = () => {
 
     return (
         <div className="d-flex p-5 justify-content-center align-items-center">
+            <AlertSuccess message="Bienvenido a Runnest. Seras redirigido a la vista de Perfil de Organizador" funcion={() => { setDisplay({ display: "none" }) }} estilo={display} />
+            <AlertDanger message={errorMsg} estilo={displayDanger} funcion={() => { setDisplayDanger({ display: "none" }) }} />
             <form
                 onSubmit={handleSubmit}
                 className="shadow p-5 logInForm"
