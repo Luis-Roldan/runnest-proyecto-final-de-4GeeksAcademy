@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/signUpForOrganizers.css";
+import { useNavigate } from "react-router-dom";
+import { AlertSuccess } from "../component/alertSuccess";
+import { AlertDanger } from "../component/alertDanger";
 
 
 export const SignUpUsers = () => {
@@ -22,6 +25,15 @@ export const SignUpUsers = () => {
         direccion: direccion,
         terminos: terminos,
     }
+
+    //variable para declarar el useNavigate
+    const navigate = useNavigate()
+
+    //estados para los estilos de los alerts
+    const [display, setDisplay] = useState({ display: "none" })
+    const [displayDanger, setDisplayDanger] = useState({ display: "none" })
+    const [errorMsg, setErrorMsg] = useState("")
+
 
     const url = process.env.REACT_ENV_URL
 
@@ -54,16 +66,23 @@ export const SignUpUsers = () => {
                 setDireccion("");
                 setPassword("");
                 setTerminos(false)
+                setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+                setTimeout(() => { setDisplay({ display: "none" }) }, 3500)
+                setTimeout(() => { navigate("/LoginUsers") }, 3500)
             })
 
             .catch((error) => {
                 console.error("Error submitting form:", error);
+                setDisplayDanger({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" });
+                setErrorMsg(error.message);
 
             });
     };
 
     return (
         <div className="SignUpForOrganizersContainer">
+            <AlertSuccess message="Bienvenido a Runnest. Seras redirigido a la vista de Iniciar sesión para usuarios" funcion={() => { setDisplay({ display: "none" }) }} estilo={display} />
+            <AlertDanger message="Error de registro, verificar que el correo electronico sea correcto" estilo={displayDanger} funcion={() => { setDisplayDanger({ display: "none" }) }} />
             <h1 className="TitleSignUpForOrganizers">
                 Registro para Usuarios
             </h1>
