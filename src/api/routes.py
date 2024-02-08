@@ -544,23 +544,52 @@ def publicar_resultados():
     minutos=data.get("minutos")
     segundos=data.get("segundos")
 
-    data_check = [ participante,carrera_id,edad, horas, minutos, segundos ]
+    data_check = [ participante, carrera_id, edad, horas, minutos, segundos ]
 
     # Verificar que la data esté completa
     if None in data_check:
+        print("Faltan datos, por favor verifica tu solicitud")
         return jsonify({
             "msg": "Faltan datos, por favor verifica tu solicitud"
         }), 400
+    print 
     
     # Verificar que los resultados del participante no esten ya en la base de datos
     validar_participante = Resultados.query.filter_by(participante=participante, carrera_id=carrera_id).one_or_none()
 
     if validar_participante: 
+        print("El resultado de este participante ya se encuentra agregado en esta carrera")
         return jsonify({
                 "msg": "El resultado de este participante ya se encuentra agregado en esta carrera"
             }), 400
+    
+
+
+
+    new_resultados = Resultados(
+        participante = participante,
+        carrera_id = carrera_id,
+        edad = edad,
+        horas = horas,
+        minutos = minutos,
+        segundos = segundos
+    )
+
+     #enviar la nueva info a la base de datos 
+    try:
+        db.session.add(new_resultados)
+        db.session.commit()
+    except Exception as error:
+        db.session.rollback()
+        return jsonify({
+            "msg": "Ha ocurrido un error con la base de datos"
+        }), 500
 
     return jsonify({}), 201
+
+   
+
+       
     
 
 @api.route("/ObtenerResultados", methods =["GET"])
