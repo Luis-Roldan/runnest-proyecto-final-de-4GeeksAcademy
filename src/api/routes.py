@@ -2,7 +2,7 @@
 This module takes care of starting the API Server, Loading the DB and Adding the endpoints
 """
 from flask import Flask, request, jsonify, url_for, Blueprint
-from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos
+from api.models import db, Carrera, CarreraUsuario, User, Organizador, Puntuacion, Favoritos, Resultados
 from api.utils import generate_sitemap, APIException
 from flask_cors import CORS
 from bcrypt import gensalt
@@ -523,4 +523,56 @@ def handle_favorite():
         return jsonify(user_favorites), 200
     
 
+# ////////////////////////////////////// dsad
+    
 
+    
+@api.route('/resultados', methods=['POST'])
+@jwt_required()
+def publicar_resultados():
+    
+    # Obtener datos de la solicitud
+    id = get_jwt_identity()
+    data = request.json
+
+    
+    # Extraer datos específicos para la carrera
+    participante=data.get("participante")
+    carrera_id=data.get("carrera_id") 
+    edad=data.get("edad")
+    horas=data.get("horas")
+    minutos=data.get("minutos")
+    segundos=data.get("segundos")
+
+    data_check = [ participante,carrera_id,edad, horas, minutos, segundos ]
+
+    # Verificar que la data esté completa
+    if None in data_check:
+        return jsonify({
+            "msg": "Faltan datos, por favor verifica tu solicitud"
+        }), 400
+    
+    # Verificar que los resultados del participante no esten ya en la base de datos
+    validar_participante = Resultados.query.filter_by(participante=participante, carrera_id=carrera_id).one_or_none()
+
+    if validar_participante: 
+        return jsonify({
+                "msg": "El resultado de este participante ya se encuentra agregado en esta carrera"
+            }), 400
+
+    return jsonify({}), 201
+    
+
+@api.route("/ObtenerResultados", methods =["GET"])
+def obtener_resultados_carrera():
+         #Obtener todas las carreras
+         resultados = Resultados.query.all()
+
+         #lista para colocar las carreras serializadas
+         resultados_serialized = []
+
+         #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
+         for resultados in resultados:
+            resultados_serialized.append(resultados.serialize())
+        
+         return jsonify(resultados_serialized), 200

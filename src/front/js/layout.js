@@ -16,10 +16,14 @@ import injectContext from "./store/appContext";
 import { Carreras } from "./pages/carreras.js";
 import { Contacto } from "./pages/contacto.js";
 import { Puntuacion } from "./pages/puntuacion.jsx";
+import {CarreraRender} from "./pages/carreraRender.jsx";
+
+
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
 import { PanelOrg } from "./pages/panelOrg.js";
+import { AboutUs } from "./pages/AboutUs.jsx";
 
 
 const Layout = () => {
@@ -27,6 +31,8 @@ const Layout = () => {
     if (!process.env.BACKEND_URL || process.env.BACKEND_URL == "") return <BackendURL />;
 
     const userType = localStorage.getItem("userType")
+
+
 
 
     return (
@@ -38,8 +44,10 @@ const Layout = () => {
                         <Route element={<Home />} path="/" />
                         <Route element={<Carreras />} path="/carreras" />
                         <Route element={<Contacto />} path="/contacto" />
+                        <Route element={<AboutUs />} path="/AboutUs" />
                         <Route element={<Puntuacion />} path="/puntuacion" />
-
+                        <Route element={<CarreraRender />} path="/carreraRender/:id" />
+                        
 
 
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
