@@ -210,7 +210,7 @@ def handle_login_organizador():
         }), 400
     
     if password_is_valid:
-        token = create_access_token(identity=usuario_organizador.id)
+        token = create_access_token(identity = usuario_organizador.id)
         return jsonify(token), 201
     
 @api.route("/organizador")

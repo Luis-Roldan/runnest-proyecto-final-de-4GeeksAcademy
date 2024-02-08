@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/CareerRegistration.css";
+import { UploadButton } from "../component/uploadButton";
 
 
 export const RegistroDeCarreras = () => {
@@ -136,6 +137,7 @@ export const RegistroDeCarreras = () => {
                         value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
+                <UploadButton />
                 <button type="submit" className="btn btn-primary SubmitButtonForCareerRegistration" onClick={handleSubmit}>Enviar</button>
             </form>
         </div>

@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { AlertSuccess } from "../component/alertSuccess";
 import { AlertDanger } from "../component/alertDanger";
 
-
 export const LoginUsers = () => {
 
     //estados para tener imputs controlados
