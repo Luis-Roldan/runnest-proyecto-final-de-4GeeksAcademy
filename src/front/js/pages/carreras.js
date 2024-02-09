@@ -105,24 +105,26 @@ export const Carreras = () => {
             <AlertDanger estilo={displayDanger} message={error} funcion={() => { setDisplayDanger({ display: "none" }) }} />
             <AlertSuccess estilo={favoriteAlert} message="Favorito guardado" funcion={() => { setFavoriteAlert({ display: "none" }) }} />
 
-            <div className="row justify-content-center row-cols-1 row-cols-md-4">
+            <div className="row justify-content-center row-cols-1 row-cols-sm-4">
                 {carreras.map((item, index) => (
-                    <div key={index} className="card m-3">
-                        <img src={item.image} className="card-img-top" alt="..." style={{ maxHeight: "100px" }} />
-                        <div className="card-body">
+                    <div key={index} className="card m-3 p-0" style={{ width: "20vw" }}>
+                        <div className="">
+                            <img src={item.image} className="card-img-top" alt="..." style={{ objectFit: "cover", width: "20vw", height: "18vh" }} />
+                        </div>
+                        <div className="card-body" style={{ overflow: "hidden" }}>
                             <h5 className="card-title">{item.nombre}</h5>
                             <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
                                 {`${item.pais}, ${item.ciudad}.`}
                                 <p className="card-text">{`${item.dia}/${item.mes}/${item.year}`}</p>
                             </h6>
                             <p>{`Capacidad: ${item.capacidad}`}</p>
-                        </div>
-                        <div className="d-flex justify-content-between px-2">
-                            <p>{`Dificultad: ${item.dificultad}`}</p>
-                            <p>{item.costo}$</p>
+                            <div className="d-flex justify-content-between">
+                                <p>{`Dificultad: ${item.dificultad}`}</p>
+                                <p>{item.costo}$</p>
+                            </div>
                         </div>
                         <hr className="hr" />
-                        <div className="d-flex justify-content-between align-items-center mb-2">
+                        <div className="d-flex justify-content-between align-items-center px-3 mb-2">
                             <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Registrarme</button>
                             <FontAwesomeIcon
                                 className="btn btn-light border-1 border-danger"
