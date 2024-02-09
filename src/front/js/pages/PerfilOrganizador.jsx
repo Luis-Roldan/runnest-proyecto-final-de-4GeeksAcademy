@@ -13,6 +13,9 @@ export const PerfilOrganizador = () => {
     //ejecutar la funcion getUserData para hacer un GET y obtener datos del usuario
     useEffect(() => { actions.getOrganizadorData(); }, [])
 
+    //obtener todas las carreras desde el store
+    const carreras = store.carreras
+
     //funcion para renderizar en base al boton que se le hace click
     const handleConditionalRendering = () => {
         if (isClicked == "carreras") {
@@ -35,7 +38,34 @@ export const PerfilOrganizador = () => {
             )
 
         } else if (isClicked == "reviews") {
-            return "mostrar las carreras de este organizador"
+            return <div className="">
+                <div className="row justify-content-center row-cols-1 row-cols-md-4">
+                    {carreras.map((item, index) => (
+                        <div key={index} className="card m-3">
+                            <img src={item.image} className="card-img-top ImageStyle" alt="..." style={{ maxHeight: "100px" }} />
+                            <div className="card-body">
+                                <h5 className="card-title">{item.nombre}</h5>
+                                <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
+                                    {`${item.pais}, ${item.ciudad}.`}
+                                    <p className="card-text">{`${item.dia}/${item.mes}/${item.year}`}</p>
+                                </h6>
+                                <p>{`Capacidad: ${item.capacidad}`}</p>
+                            </div>
+                            <div className="d-flex justify-content-between px-2">
+                                <p>{`Dificultad: ${item.dificultad}`}</p>
+                                <p>{item.costo}$</p>
+                            </div>
+                            <hr className="hr" />
+                            <div className="d-flex justify-content-between align-items-center mb-2">
+                                <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Agregar Resultados</button>
+                            </div>
+
+
+
+                        </div>
+                    ))}
+                </div>
+            </div>
         }
     }
 
