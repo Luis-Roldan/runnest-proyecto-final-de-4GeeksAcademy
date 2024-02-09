@@ -7,17 +7,21 @@ import { UploadButton } from "../component/uploadButton";
 
 export const RegistroDeCarreras = () => {
 
-    const [nombre, setNombre] = useState("")
-    const [distancia, setDistancia] = useState("")
-    const [ciudad, setCiudad] = useState("")
-    const [pais, setPais] = useState("")
-    const [dia, setDia] = useState("")
-    const [mes, setMes] = useState("")
-    const [year, setYear] = useState("")
-    const [costo, setCosto] = useState("")
-    const [capacidad, setCapacidad] = useState("")
-    const [dificultad, setDificultad] = useState("")
-    const [terminos, setTerminos] = useState("")
+    const { store, actions } = useContext(Context)
+
+    const [nombre, setNombre] = useState("");
+    const [distancia, setDistancia] = useState("");
+    const [ciudad, setCiudad] = useState("");
+    const [pais, setPais] = useState("");
+    const [dia, setDia] = useState("");
+    const [mes, setMes] = useState("");
+    const [year, setYear] = useState("");
+    const [costo, setCosto] = useState("");
+    const [capacidad, setCapacidad] = useState("");
+    const [dificultad, setDificultad] = useState("");
+    const [terminos, setTerminos] = useState("");
+
+
 
     const data = {
         nombre: nombre,
@@ -30,6 +34,7 @@ export const RegistroDeCarreras = () => {
         costo: costo,
         capacidad: capacidad,
         dificultad: dificultad,
+        image: store.imageUrl,
         terminos: terminos,
 
     }
@@ -72,7 +77,6 @@ export const RegistroDeCarreras = () => {
                 setCapacidad("");
                 setDificultad("");
                 setTerminos(false);
-                setOrganizadorId("");
 
 
             })

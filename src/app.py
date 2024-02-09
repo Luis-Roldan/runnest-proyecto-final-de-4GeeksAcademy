@@ -25,7 +25,7 @@ app.url_map.strict_slashes = False
 # flask JWT extended
 app.config["JWT_SECRET_KEY"] = os.getenv("JWT_SECRET_KEY")
 jwt = JWTManager(app)
-app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours=24)
+app.config["JWT_ACCESS_TOKEN_EXPIRES"] = timedelta(hours = 24)
 
 
 # database condiguration

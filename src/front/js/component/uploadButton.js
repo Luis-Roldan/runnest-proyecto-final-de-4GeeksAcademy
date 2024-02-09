@@ -1,8 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import { Context } from "../store/appContext";
 
 export const UploadButton = () => {
   const [loaded, setLoaded] = useState(false);
   const [uploadedImage, setUploadedImage] = useState("");
+
+  const { store, actions } = useContext(Context)
+
 
   // 1. third party script load
   useEffect(() => {
@@ -31,6 +35,7 @@ export const UploadButton = () => {
       console.log(result);
       console.log("success", result.info.secure_url);
       setUploadedImage(result.info.secure_url);
+      actions.setImageUrl(result.info.secure_url)
     }
   };
 
@@ -53,13 +58,12 @@ export const UploadButton = () => {
   return (
     <div>
       <button
-        className="shadow bg-cldblue-500 hover:bg-cldblue-400 focus:shadow-outline focus:outline-none text-white font-bold py-2 px-4 rounded"
+        className="btn btn-dark"
         type="button"
         onClick={uploadWidget}
       >
         Subir foto
       </button>
-      <img src={uploadedImage} alt="uploaded using the upload widget" />
     </div>
   );
 }

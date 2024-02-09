@@ -1,6 +1,6 @@
 const getState = ({ getStore, getActions, setStore }) => {
 
-	
+
 
 
 	// obtener el token del usuario para actualizar el store.isLoggedIn 
@@ -21,6 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			carreras: [],
 
+			imageUrl: "",
+
 			usuario: {
 				apellido: "",
 				direccion: "",
@@ -34,7 +36,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 				email: "",
 				nombre: "",
 				telefono: "",
-				// telefono: "",
 				organizacion: "",
 				pagina_web: ""
 			},
@@ -45,6 +46,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
+
+			setImageUrl: (image) => {
+				setStore({
+					imageUrl: image,
+				})
+				console.log(getStore().imageUrl)
+			},
+
 
 			//funcion para actualizar el isLoggedIn y renderizar el componente navBar
 			//solo cuando el usuario inicia session
