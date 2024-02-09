@@ -55,7 +55,7 @@ export const AboutUs = () => {
       </div>
 
       <div className="cards">
-        <span><h2>¿Quienes son nuestros fundadores?</h2></span>
+        <span><h2>Conoce a nuestros fundadores?</h2></span>
         <div class="row row-cols-1 row-cols-md-3 g-4">
           <div class="col">
             <div class="card h-100">
@@ -99,9 +99,9 @@ export const AboutUs = () => {
               <div class="card-footer">
                 <small class="text-body-secondary"><strong>Edad: </strong> </small>
                 <br />
-                <small class="text-body-secondary"><strong>Estudios: </strong>  </small>
+                <small class="text-body-secondary"><strong>Estudios: Ing. Sistemas Computacionales </strong>  </small>
                 <br />
-                <small class="text-body-secondary"><strong>Hobbies: </strong> </small>
+                <small class="text-body-secondary"><strong>Hobbies: Lectura, hiking y alfarería </strong> </small>
               </div>
             </div>
           </div>
