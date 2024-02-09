@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 import { AlertSuccess } from "../component/alertSuccess";
 import { AlertDanger } from "../component/alertDanger";
 
-
 export const LoginUsers = () => {
 
     //estados para tener imputs controlados
@@ -20,9 +19,9 @@ export const LoginUsers = () => {
     const navigate = useNavigate()
 
     //estados para los estilos de los alerts
-    const [ display, setDisplay ] = useState({display: "none"})
-    const [ displayDanger, setDisplayDanger ] = useState({display: "none"})
-    const [ errorMsg, setErrorMsg ] = useState("")
+    const [display, setDisplay] = useState({ display: "none" })
+    const [displayDanger, setDisplayDanger] = useState({ display: "none" })
+    const [errorMsg, setErrorMsg] = useState("")
 
 
     //objeto para enviar como prop a la funcion handleLogIn
@@ -50,14 +49,14 @@ export const LoginUsers = () => {
                 actions.setIsLoggedIn();
                 actions.setUserTypeToUsuario();
                 actions.getFavorites();
-                setDisplay({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
-                setTimeout(() => {setDisplay({display: "none"})}, 3500)
-                setTimeout(() => {navigate("/carreras")}, 3500)
-                
+                setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+                setTimeout(() => { setDisplay({ display: "none" }) }, 3500)
+                setTimeout(() => { navigate("/carreras") }, 3500)
+
             } else {
                 setErrorMsg(token.msg)
-                setDisplayDanger({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
-                return  
+                setDisplayDanger({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+                return
             }
 
             return token
@@ -77,8 +76,8 @@ export const LoginUsers = () => {
 
     return (
         <div className="d-flex p-5 justify-content-center align-items-center">
-            <AlertSuccess message="Bienvenido a Runnest. Seras redirigido a la vista de carreras" funcion={() => {setDisplay({display: "none"})}} estilo={display} />
-            <AlertDanger  message={errorMsg} estilo={displayDanger} funcion={() => {setDisplayDanger({display: "none"})}} />
+            <AlertSuccess message="Bienvenido a Runnest. Seras redirigido a la vista de carreras" funcion={() => { setDisplay({ display: "none" }) }} estilo={display} />
+            <AlertDanger message={errorMsg} estilo={displayDanger} funcion={() => { setDisplayDanger({ display: "none" }) }} />
             <form
                 onSubmit={handleSubmit}
                 className="shadow p-5 logInForm"

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/CareerRegistration.css";
+import { UploadButton } from "../component/uploadButton";
 
 
 export const RegistroDeCarreras = () => {
@@ -17,24 +18,6 @@ export const RegistroDeCarreras = () => {
     const [capacidad, setCapacidad] = useState("")
     const [dificultad, setDificultad] = useState("")
     const [terminos, setTerminos] = useState("")
-
-    // const [isChecked, setIsChecked] = useState("");
-
-
-    const [formData, setFormData] = useState({
-        nombre: nombre,
-        distancia: distancia,
-        ciudad: ciudad,
-        pais: pais,
-        dia: dia,
-        mes: mes,
-        year: year,
-        costo: costo,
-        capacidad: capacidad,
-        dificultad: dificultad,
-        terminos: terminos,
-
-    });
 
     const data = {
         nombre: nombre,
@@ -54,14 +37,11 @@ export const RegistroDeCarreras = () => {
 
 
     const url = process.env.REACT_ENV_URL
-    console.log(url)
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         const token = localStorage.getItem("accessToken")
-        console.log(token)
-
 
 
         fetch(url + "/carrera", {
@@ -157,6 +137,7 @@ export const RegistroDeCarreras = () => {
                         value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
+                <UploadButton />
                 <button type="submit" className="btn btn-primary SubmitButtonForCareerRegistration" onClick={handleSubmit}>Enviar</button>
             </form>
         </div>
