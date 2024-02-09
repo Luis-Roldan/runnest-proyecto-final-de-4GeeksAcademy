@@ -16,7 +16,7 @@ import injectContext from "./store/appContext";
 import { Carreras } from "./pages/carreras.js";
 import { Contacto } from "./pages/contacto.js";
 import { Puntuacion } from "./pages/puntuacion.jsx";
-import {CarreraRender} from "./pages/carreraRender.jsx";
+import { CarreraRender } from "./pages/carreraRender.jsx";
 
 
 
@@ -47,7 +47,7 @@ const Layout = () => {
                         <Route element={<AboutUs />} path="/AboutUs" />
                         <Route element={<Puntuacion />} path="/puntuacion" />
                         <Route element={<CarreraRender />} path="/carreraRender/:id" />
-                        
+
 
 
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
@@ -58,7 +58,7 @@ const Layout = () => {
                         <Route element={<LoginForOrganizers />} path="/LoginForOrganizers" />
                         <Route element={userType == "organizador" ? <PerfilOrganizador /> : <Navigate to="/LoginForOrganizers" />} path="/PerfilOrganizador" />
                         <Route element={<RegistroDeCarreras />} path="/RegistroDeCarreras" />
-                        <Route element={<AgregarResultados />} path="/AgregarResultados" />
+                        <Route element={<AgregarResultados />} path="/AgregarResultados/:id" />
 
                         <Route element={<h1>Not found!</h1>} />
                     </Routes>

@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/carreraRender.css"
-
+import {Puntuacion} from "../pages/puntuacion.jsx"
 
 export const CarreraRender = () => {
     const { id } = useParams();
@@ -12,12 +12,12 @@ export const CarreraRender = () => {
     return (
 
         <div className="container">
-            <span><h1>Maraton Medellin 21 y 42k </h1></span>
+            <span><h1>{carrera.nombre} </h1></span>
             <div className="imagen">
                 <div className="carrera">
 
                     <ul>
-                        <li>Nombre: {carrera.nombre}</li>
+
                         <li>Distancia: {carrera.distancia}</li>
                         <li>País: {carrera.pais}</li>
                         <li>Ciudad: {carrera.ciudad}</li>
@@ -27,13 +27,13 @@ export const CarreraRender = () => {
                         <li>Costo: {carrera.costo}</li>
                         <li>Dificultad: {carrera.dificultad}</li>
                         <li>Capacidad: {carrera.capacidad}</li>
-                        <li>Organizador ID: {carrera.organizador_id}</li>
-                        <li>Términos: {carrera.terminos}</li>
+                        <li>Organizador: {carrera.organizador_id}</li>
+    
                     </ul>
 
                 </div>
             </div>
-
+            <Puntuacion/>
  
 
 
