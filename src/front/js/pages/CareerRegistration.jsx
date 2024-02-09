@@ -92,7 +92,7 @@ export const RegistroDeCarreras = () => {
                 Registrar una nueva carrera
             </h1>
             <form >
-                <div className="mb-3">
+                <div className="ContenedorImagen">
                     <p className="">Subir foto</p>
                     <UploadButton />
 
