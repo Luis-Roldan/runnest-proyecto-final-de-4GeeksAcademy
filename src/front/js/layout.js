@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes, Switch } from "react-router-dom";
 import ScrollToTop from "./component/scrollToTop";
 import { BackendURL } from "./component/backendURL";
 
@@ -58,6 +58,7 @@ const Layout = () => {
                         <Route element={<LoginForOrganizers />} path="/LoginForOrganizers" />
                         <Route element={userType == "organizador" ? <PerfilOrganizador /> : <Navigate to="/LoginForOrganizers" />} path="/PerfilOrganizador" />
                         <Route element={<RegistroDeCarreras />} path="/RegistroDeCarreras" />
+
                         <Route element={<AgregarResultados />} path="/AgregarResultados/:id" />
 
                         <Route element={<h1>Not found!</h1>} />

@@ -1,14 +1,18 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import "../../styles/perfil.css"
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactDOM from 'react-dom'
 
 
 export const PerfilOrganizador = () => {
+
+
+    const { store, actions } = useContext(Context);
+
     const [isClicked, setIsclicked] = useState("favoritos")
-    const { store, actions } = useContext(Context)
+
 
     //ejecutar la funcion getUserData para hacer un GET y obtener datos del usuario
     useEffect(() => { actions.getOrganizadorData(); }, [])
@@ -29,12 +33,13 @@ export const PerfilOrganizador = () => {
             )
         } else if (isClicked == "resultados") {
             return (
-                <div className="panel-item">
-                    <Link to="/AgregarResultados" className="panel-item ps-3 py-2 " >
-                        <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
-                        <span>Agregar Resultado</span>
-                    </Link>
-                </div>
+                <div></div>
+                // <div className="panel-item">
+                //     <Link to={`/AgregarResultados/${}`} className="panel-item ps-3 py-2 " >
+                //         <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
+                //         <span>Agregar Resultado</span>
+                //     </Link>
+                // </div>
             )
 
         } else if (isClicked == "reviews") {
@@ -58,11 +63,10 @@ export const PerfilOrganizador = () => {
                             <hr className="hr" />
                             <div className="d-flex justify-content-between align-items-center mb-2">
 
-                                <Link to="/AgregarResultados/:id" className="panel-item ps-3 py-2 " >
+                                <Link to={`/AgregarResultados/${item.id}`} className="panel-item ps-3 py-2 " >
                                     <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
                                     <span>Agregar Resultado</span>
                                 </Link>
-                                {/* <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Agregar Resultados</button> */}
                             </div>
                         </div>
                     ))}
