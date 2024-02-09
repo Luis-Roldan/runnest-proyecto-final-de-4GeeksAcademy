@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Context } from "../store/appContext";
+import "../../styles/UploadButton.css"
 
 export const UploadButton = () => {
   const [loaded, setLoaded] = useState(false);
@@ -56,8 +57,8 @@ export const UploadButton = () => {
   // code includes a form to enter Cloud Name and Unsigned Preset
   // this allows for users to upload to their own Cloudinary project environment
   return (
-    <div>
-      <img src={uploadedImage} alt="Imagen para subir" />
+    <div className="Contenedor">
+      <img src={uploadedImage} alt="Imagen para subir" className="uploadedImage" />
       <button
         className="btn btn-dark"
         type="button"
