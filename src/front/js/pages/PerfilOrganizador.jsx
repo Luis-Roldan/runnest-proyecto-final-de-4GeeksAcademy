@@ -17,7 +17,7 @@ export const PerfilOrganizador = () => {
     const handleConditionalRendering = () => {
         if (isClicked == "carreras") {
             return (
-                <div >
+                <div className="panel-item">
                     <Link to="/RegistroDeCarreras" className="panel-item ps-3 py-2" >
                         <FontAwesomeIcon className="me-2" icon="fa-solid fa-person-running" />
                         <span>Publicar carrera</span>
@@ -26,7 +26,7 @@ export const PerfilOrganizador = () => {
             )
         } else if (isClicked == "resultados") {
             return (
-                <div >
+                <div className="panel-item">
                     <Link to="/AgregarResultados" className="panel-item ps-3 py-2 " >
                         <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
                         <span>Agregar Resultado</span>
@@ -35,7 +35,7 @@ export const PerfilOrganizador = () => {
             )
 
         } else if (isClicked == "reviews") {
-            return "reseñas"
+            return "mostrar las carreras de este organizador"
         }
     }
 
@@ -57,9 +57,9 @@ export const PerfilOrganizador = () => {
             </section>
             <div className="d-flex justify-content-center pt-4">
 
-                <button onClick={() => { setIsclicked("carreras") }} className="btn-perfil">Mis carreras</button>
+                <button onClick={() => { setIsclicked("carreras") }} className="btn-perfil">Publicar Carrera</button>
                 <button onClick={() => { setIsclicked("resultados") }} className="btn-perfil">Resultados</button>
-                <button onClick={() => { setIsclicked("reviews") }} className="btn-perfil">Reseñas</button>
+                <button onClick={() => { setIsclicked("reviews") }} className="btn-perfil">Mis Carreras</button>
             </div>
             <div className="d-flex justify-content-center pt-4">
                 {handleConditionalRendering()}

@@ -23,6 +23,9 @@ aside {
   margin-top: 10px;
   margin-bottom: 10px;
   background-color: black;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .panel-item:hover {
