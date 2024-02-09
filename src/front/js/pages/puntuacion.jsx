@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { Context } from "../store/appContext";
-import "../../styles/puntuacion.css"
+import "../../styles/puntuacion.css";
 
 export const Puntuacion = () => {
   const colors = {
@@ -13,13 +13,10 @@ export const Puntuacion = () => {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [feedback, setFeedback] = useState("");
-  const url = process.env.REACT_ENV_URL
-  
-  const { store, actions } = useContext(Context)
+  const [comments, setComments] = useState([]);
+  const url = process.env.REACT_ENV_URL; // Reemplaza con la URL correcta
 
-  // useEffect(() => { actions.getCarreras(); }, [])
-
-
+  const { store, actions } = useContext(Context);
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -37,38 +34,37 @@ export const Puntuacion = () => {
     setFeedback(event.target.value);
   };
 
-
-
   const handleSubmit = async () => {
-    // Recupera el token desde la localStorage
-    const token = localStorage.getItem('jwt-token');
+    try {
+      const token = localStorage.getItem("accessToken");
 
-    const resp = await fetch(url + "/puntuacion", {
-       method: 'POST',
-       headers: { 
-         "Content-Type": "application/json",
-         'Authorization': 'Bearer ' + token // ⬅⬅⬅ authorization token
-       },
-       body: JSON.stringify({
-        rating: currentValue,
-        feedback: feedback,
-      }),
-    });
+      const resp = await fetch(url + "/puntuacion", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          rating: currentValue,
+          feedback: feedback,
+        }),
+      });
 
-    if(!resp.ok) {
-         throw Error("There was a problem in the login request")
-    } else if(resp.status === 403) {
-         throw Error("Missing or invalid token");
-    } else {
-        throw Error("Unknown error");
+      if (!resp.ok) {
+        throw new Error("There was a problem submitting your feedback");
+      }
+      
+      // Aquí podrías manejar la respuesta exitosa de ser necesario
+      // Añadir el comentario y la puntuación al array de comentarios
+      setComments([...comments, { feedback, rating: currentValue }]);
+    } catch (error) {
+      console.error("Error:", error.message);
+      // Aquí podrías mostrar un mensaje de error al usuario
     }
-
-}
-
+  };
 
   return (
     <div className="container-puntuacion">
-
       <div className="stars">
         {stars.map((_, index) => (
           <FaStar
@@ -92,13 +88,23 @@ export const Puntuacion = () => {
           onChange={handleFeedbackChange}
         ></textarea>
       </div>
-
       <div className="button">
         <button type="button" className="btn btn-primary" onClick={handleSubmit}>
           Submit
         </button>
       </div>
-   <div className="back-to"><Link to="/">Home</Link></div>   
+      <div className="comentarios">
+        <h3>Comentarios:</h3>
+        <ul className="list-group">
+          {comments.map((comment, index) => (
+            <li key={index} className="list-group-item">
+              <div>Puntuación: {comment.rating}</div>
+              <div>Feedback: {comment.feedback}</div>
+            </li>
+          ))}
+        </ul>
+      </div>
+      <div className="back-to"><Link to="/">Home</Link></div>
     </div>
   );
 };

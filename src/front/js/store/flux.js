@@ -134,6 +134,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			//funcion para obtener puntuacion
+
+			getCarreras: async () => {
+				try {
+					const carreraResponse = await fetch(url + "/carrera");
+					const carreraResponseToJson = await carreraResponse.json()
+					if (carreraResponse.status == 200) {
+						setStore({
+							carreras: carreraResponseToJson
+						});
+					} else {
+						return carreraResponseToJson
+					}
+				} catch (error) {
+					console.log(error)
+				}
+			},
+
+
 			getCarreras: async () => {
 				try {
 					const carreraResponse = await fetch(url + "/carrera");
