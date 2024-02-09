@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/CareerRegistration.css";
 import { UploadButton } from "../component/uploadButton";
+import { useNavigate } from "react-router-dom";
+import { AlertSuccess } from "../component/alertSuccess";
+import { AlertDanger } from "../component/alertDanger";
+
 
 
 export const RegistroDeCarreras = () => {
@@ -39,6 +43,14 @@ export const RegistroDeCarreras = () => {
 
     }
 
+
+    //variable para declarar el useNavigate
+    const navigate = useNavigate()
+
+    //estados para los estilos de los alerts
+    const [display, setDisplay] = useState({ display: "none" })
+    const [displayDanger, setDisplayDanger] = useState({ display: "none" })
+    const [errorMsg, setErrorMsg] = useState("")
 
 
     const url = process.env.REACT_ENV_URL
@@ -77,17 +89,24 @@ export const RegistroDeCarreras = () => {
                 setCapacidad("");
                 setDificultad("");
                 setTerminos(false);
+                setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+                setTimeout(() => { setDisplay({ display: "none" }) }, 3500)
+                setTimeout(() => { navigate("/PerfilOrganizador") }, 3500)
 
 
             })
             .catch((error) => {
                 console.error("Error submitting form:", error);
+                setDisplayDanger({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" });
+                setErrorMsg(error.message);
             });
 
     };
 
     return (
         <div className="CareerRegistrationContainer">
+            <AlertSuccess message="Carrera registrada correctamente, sera redirigido al perfil de organizador" funcion={() => { setDisplay({ display: "none" }) }} estilo={display} />
+            <AlertDanger message="Error al crear la carrera, verificar la información" estilo={displayDanger} funcion={() => { setDisplayDanger({ display: "none" }) }} />
             <h1 className="TitleSignUpForCareerRegistration">
                 Registrar una nueva carrera
             </h1>
