@@ -8,19 +8,19 @@ import { AlertDanger } from "../component/alertDanger";
 
 export const Carreras = () => {
 
-    
+
     //importar el store y actions
     const { store, actions } = useContext(Context)
 
     //estado para el estilo del alert
-    const [ favoriteAlert, setFavoriteAlert ] = useState({display: "none"})
-    const [ display, setDisplay ] = useState({display: "none"})
-    const [ displayDanger, setDisplayDanger ] = useState({display: "none"})
-    const [ error, setError ] = useState("")
-    const [ favoriteError, setFavoriteError ] = useState("")
+    const [favoriteAlert, setFavoriteAlert] = useState({ display: "none" })
+    const [display, setDisplay] = useState({ display: "none" })
+    const [displayDanger, setDisplayDanger] = useState({ display: "none" })
+    const [error, setError] = useState("")
+    const [favoriteError, setFavoriteError] = useState("")
 
     //url de la api
-	const url = process.env.REACT_ENV_URL
+    const url = process.env.REACT_ENV_URL
 
     //declarar el useNavigate
     const navigate = useNavigate()
@@ -47,13 +47,13 @@ export const Carreras = () => {
                 }
             })
             if (fetchRace.status == 201) {
-                setDisplay({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
+                setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
             }
             if (fetchRace.status !== 201) {
                 const fetchRaceToJson = await fetchRace.json()
                 setError(fetchRaceToJson.msg)
-                setDisplayDanger({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
-                return 
+                setDisplayDanger({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+                return
             }
         } catch (error) {
             console.log(error)
@@ -76,13 +76,13 @@ export const Carreras = () => {
             });
             const fetchFavoriteToJson = await fetchFavorite.json();
             if (fetchFavorite.status == 201) {
-                setFavoriteAlert({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
+                setFavoriteAlert({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
                 actions.getFavorites()
-            } 
+            }
 
             if (fetchFavorite.status !== 201) {
                 setError(fetchFavoriteToJson.msg)
-                setDisplayDanger({display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%"})
+                setDisplayDanger({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
             }
         } catch (error) {
             console.log(error)
@@ -101,13 +101,14 @@ export const Carreras = () => {
 
     return (
         <div className="">
-            <AlertSuccess message="Registrado satisfactoriamente." estilo={display} funcion={() => {setDisplay({display: "none"})}} />
-            <AlertDanger estilo={displayDanger} message={error} funcion={() => {setDisplayDanger({display: "none"})}} />
-            <AlertSuccess estilo={favoriteAlert} message="Favorito guardado" funcion={() => {setFavoriteAlert({display: "none"})}} />            
-            
+            <AlertSuccess message="Registrado satisfactoriamente." estilo={display} funcion={() => { setDisplay({ display: "none" }) }} />
+            <AlertDanger estilo={displayDanger} message={error} funcion={() => { setDisplayDanger({ display: "none" }) }} />
+            <AlertSuccess estilo={favoriteAlert} message="Favorito guardado" funcion={() => { setFavoriteAlert({ display: "none" }) }} />
+
             <div className="row justify-content-center row-cols-1 row-cols-md-4">
                 {carreras.map((item, index) => (
                     <div key={index} className="card m-3">
+                        <img src={item.image} className="card-img-top" alt="..." style={{ maxHeight: "100px" }} />
                         <div className="card-body">
                             <h5 className="card-title">{item.nombre}</h5>
                             <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
@@ -125,15 +126,15 @@ export const Carreras = () => {
                             <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Registrarme</button>
                             <FontAwesomeIcon
                                 className="btn btn-light border-1 border-danger"
-                                onClick={() => {postFavorite(item.id)}}
+                                onClick={() => { postFavorite(item.id) }}
                                 icon="fa-solid fa-heart"
-                                size="xl" 
-                                style={{color: "#ff0000"}}
+                                size="xl"
+                                style={{ color: "#ff0000" }}
                             />
                         </div>
-                        
-                        <Link to={`/carreraRender/${index}`} style={{ textDecoration: 'none'}}>Califica esta carrera!</Link>
-                        
+
+                        <Link to={`/carreraRender/${index}`} style={{ textDecoration: 'none' }}>Califica esta carrera!</Link>
+
                     </div>
                 ))}
             </div>

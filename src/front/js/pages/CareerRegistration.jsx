@@ -93,13 +93,18 @@ export const RegistroDeCarreras = () => {
             </h1>
             <form >
                 <div className="mb-3">
+                    <p className="">Subir foto</p>
+                    <UploadButton />
+
+                </div>
+                <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Nombre de la carrera</label>
                     <input type="text" className="form-control" id="Name" onChange={(e) => setNombre(e.target.value)}
                         value={nombre} />
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Distancia</label>
-                    <input type="text" className="form-control" id="Name" onChange={(e) => setDistancia(e.target.value)}
+                    <input type="number" className="form-control" id="Name" onChange={(e) => setDistancia(e.target.value)}
                         value={distancia} />
                 </div>
                 <div className="mb-3">
@@ -123,7 +128,7 @@ export const RegistroDeCarreras = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Costo</label>
-                    <input type="text" className="form-control" id="Name" onChange={(e) => setCosto(e.target.value)}
+                    <input type="number" className="form-control" id="Name" onChange={(e) => setCosto(e.target.value)}
                         value={costo} />
                 </div>
                 <div className="mb-3">
@@ -133,7 +138,7 @@ export const RegistroDeCarreras = () => {
                 </div>
                 <div className="mb-3">
                     <label htmlFor="Name" className="form-label">Capacidad</label>
-                    <input type="text" className="form-control" id="Name" onChange={(e) => setCapacidad(e.target.value)}
+                    <input type="number" className="form-control" id="Name" onChange={(e) => setCapacidad(e.target.value)}
                         value={capacidad} />
                 </div>
                 <div className="mb-3 form-check CheckBoxContainer">
@@ -141,7 +146,6 @@ export const RegistroDeCarreras = () => {
                         value={terminos} />
                     <label className="form-check-label" htmlFor="exampleCheck">Acepto términos y condiciones</label>
                 </div>
-                <UploadButton />
                 <button type="submit" className="btn btn-primary SubmitButtonForCareerRegistration" onClick={handleSubmit}>Enviar</button>
             </form>
         </div>

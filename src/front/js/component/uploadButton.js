@@ -57,6 +57,7 @@ export const UploadButton = () => {
   // this allows for users to upload to their own Cloudinary project environment
   return (
     <div>
+      <img src={uploadedImage} alt="Imagen para subir" />
       <button
         className="btn btn-dark"
         type="button"

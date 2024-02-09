@@ -13,7 +13,7 @@ export const LoginForOrganizers = () => {
 
     //url para hacer la solicitud
     const url = process.env.REACT_ENV_URL
-    console.log(url)
+
     const { store, actions } = useContext(Context);
 
     //variable para declarar el useNavigate
