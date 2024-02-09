@@ -14,7 +14,7 @@ export const Puntuacion = () => {
   const [hoverValue, setHoverValue] = useState(undefined);
   const [feedback, setFeedback] = useState("");
   const [comments, setComments] = useState([]);
-  const url = process.env.REACT_ENV_URL; // Reemplaza con la URL correcta
+  const url = process.env.REACT_ENV_URL; 
 
   const { store, actions } = useContext(Context);
 
@@ -54,12 +54,11 @@ export const Puntuacion = () => {
         throw new Error("There was a problem submitting your feedback");
       }
       
-      // Aquí podrías manejar la respuesta exitosa de ser necesario
-      // Añadir el comentario y la puntuación al array de comentarios
+      
       setComments([...comments, { feedback, rating: currentValue }]);
     } catch (error) {
       console.error("Error:", error.message);
-      // Aquí podrías mostrar un mensaje de error al usuario
+     
     }
   };
 
