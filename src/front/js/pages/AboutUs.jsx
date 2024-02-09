@@ -24,7 +24,7 @@ export const AboutUs = () => {
 
 
 
-               <span>¡Bienvenido a Runnest!</span> 
+                <span>¡Bienvenido a Runnest!</span>
             </div>
 
 
@@ -49,9 +49,54 @@ export const AboutUs = () => {
                         </div>
                     </div>
 
-                    
+
+                </div>
+
             </div>
+
+            <div className="cards">
+                <span><h2>¿Quienes son nuestros fundadores?</h2></span>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100">
+    <img src="" alt="imagen" className="circular-image" />
+      <div class="card-body">
+        <h5 class="card-title">Luis Fernando Roldan Ortiz</h5>
+        <p class="card-text">Co-Fundador</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"></small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+    <img src="ruta/de/la/imagen.jpg" alt="imagen" className="circular-image" />
+      <div class="card-body">
+        <h5 class="card-title">Jose Antonio Morillo</h5>
+        <p class="card-text">Co-Fundador</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"></small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+    <img src="ruta/de/la/imagen.jpg" alt="imagen" className="circular-image" />
+      <div class="card-body">
+        <h5 class="card-title">Sofia Vanessa Garcia Tovar</h5>
+        <p class="card-text">Co-Fundador</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">Hobbies:</small>
+      </div>
+    </div>
+  </div>
 </div>
+                </div>
+
+         
         </div>
     )
 }

@@ -17,3 +17,14 @@ h1{
     padding-top:3%;
     margin-left: 5%;
 }
+.circular-image {
+    
+    width:50%;
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+  }
+h2{
+    margin-left: 30%;
+}
