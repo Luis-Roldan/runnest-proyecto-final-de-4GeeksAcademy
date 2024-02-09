@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect } from "react";
 import { AlertSuccess } from "../component/alertSuccess";
 import { AlertDanger } from "../component/alertDanger";
+import "../../styles/carreras.css"
 
 export const Carreras = () => {
 
@@ -108,7 +109,7 @@ export const Carreras = () => {
             <div className="row justify-content-center row-cols-1 row-cols-md-4">
                 {carreras.map((item, index) => (
                     <div key={index} className="card m-3">
-                        <img src={item.image} className="card-img-top" alt="..." style={{ maxHeight: "100px" }} />
+                        <img src={item.image} className="card-img-top ImageStyle" alt="..." style={{ maxHeight: "100px" }} />
                         <div className="card-body">
                             <h5 className="card-title">{item.nombre}</h5>
                             <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
