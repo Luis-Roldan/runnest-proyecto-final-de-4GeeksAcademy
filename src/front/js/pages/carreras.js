@@ -131,6 +131,9 @@ export const Carreras = () => {
                                 style={{color: "#ff0000"}}
                             />
                         </div>
+                        
+                        <Link to={`/carreraRender/${index}`} style={{ textDecoration: 'none'}}>Califica esta carrera!</Link>
+                        
                     </div>
                 ))}
             </div>

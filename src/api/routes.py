@@ -592,16 +592,22 @@ def publicar_resultados():
        
     
 
-@api.route("/ObtenerResultados", methods =["GET"])
-def obtener_resultados_carrera():
-         #Obtener todas las carreras
-         resultados = Resultados.query.all()
+@api.route("/ObtenerResultados/<int:carrera_id>", methods =["GET"])
+def obtener_resultados_carrera(carrera_id):
+     #Obtener todas las carreras
+    resultados_carrera = Resultados.query.filter_by(carrera_id=carrera_id).all()
 
-         #lista para colocar las carreras serializadas
-         resultados_serialized = []
+    # Verificar si se encontraron resultados para la carrera
+    if not resultados_carrera:
+        return jsonify({
+            "msg": "No se encontraron resultados para la carrera especificada"
+        }), 404
 
-         #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
-         for resultados in resultados:
-            resultados_serialized.append(resultados.serialize())
+    #lista para colocar las carreras serializadas
+    resultados_serializados = [resultado.serialize() for resultado in resultados_carrera]
+
+    # #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
+    # for resultados in resultados:
+    #     resultados_serialized.append(resultados.serialize())
         
-         return jsonify(resultados_serialized), 200
+    return jsonify(resultados_serializados), 200

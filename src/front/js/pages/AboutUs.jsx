@@ -1,10 +1,12 @@
 import React, { useContext, useState } from "react";
 import "../../styles/aboutUs.css"
+import AvatarEditor from 'react-avatar-editor'
 
 
 export const AboutUs = () => {
     return (
         <div className="container">
+            <h1>RUNNEST</h1>
             <div className="nosotros">
                 <span>Bienvenido a Runnest tu destino definitivo para todo lo relacionado con maratones y carreras de todo tipo. Nos dedicamos a inspirar, informar y apoyar a corredores de todos los niveles, desde principiantes hasta atletas experimentados, en su viaje hacia la superación personal y el logro de metas.
                 </span>
@@ -22,7 +24,7 @@ export const AboutUs = () => {
 
 
 
-               <span>¡Bienvenido a Runnest!</span> 
+                <span>¡Bienvenido a Runnest!</span>
             </div>
 
 
@@ -47,52 +49,54 @@ export const AboutUs = () => {
                         </div>
                     </div>
 
-                    <div className="fundadores">
-                        <div class="row row-cols-1 row-cols-md-3 g-4">
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="..." class="card-img-top" alt="..." />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Luis Fernando Roldán Ortiz</h5>
-                                        <p class="card-text">Co-Fundador.</p>
-                                        <div className="card-footer">
-                                            <small className="sobre">
-                                            <li>Edad: 29 años</li>
-                                            <li>Estudios: Traducción e interpretación</li>
-                                            <li>Hobbies: Nadar, correr y viajar</li>
-                                            </small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="..." class="card-img-top" alt="..." />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Jose Antonio Morillo</h5>
-                                        <p class="card-text">Co-Fundador.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="col">
-                                <div class="card h-100">
-                                    <img src="..." class="card-img-top" alt="..." />
-                                    <div class="card-body">
-                                        <h5 class="card-title">Sofia Vanessa Garcia Tovar</h5>
-                                        <p class="card-text">Co-Fundador.</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
 
                 </div>
 
             </div>
 
+            <div className="cards">
+                <span><h2>¿Quienes son nuestros fundadores?</h2></span>
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+  <div class="col">
+    <div class="card h-100">
+    <img src="" alt="imagen" className="circular-image" />
+      <div class="card-body">
+        <h5 class="card-title">Luis Fernando Roldan Ortiz</h5>
+        <p class="card-text">Co-Fundador</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"></small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+    <img src="ruta/de/la/imagen.jpg" alt="imagen" className="circular-image" />
+      <div class="card-body">
+        <h5 class="card-title">Jose Antonio Morillo</h5>
+        <p class="card-text">Co-Fundador</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary"></small>
+      </div>
+    </div>
+  </div>
+  <div class="col">
+    <div class="card h-100">
+    <img src="ruta/de/la/imagen.jpg" alt="imagen" className="circular-image" />
+      <div class="card-body">
+        <h5 class="card-title">Sofia Vanessa Garcia Tovar</h5>
+        <p class="card-text">Co-Fundador</p>
+      </div>
+      <div class="card-footer">
+        <small class="text-body-secondary">Hobbies:</small>
+      </div>
+    </div>
+  </div>
+</div>
+                </div>
+
+         
         </div>
     )
 }
