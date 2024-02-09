@@ -57,15 +57,17 @@ export const PerfilOrganizador = () => {
                             </div>
                             <hr className="hr" />
                             <div className="d-flex justify-content-between align-items-center mb-2">
-                                <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Agregar Resultados</button>
+
+                                <Link to="/AgregarResultados/:id" className="panel-item ps-3 py-2 " >
+                                    <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
+                                    <span>Agregar Resultado</span>
+                                </Link>
+                                {/* <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Agregar Resultados</button> */}
                             </div>
-
-
-
                         </div>
                     ))}
                 </div>
-            </div>
+            </div >
         }
     }
 
