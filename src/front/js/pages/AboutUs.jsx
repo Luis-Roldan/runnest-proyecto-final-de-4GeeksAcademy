@@ -99,9 +99,9 @@ export const AboutUs = () => {
               <div class="card-footer">
                 <small class="text-body-secondary"><strong>Edad: </strong> </small>
                 <br />
-                <small class="text-body-secondary"><strong>Estudios: Ing. Sistemas Computacionales </strong>  </small>
+                <small class="text-body-secondary"><strong>Estudios:  </strong>Ing. Sistemas Computacionales  </small>
                 <br />
-                <small class="text-body-secondary"><strong>Hobbies: Lectura, hiking y alfarería </strong> </small>
+                <small class="text-body-secondary"><strong>Hobbies:  </strong> Lectura, hiking y alfarería</small>
               </div>
             </div>
           </div>

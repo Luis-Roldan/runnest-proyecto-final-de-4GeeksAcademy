@@ -44,7 +44,7 @@ export const Puntuacion = () => {
     const token = localStorage.getItem('jwt-token');
 
     const resp = await fetch(url + "/puntuacion", {
-       method: 'GET',
+       method: 'POST',
        headers: { 
          "Content-Type": "application/json",
          'Authorization': 'Bearer ' + token // ⬅⬅⬅ authorization token
@@ -67,11 +67,8 @@ export const Puntuacion = () => {
 
 
   return (
-    <div className="container">
-      <h1 className="title">Califica tu carrera!</h1>
-      <h3 className="text-center pt-4">{`nombre: ${store.carreras[1]?.nombre}`}</h3>
-      <h3 className="text-center pt-4">{`ciudad: ${store.carreras[1]?.ciudad}`}</h3>
-      <h3 className="text-center pt-4">{`distancia: ${store.carreras[1]?.distancia}`}</h3>
+    <div className="container-puntuacion">
+
       <div className="stars">
         {stars.map((_, index) => (
           <FaStar
@@ -101,7 +98,7 @@ export const Puntuacion = () => {
           Submit
         </button>
       </div>
-      <Link to="/">Home</Link>
+   <div className="back-to"><Link to="/">Home</Link></div>   
     </div>
   );
 };
