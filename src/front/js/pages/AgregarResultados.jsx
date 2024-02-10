@@ -6,8 +6,6 @@ import "../../styles/AgregarResultados.css";
 export const AgregarResultados = () => {
 
 
-
-
     const { id } = useParams();
     const { store, actions } = useContext(Context);
     const carrera = store.carreras.find(carrera => carrera.id === id);
@@ -113,48 +111,55 @@ export const AgregarResultados = () => {
                                     value={segundos} />
                             </td>
                         </tr>
-                        {/* <tr>
+                        <tr>
                             <th scope="row">2</th>
                             <td className="Participante">
-                                <select aria-label="Default select example" className="form-select inputParticipante" defaultValue="">
-                                    <option value="">Lista de Participantes</option>
-                                    <option value="1">Participante 1</option>
-                                    <option value="2">Participante 2</option>
-                                    <option value="3">Participante 3</option>
-                                </select>
+                                <input type="text" placeholder="nombre" className=" inputParticipante" onChange={(e) => setParticipante(e.target.value)}
+                                    value={participante}>
+                                </input>
                             </td>
                             <td className="Edad">
-                                <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" />
+                                <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" onChange={(e) => setEdad(e.target.value)}
+                                    value={edad} />
                             </td>
                             <td className="Time">
-                                <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" />
+                                <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" onChange={(e) => setHoras(e.target.value)}
+                                    value={horas} />
                                 <span>:</span>
-                                <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" />
+                                <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" onChange={(e) => setMinutos(e.target.value)}
+                                    value={minutos} />
                                 <span>:</span>
-                                <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" />
+                                <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" onChange={(e) => setSegundos(e.target.value)}
+                                    value={segundos} />
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">3</th>
                             <td className="Participante">
-                                <select aria-label="Default select example" className="form-select inputParticipante" defaultValue="">
-                                    <option value="">Lista de Participantes</option>
-                                    <option value="1">Participante 1</option>
-                                    <option value="2">Participante 2</option>
-                                    <option value="3">Participante 3</option>
-                                </select>
+                                <input type="text" placeholder="nombre" className=" inputParticipante" onChange={(e) => setParticipante(e.target.value)}
+                                    value={participante}>
+                                </input>
                             </td>
                             <td className="Edad">
-                                <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" />
+                                <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" onChange={(e) => setEdad(e.target.value)}
+                                    value={edad} />
                             </td>
                             <td className="Time">
-                                <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" />
+                                <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" onChange={(e) => setHoras(e.target.value)}
+                                    value={horas} />
                                 <span>:</span>
-                                <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" />
+                                <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" onChange={(e) => setMinutos(e.target.value)}
+                                    value={minutos} />
                                 <span>:</span>
-                                <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" />
+                                <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" onChange={(e) => setSegundos(e.target.value)}
+                                    value={segundos} />
                             </td>
-                        </tr> */}
+                        </tr>
+
+
+
+
+
                     </tbody>
                 </table>
             </form>
