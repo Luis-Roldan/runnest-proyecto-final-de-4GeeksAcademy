@@ -34,8 +34,35 @@ export const Puntuacion = () => {
     setFeedback(event.target.value);
   };
 
+  const fetchComments = async () => {
+    try {
+      const token = localStorage.getItem("accessToken");
+
+      const resp = await fetch(url + "/puntuacion", {
+        method: "GET",
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      });
+
+      if (!resp.ok) {
+        throw new Error("There was a problem fetching comments");
+      }
+
+      const data = await resp.json();
+      setComments(data.comments);
+    } catch (error) {
+      console.error("Error fetching comments:", error.message);
+     
+    }
+  };
+
   const handleSubmit = async () => {
     try {
+      if (!feedback || !currentValue) {
+        throw new Error("Feedback and rating are required");
+      }
+
       const token = localStorage.getItem("accessToken");
 
       const resp = await fetch(url + "/puntuacion", {
@@ -53,12 +80,16 @@ export const Puntuacion = () => {
       if (!resp.ok) {
         throw new Error("There was a problem submitting your feedback");
       }
+
+    
+      fetchComments();
       
-      
-      setComments([...comments, { feedback, rating: currentValue }]);
-    } catch (error) {
-      console.error("Error:", error.message);
      
+      setFeedback("");
+      setCurrentValue(0);
+    } catch (error) {
+      console.error("Error submitting feedback:", error.message);
+ 
     }
   };
 
@@ -84,6 +115,7 @@ export const Puntuacion = () => {
           className="form-control"
           id="exampleFormControlTextarea1"
           rows="3"
+          value={feedback}
           onChange={handleFeedbackChange}
         ></textarea>
       </div>

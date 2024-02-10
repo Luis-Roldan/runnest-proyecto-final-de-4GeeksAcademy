@@ -359,71 +359,64 @@ def inscribir_usuario_en_carrera():
 # --------------------------
 
 # Ruta para la clase Puntuacion
-@api.route('/puntuacion', methods=['POST', "GET"])
+@api.route('/puntuacion', methods=['POST', 'GET'])
 @jwt_required()
 def puntuacion():
-    id = get_jwt_identity()
+    user_id = get_jwt_identity()
     data = request.json
 
     if request.method == "GET":
-        # Extraer datos específicos para la inscripción
-        user_id = data.get("user_id")
-        carrera_id = data.get("carrera_id")
-        puntuacion= data.get("puntuacion")
-        feedback= feedback.get("feedback")
-        
-
-        # Verificar que la data esté completa
-        data_check = [user_id, carrera_id, puntuacion]
-        if None in data_check:
-            return jsonify({
-                "msg": "Intenta de nuevo!"
-            }), 400
-
-        #  verificar que el usuario y la carrera
-        puntuacion = puntuacion.query.filter_by(user_id=user_id, carrera_id=carrera_id).one_or_none()
-        
-        if puntuacion:
-            return jsonify({
-                "msg": "Ya calificaste esta carrera"
-            }), 400
-        
-        # Crear una nueva instancia de la clase Puntuacion
-        nueva_puntuacion = Puntuacion(
-            user_id = user_id,
-            carrera_id = id,
-            puntuacion = puntuacion,
-            feedback= feedback,
-
-            
-        )
-
-        # Guardar la nueva puntuacion en la base de datos
         try:
+            carrera_id = data.get("carrera_id")
+
+            # Obtener todas las puntuaciones para la carrera específica
+            puntuaciones = Puntuacion.query.filter_by(carrera_id=carrera_id).all()
+
+            # Lista para almacenar las puntuaciones serializadas
+            puntuaciones_serializadas = []
+
+            # Loop para transformar cada puntuación en JSON y agregarlas a la lista puntuaciones_serializadas
+            for puntuacion in puntuaciones:
+                puntuaciones_serializadas.append(puntuacion.serialize())
+
+            return jsonify(puntuaciones_serializadas), 200
+        except Exception as e:
+            # Manejo de errores en caso de que ocurra algún problema
+            return jsonify({"error": str(e)}), 500
+
+    elif request.method == "POST":
+        try:
+            carrera_id = data.get("carrera_id")
+            puntuacion = data.get("puntuacion")
+            feedback = data.get("feedback")
+
+            # Verificar que los datos estén completos
+            data_check = [user_id, carrera_id, puntuacion]
+            if None in data_check:
+                return jsonify({"msg": "Intenta de nuevo!"}), 400
+
+            # Verificar si el usuario ya calificó esta carrera
+            existente = Puntuacion.query.filter_by(user_id=user_id, carrera_id=carrera_id).first()
+            if existente:
+                return jsonify({"msg": "Ya calificaste esta carrera"}), 400
+
+            # Crear una nueva instancia de la clase Puntuacion
+            nueva_puntuacion = Puntuacion(
+                user_id=user_id,
+                carrera_id=carrera_id,
+                puntuacion=puntuacion,
+                feedback=feedback
+            )
+
+            # Guardar la nueva puntuacion en la base de datos
             db.session.add(nueva_puntuacion)
             db.session.commit()
+
+            return jsonify({"msg": "Puntuación agregada correctamente"}), 201
         except Exception as error:
             db.session.rollback()
-            return jsonify({
-                "msg": "Ha ocurrido un error con la base de datos"
-            }), 500
+            return jsonify({"msg": "Ha ocurrido un error con la base de datos", "error": str(error)}), 500
 
-        return jsonify({}), 201
-
-    if request.method == "GET":
-
-        #Obtener todas las puntuaciones
-        puntuacion = Puntuacion.query.filter_by(carrera_id=carrera_id)
-
-        #lista para colocar las puntuaciones serializadas
-        puntuacion_serialized = []
-
-        #loop para transformar cada puntuacion en json y agregalas a la lista puntuacion_serialized
-        for puntuacion in puntuacion:
-            puntuacion_serialized.append(puntuacion.serialize())
-
-        return jsonify({"id": user.id, "user_id": user_id }), 200
-    
     #-------------------------------------------------------
 
 @api.route("/favorito", methods=["POST", "DELETE", "GET"])
