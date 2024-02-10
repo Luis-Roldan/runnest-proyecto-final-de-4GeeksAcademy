@@ -108,7 +108,7 @@ export const Carreras = () => {
 
             <div className="row justify-content-center row-cols-1 row-cols-sm-4">
                 {carreras.map((item, index) => (
-                    <div key={index} className="card m-3">
+                    <div key={index} className="card m-3 ImageStyle">
                         <img src={item.image} className="card-img-top" alt="..." style={{ maxHeight: "100px" }} />
                         <div className="card-body">
                             <h5 className="card-title">{item.nombre}</h5>
