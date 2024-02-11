@@ -81,6 +81,12 @@ export const PerfilOrganizador = () => {
                                     <span>Agregar Resultado</span>
                                 </Link>
                             </div>
+                            <div className="d-flex justify-content-between align-items-center px-3 mb-2">
+                                <Link to={`/VerResultados/${item.id}`} className="panel-item ps-3 py-2 " >
+                                    <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
+                                    <span>Ver Resultados</span>
+                                </Link>
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -97,7 +103,7 @@ export const PerfilOrganizador = () => {
             <section className="TopProfilePartContainer">
                 <div className="LeftSideProfileTop">
                     <img src="https://rajueditor.com/wp-content/uploads/2023/09/fotos-de-perfil-aesthetic.jpg" className="ImgProfile"></img>
-                    <h1 className="text-center pt-4">{`Bienvenido, ${store.organizador.nombre} ${store.usuario.apellido} a la meca de las carreras`}</h1>
+                    <h1 className="text-center pt-4 TitleRight">{`Bienvenido, ${store.organizador.nombre} ${store.usuario.apellido} a la meca de las carreras`}</h1>
                 </div>
                 <div className="RightSideProfileTop">
                     <h2 className="Title">tus datos personales de organizador son:</h2>

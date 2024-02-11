@@ -67,3 +67,7 @@
   width: 300px !important;
   height: auto;
 }
+
+.TitleRight {
+  padding-left: 0;
+}

@@ -190,7 +190,25 @@ const getState = ({ getStore, getActions, setStore }) => {
 				} catch (error) {
 					console.log(error)
 				}
-			}
+			},
+
+			//funcion para obtener resultados
+
+			getResultados: async () => {
+				try {
+					const resultadosResponse = await fetch(url + "/ObtenerResultados/<int:carrera_id>");
+					const resultadosResponseToJson = await resultadosResponse.json()
+					if (resultadosResponse.status == 200) {
+						setStore({
+							puntuacion: resultadosResponseToJson
+						});
+					} else {
+						return resultadosResponseToJson
+					}
+				} catch (error) {
+					console.log(error)
+				}
+			},
 		}
 	};
 };
