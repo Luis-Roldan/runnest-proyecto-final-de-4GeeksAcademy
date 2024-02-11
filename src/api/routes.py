@@ -609,16 +609,4 @@ def obtener_resultados_carrera(carrera_id):
 
 # ////////////////////////////////////// nuevo get
 
-        # #obtener el usuario
-        # carrera_id = get_jwt_identity()
-
-        # #obterner favoritos de un usuario en especifico
-        # resultados_carrera = Resultados.query.filter_by(carrera_id=carrera_id)(carrera_id=carrera_id)
-
-        # #lista de favoritos para incluirlos ya serializados
-        # resultados_especificos = []
-
-        # for resultados in resultados_carrera:
-        #     resultados_especificos.append(resultados.serialize())
         
-        # return jsonify(resultados_especificos), 200
