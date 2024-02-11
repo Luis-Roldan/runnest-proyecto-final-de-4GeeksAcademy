@@ -13,12 +13,26 @@ export const PerfilOrganizador = () => {
 
     const [isClicked, setIsclicked] = useState("favoritos")
 
+    useEffect(() => {
+        actions.getCarreras();
+    }, []);
 
     //ejecutar la funcion getUserData para hacer un GET y obtener datos del usuario
     useEffect(() => { actions.getOrganizadorData(); }, [])
 
+
+
     //obtener todas las carreras desde el store
-    const carreras = store.carreras
+    const carrera = store.carreras.filter(c => c.organizador === store.organizador?.id)
+
+
+    console.log(store.organizador)
+    console.log(store.carreras)
+    console.log(carrera)
+    console.log(store.organizador.id)
+
+
+    // const carrerasEspecificasPorOrganizador = store.carreras.find(carrerasEspecificasPorOrganizador)
 
     //funcion para renderizar en base al boton que se le hace click
     const handleConditionalRendering = () => {
@@ -45,7 +59,7 @@ export const PerfilOrganizador = () => {
         } else if (isClicked == "reviews") {
             return <div className="">
                 <div className="row justify-content-center row-cols-1 row-cols-sm-4">
-                    {carreras.map((item, index) => (
+                    {carrera.map((item, index) => (
                         <div key={index} className="card m-3 ">
                             <img src={item.image} className="card-img-top ImageStyle1" alt="..." />
                             <div className="card-body CardSize">

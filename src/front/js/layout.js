@@ -48,8 +48,8 @@ const Layout = () => {
                         <Route element={<Contacto />} path="/contacto" />
                         <Route element={<AboutUs />} path="/AboutUs" />
                         <Route element={<Puntuacion />} path="/puntuacion" />
-                        <Route element={<Politicas />} path="politicas"/>
-                        <Route element={<Cookies />} path="cookies"/>
+                        <Route element={<Politicas />} path="politicas" />
+                        <Route element={<Cookies />} path="cookies" />
                         <Route element={<CarreraRender />} path="/carreraRender/:id" />
 
 

@@ -37,7 +37,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				nombre: "",
 				telefono: "",
 				organizacion: "",
-				pagina_web: ""
+				pagina_web: "",
+				id: "",
 			},
 
 		},
@@ -134,7 +135,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			
+
 
 			getCarreras: async () => {
 				try {
