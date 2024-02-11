@@ -45,17 +45,6 @@ export const PerfilOrganizador = () => {
                     </Link>
                 </div>
             )
-        } else if (isClicked == "resultados") {
-            return (
-                <div></div>
-                // <div className="panel-item">
-                //     <Link to={`/AgregarResultados/${}`} className="panel-item ps-3 py-2 " >
-                //         <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
-                //         <span>Agregar Resultado</span>
-                //     </Link>
-                // </div>
-            )
-
         } else if (isClicked == "reviews") {
             return <div className="">
                 <div className="row justify-content-center row-cols-1 row-cols-sm-4">
@@ -116,7 +105,6 @@ export const PerfilOrganizador = () => {
             <div className="d-flex justify-content-center pt-4">
 
                 <button onClick={() => { setIsclicked("carreras") }} className="btn-perfil">Publicar Carrera</button>
-                <button onClick={() => { setIsclicked("resultados") }} className="btn-perfil">Resultados</button>
                 <button onClick={() => { setIsclicked("reviews") }} className="btn-perfil">Mis Carreras</button>
             </div>
             <div className="d-flex justify-content-center pt-4">
