@@ -18,6 +18,7 @@ import { Contacto } from "./pages/contacto.js";
 import { Puntuacion } from "./pages/puntuacion.jsx";
 import { CarreraRender } from "./pages/carreraRender.jsx";
 import { Politicas } from "./pages/politicas.jsx";
+import { Cookies } from "./pages/cookies.jsx";
 
 
 
@@ -48,6 +49,7 @@ const Layout = () => {
                         <Route element={<AboutUs />} path="/AboutUs" />
                         <Route element={<Puntuacion />} path="/puntuacion" />
                         <Route element={<Politicas />} path="politicas"/>
+                        <Route element={<Cookies />} path="cookies"/>
                         <Route element={<CarreraRender />} path="/carreraRender/:id" />
 
 
