@@ -134,7 +134,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
-			//funcion para obtener puntuacion
+			
 
 			getCarreras: async () => {
 				try {
@@ -152,17 +152,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			},
 
+			//funcion para obtener puntuacion
 
-			getCarreras: async () => {
+			getPuntuacion: async () => {
 				try {
-					const carreraResponse = await fetch(url + "/carrera");
-					const carreraResponseToJson = await carreraResponse.json()
-					if (carreraResponse.status == 200) {
+					const puntuacionResponse = await fetch(url + "/puntuacion");
+					const puntuacionResponseToJson = await puntuacionResponse.json()
+					if (puntuacionResponseResponse.status == 200) {
 						setStore({
-							carreras: carreraResponseToJson
+							puntuacion: puntuacionResponseToJson
 						});
 					} else {
-						return carreraResponseToJson
+						return puntuacionResponseToJson
 					}
 				} catch (error) {
 					console.log(error)

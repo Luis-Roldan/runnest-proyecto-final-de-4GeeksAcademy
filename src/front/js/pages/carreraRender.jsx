@@ -13,26 +13,6 @@ export const CarreraRender = () => {
 
         <div className="container">
             <span><h1>{carrera.nombre} </h1></span>
-            <div className="imagen">
-                <div className="carrera">
-
-                    <ul>
-
-                        <li>Distancia: {carrera.distancia}</li>
-                        <li>País: {carrera.pais}</li>
-                        <li>Ciudad: {carrera.ciudad}</li>
-                        <li>Día: {carrera.dia}</li>
-                        <li>Mes: {carrera.mes}</li>
-                        <li>Año: {carrera.year}</li>
-                        <li>Costo: {carrera.costo}</li>
-                        <li>Dificultad: {carrera.dificultad}</li>
-                        <li>Capacidad: {carrera.capacidad}</li>
-                        <li>Organizador: {carrera.organizador_id}</li>
-    
-                    </ul>
-
-                </div>
-            </div>
             <Puntuacion/>
  
 

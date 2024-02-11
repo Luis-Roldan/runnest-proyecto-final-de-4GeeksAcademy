@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { Context } from "../store/appContext";
@@ -13,10 +13,19 @@ export const Puntuacion = () => {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [feedback, setFeedback] = useState("");
-  const [comments, setComments] = useState([]);
-  const url = process.env.REACT_ENV_URL; 
-
+  
   const { store, actions } = useContext(Context);
+  const puntuacionStore = store ? store.puntuacion : null;
+  const fetchComments = puntuacionStore ? puntuacionStore.fetchComments : null;
+  const submitFeedback = puntuacionStore ? puntuacionStore.submitFeedback : null;
+  const comments = puntuacionStore ? puntuacionStore.comments || [] : [];
+  const url = process.env.REACT_ENV_URL;
+
+  useEffect(() => {
+    if (fetchComments) {
+      fetchComments();
+    }
+  }, [fetchComments]);
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -32,29 +41,6 @@ export const Puntuacion = () => {
 
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value);
-  };
-
-  const fetchComments = async () => {
-    try {
-      const token = localStorage.getItem("accessToken");
-
-      const resp = await fetch(url + "/puntuacion", {
-        method: "GET",
-        headers: {
-          Authorization: "Bearer " + token,
-        },
-      });
-
-      if (!resp.ok) {
-        throw new Error("There was a problem fetching comments");
-      }
-
-      const data = await resp.json();
-      setComments(data.comments);
-    } catch (error) {
-      console.error("Error fetching comments:", error.message);
-     
-    }
   };
 
   const handleSubmit = async () => {
@@ -81,15 +67,14 @@ export const Puntuacion = () => {
         throw new Error("There was a problem submitting your feedback");
       }
 
-    
-      fetchComments();
-      
-     
+      if (fetchComments) {
+        fetchComments();
+      }
+
       setFeedback("");
       setCurrentValue(0);
     } catch (error) {
       console.error("Error submitting feedback:", error.message);
- 
     }
   };
 
@@ -135,7 +120,6 @@ export const Puntuacion = () => {
           ))}
         </ul>
       </div>
-      <div className="back-to"><Link to="/">Home</Link></div>
     </div>
   );
 };

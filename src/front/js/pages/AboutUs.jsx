@@ -16,6 +16,7 @@ export const AboutUs = () => {
         </span>
         <span>En Runnest, nos enorgullecemos de proporcionar contenido de calidad y orientación experta para ayudarte a alcanzar tus objetivos. Nuestro equipo está formado por apasionados corredores y expertos en la materia, comprometidos a brindarte la información más actualizada y relevante para mejorar tu experiencia de running.
         </span>
+        <span></span>
 
         <span>¡Únete a nosotros en esta emocionante aventura! Ya sea que estés corriendo tu primera milla o preparándote para tu próximo maratón, estamos aquí para inspirarte, educarte y celebrar tus logros. Juntos, vamos a recorrer kilómetros y alcanzar metas que parecían imposibles.
         </span>
@@ -56,58 +57,58 @@ export const AboutUs = () => {
 
       <div className="cards">
         <span><h2>Conoce a nuestros fundadores?</h2></span>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-          <div class="col">
-            <div class="card h-100">
+        <div className="row row-cols-1 row-cols-md-3 g-4">
+          <div className="col">
+            <div className="card h-100">
               <img src="https://media.licdn.com/dms/image/D4E03AQEAWvch2un5Cg/profile-displayphoto-shrink_800_800/0/1697820004120?e=1712793600&v=beta&t=Yy5BeGUx5IKlCd9ENQyiHgwGgYwjGOk_xE3uZMV3XM0" alt="imagen" className="circular-image" />
-              <div class="card-body">
-                <h5 class="card-title">Luis Fernando Roldán Ortiz</h5>
-                <p class="card-text">Co-Fundador</p>
+              <div className="card-body">
+                <h5 className="card-title">Luis Fernando Roldán Ortiz</h5>
+                <p className="card-text">Co-Fundador</p>
               </div>
-              <div class="card-footer">
-                <small class="text-body-secondary"><strong>Edad: </strong> 29</small>
+              <div className="card-footer">
+                <small className="text-body-secondary"><strong>Edad: </strong> 29</small>
                 <br />
-                <small class="text-body-secondary"><strong>Estudios: </strong> Bachiller en Traducción e Interpretación</small>
+                <small className="text-body-secondary"><strong>Estudios: </strong> Bachiller en Traducción e Interpretación</small>
                 <br />
-                <small class="text-body-secondary"><strong>Hobbies: </strong> Nadar, Correr y visitar lugares nuevos</small>
+                <small className="text-body-secondary"><strong>Hobbies: </strong> Nadar, Correr y visitar lugares nuevos</small>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card h-100">
+          <div className="col">
+            <div className="card h-100">
               <img src="https://media.licdn.com/dms/image/D4E03AQGJUfErrT0XIQ/profile-displayphoto-shrink_800_800/0/1706652367159?e=1712793600&v=beta&t=1ZZlYfcPvOGChJNvtfVBm7pzJIY2HF8Ekal--pL6gQM" alt="imagen" className="circular-image" />
-              <div class="card-body">
-                <h5 class="card-title">Jose Antonio Morillo</h5>
-                <p class="card-text">Co-Fundador</p>
+              <div className="card-body">
+                <h5 className="card-title">Jose Antonio Morillo</h5>
+                <p className="card-text">Co-Fundador</p>
               </div>
-              <div class="card-footer">
-                <small class="text-body-secondary"><strong>Edad: </strong> </small>
+              <div className="card-footer">
+                <small className="text-body-secondary"><strong>Edad: </strong> </small>
                 <br />
-                <small class="text-body-secondary"><strong>Estudios: </strong>  </small>
+                <small className="text-body-secondary"><strong>Estudios: </strong>  </small>
                 <br />
-                <small class="text-body-secondary"><strong>Hobbies: </strong></small>
+                <small className="text-body-secondary"><strong>Hobbies: </strong></small>
               </div>
             </div>
           </div>
-          <div class="col">
-            <div class="card h-100">
+          <div className="col">
+            <div className="card h-100">
               <img src="https://media.licdn.com/dms/image/C5603AQHDwW8CqQI4vQ/profile-displayphoto-shrink_800_800/0/1543472870909?e=1712793600&v=beta&t=iCaN-fm06T8GBvs_jfFM5N3X_Ror8nZjtrF9Rao2BLU" alt="imagen" className="circular-image" />
-              <div class="card-body">
-                <h5 class="card-title">Sofia Vanessa Garcia Tovar</h5>
-                <p class="card-text">Co-Fundador</p>
+              <div className="card-body">
+                <h5 className="card-title">Sofia Vanessa Garcia Tovar</h5>
+                <p className="card-text">Co-Fundador</p>
               </div>
-              <div class="card-footer">
-                <small class="text-body-secondary"><strong>Edad: </strong> </small>
+              <div className="card-footer">
+                <small className="text-body-secondary"><strong>Edad: </strong> </small>
                 <br />
-                <small class="text-body-secondary"><strong>Estudios:  </strong>Ing. Sistemas Computacionales  </small>
+                <small className="text-body-secondary"><strong>Estudios:  </strong>Ing. Sistemas Computacionales  </small>
                 <br />
-                <small class="text-body-secondary"><strong>Hobbies:  </strong> Lectura, hiking y alfarería</small>
+                <small className="text-body-secondary"><strong>Hobbies:  </strong> Lectura, hiking y alfarería</small>
               </div>
             </div>
           </div>
         </div>
       </div>
-
+<div> </div>
 
     </div>
   )
