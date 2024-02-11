@@ -50,14 +50,20 @@
   padding-bottom: 50px;
 }
 
-.ImageStyle {
-  width: fit-content;
+.ImageStyle1 {
+  width: -webkit-fill-available;
   margin-top: 10px;
   margin-bottom: 10px;
+  max-height: 200px;
   align-self: center;
 }
 
 .Title {
   align-self: center;
   margin-left: 0;
+}
+
+.CardSize {
+  width: 300px !important;
+  height: auto;
 }

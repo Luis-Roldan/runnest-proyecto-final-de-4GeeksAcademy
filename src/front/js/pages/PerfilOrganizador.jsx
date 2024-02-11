@@ -46,9 +46,9 @@ export const PerfilOrganizador = () => {
             return <div className="">
                 <div className="row justify-content-center row-cols-1 row-cols-sm-4">
                     {carreras.map((item, index) => (
-                        <div key={index} className="card m-3 ImageStyle">
-                            <img src={item.image} className="card-img-top ImageStyle" alt="..." />
-                            <div className="card-body">
+                        <div key={index} className="card m-3 ">
+                            <img src={item.image} className="card-img-top ImageStyle1" alt="..." />
+                            <div className="card-body CardSize">
                                 <h5 className="card-title">{item.nombre}</h5>
                                 <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
                                     {`${item.pais}, ${item.ciudad}.`}
