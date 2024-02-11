@@ -15,12 +15,14 @@ export const AgregarResultados = () => {
 
     console.log(store.carreras)
 
+    ///////////////
 
     const [participante, setParticipante] = useState("")
     const [edad, setEdad] = useState("")
     const [horas, setHoras] = useState("")
     const [minutos, setMinutos] = useState("")
     const [segundos, setSegundos] = useState("")
+    const [puesto, setPuesto] = useState("")
 
 
 
@@ -30,9 +32,12 @@ export const AgregarResultados = () => {
         horas: horas,
         minutos: minutos,
         segundos: segundos,
-        carrera_id: id
-
+        carrera_id: id,
+        puesto: puesto
     }
+
+
+
 
     useEffect(() => {
         actions.getCarreras();
@@ -66,6 +71,7 @@ export const AgregarResultados = () => {
                 setHoras("");
                 setMinutos("");
                 setSegundos("");
+                setPuesto("");
 
             })
             .catch((error) => {
@@ -85,7 +91,7 @@ export const AgregarResultados = () => {
                 <table className="table ">
                     <thead>
                         <tr className="table-dark">
-                            <th scope="col">#</th>
+                            <th scope="col">Puesto</th>
                             <th scope="col">Participante</th>
                             <th scope="col">Edad</th>
                             <th scope="col">Tiempo</th>
@@ -93,7 +99,10 @@ export const AgregarResultados = () => {
                     </thead>
                     <tbody>
                         <tr>
-                            <th scope="row">1</th>
+                            <td className="Puesto">
+                                <input type="number" placeholder="edad" min="1" max="3" className="inputEdad" onChange={(e) => setPuesto(e.target.value)}
+                                    value={puesto} />
+                            </td>
                             <td className="Participante">
                                 <input type="text" placeholder="nombre" className=" inputParticipante" onChange={(e) => setParticipante(e.target.value)}
                                     value={participante}>
@@ -114,54 +123,6 @@ export const AgregarResultados = () => {
                                     value={segundos} />
                             </td>
                         </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td className="Participante">
-                                <input type="text" placeholder="nombre" className=" inputParticipante" onChange={(e) => setParticipante(e.target.value)}
-                                    value={participante}>
-                                </input>
-                            </td>
-                            <td className="Edad">
-                                <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" onChange={(e) => setEdad(e.target.value)}
-                                    value={edad} />
-                            </td>
-                            <td className="Time">
-                                <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" onChange={(e) => setHoras(e.target.value)}
-                                    value={horas} />
-                                <span>:</span>
-                                <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" onChange={(e) => setMinutos(e.target.value)}
-                                    value={minutos} />
-                                <span>:</span>
-                                <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" onChange={(e) => setSegundos(e.target.value)}
-                                    value={segundos} />
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td className="Participante">
-                                <input type="text" placeholder="nombre" className=" inputParticipante" onChange={(e) => setParticipante(e.target.value)}
-                                    value={participante}>
-                                </input>
-                            </td>
-                            <td className="Edad">
-                                <input type="number" placeholder="edad" min="0" max="120" className="inputEdad" onChange={(e) => setEdad(e.target.value)}
-                                    value={edad} />
-                            </td>
-                            <td className="Time">
-                                <input type="number" placeholder="Horas" min="0" max="60" className="TimeInput" onChange={(e) => setHoras(e.target.value)}
-                                    value={horas} />
-                                <span>:</span>
-                                <input type="number" placeholder="Minutos" min="0" max="60" className="TimeInput" onChange={(e) => setMinutos(e.target.value)}
-                                    value={minutos} />
-                                <span>:</span>
-                                <input type="number" placeholder="Segundos" min="0" max="60" className="TimeInput" onChange={(e) => setSegundos(e.target.value)}
-                                    value={segundos} />
-                            </td>
-                        </tr>
-
-
-
-
 
                     </tbody>
                 </table>
