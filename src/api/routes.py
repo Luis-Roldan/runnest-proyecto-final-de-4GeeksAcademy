@@ -600,9 +600,7 @@ def obtener_resultados_carrera(carrera_id):
     resultados_serializados = [resultado.serialize() for resultado in resultados_carrera]
 
     # #loop para transformar cada carrera en json y agregalas a la lista carreras_serialized
-    # for resultados in resultados:
-    #     resultados_serialized.append(resultados.serialize())
-        
+    
     return jsonify(resultados_serializados), 200
 
 

@@ -9,9 +9,11 @@ export const AgregarResultados = () => {
 
     const { id } = useParams();
     const { store, actions } = useContext(Context);
-    const carrera = store.carreras.find(carrera => carrera.id === id);
+    const carrera = store.carreras.find(carrera => carrera.id === parseInt(id));
 
     console.log(carrera)
+
+    console.log(store.carreras)
 
 
     const [participante, setParticipante] = useState("")
@@ -75,9 +77,9 @@ export const AgregarResultados = () => {
     return (
         <div>
             <div className="DatosDeLaCarrera">
-                <h1>{`Nombre de la carrera: ${store.carreras[id]?.nombre}`}</h1>
-                <h2>{`Distancia: ${store.carreras[id]?.distancia}`}</h2>
-                <h2>{`Lugar: ${store.carreras[id]?.ciudad}`}</h2>
+                <h1>{`Nombre de la carrera: ${carrera?.nombre}`}</h1>
+                <h2>{`Distancia: ${carrera?.distancia}`}</h2>
+                <h2>{`Lugar: ${carrera?.lugar}`}</h2>
             </div>
             <form>
                 <table className="table ">
