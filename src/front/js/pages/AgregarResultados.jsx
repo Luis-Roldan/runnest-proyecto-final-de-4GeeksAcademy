@@ -77,9 +77,9 @@ export const AgregarResultados = () => {
     return (
         <div>
             <div className="DatosDeLaCarrera">
-                <h1>{`Nombre de la carrera: ${carrera?.nombre}`}</h1>
-                <h2>{`Distancia: ${carrera?.distancia}`}</h2>
-                <h2>{`Lugar: ${carrera?.ciudad}`}</h2>
+                <h1 className="TituloPrincipal">{`Nombre de la carrera: ${carrera?.nombre}`}</h1>
+                <h2 className="Titulo">{`Distancia: ${carrera?.distancia}`}</h2>
+                <h2 className="Titulo">{`Lugar: ${carrera?.ciudad}`}</h2>
             </div>
             <form>
                 <table className="table ">
