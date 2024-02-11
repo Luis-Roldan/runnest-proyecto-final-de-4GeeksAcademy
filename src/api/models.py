@@ -170,6 +170,7 @@ class Resultados(db.Model):
     horas= db.Column(db.Integer, unique=False, nullable= False)
     minutos= db.Column(db.Integer, unique=False, nullable= False)
     segundos= db.Column(db.Integer, unique=False, nullable= False)
+    puesto= db.Column(db.Integer, unique=False, nullable= False)
     carrera_id = db.Column(db.Integer, db.ForeignKey("carrera.id"))
     carrera = db.relationship("Carrera", back_populates="resultados")
    
@@ -187,4 +188,5 @@ class Resultados(db.Model):
             "horas": self.horas,
             "minutos": self.minutos,
             "segundos": self.segundos,
+            "puesto": self.puesto,
         }

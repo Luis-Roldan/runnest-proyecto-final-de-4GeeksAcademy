@@ -55,7 +55,7 @@ export const RegistroDeCarreras = () => {
 
     const url = process.env.REACT_ENV_URL
 
-    const handleSubmit = () => {
+    const handleSubmit = (e) => {
         e.preventDefault();
 
         const token = localStorage.getItem("accessToken")

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
-import "../../styles/perfil.css"
+import "../../styles/perfilOrganizador.css"
 import { Link, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ReactDOM from 'react-dom'
@@ -44,10 +44,10 @@ export const PerfilOrganizador = () => {
 
         } else if (isClicked == "reviews") {
             return <div className="">
-                <div className="row justify-content-center row-cols-1 row-cols-md-4">
+                <div className="row justify-content-center row-cols-1 row-cols-sm-4">
                     {carreras.map((item, index) => (
-                        <div key={index} className="card m-3">
-                            <img src={item.image} className="card-img-top ImageStyle" alt="..." style={{ maxHeight: "100px" }} />
+                        <div key={index} className="card m-3 ImageStyle">
+                            <img src={item.image} className="card-img-top ImageStyle" alt="..." />
                             <div className="card-body">
                                 <h5 className="card-title">{item.nombre}</h5>
                                 <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
@@ -55,22 +55,27 @@ export const PerfilOrganizador = () => {
                                     <p className="card-text">{`${item.dia}/${item.mes}/${item.year}`}</p>
                                 </h6>
                                 <p>{`Capacidad: ${item.capacidad}`}</p>
-                            </div>
-                            <div className="d-flex justify-content-between px-2">
-                                <p>{`Dificultad: ${item.dificultad}`}</p>
-                                <p>{item.costo}$</p>
+                                <div className="d-flex justify-content-between">
+                                    <p>{`Dificultad: ${item.dificultad}`}</p>
+                                    <p>{item.costo}$</p>
+                                </div>
                             </div>
                             <hr className="hr" />
-                            <div className="d-flex justify-content-between align-items-center mb-2">
-
+                            <div className="d-flex justify-content-between align-items-center px-3 mb-2">
                                 <Link to={`/AgregarResultados/${item.id}`} className="panel-item ps-3 py-2 " >
                                     <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
                                     <span>Agregar Resultado</span>
                                 </Link>
                             </div>
+
+
+
                         </div>
                     ))}
                 </div>
+
+
+
             </div >
         }
     }
@@ -103,3 +108,35 @@ export const PerfilOrganizador = () => {
         </div>
     )
 }
+
+
+
+///
+
+{/* <div className="row justify-content-center row-cols-1 row-cols-md-4">
+                    {carreras.map((item, index) => (
+                        <div key={index} className="card m-3">
+                            <img src={item.image} className="card-img-top ImageStyle" alt="..." style={{ maxHeight: "100px" }} />
+                            <div className="card-body">
+                                <h5 className="card-title">{item.nombre}</h5>
+                                <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
+                                    {`${item.pais}, ${item.ciudad}.`}
+                                    <p className="card-text">{`${item.dia}/${item.mes}/${item.year}`}</p>
+                                </h6>
+                                <p>{`Capacidad: ${item.capacidad}`}</p>
+                            </div>
+                            <div className="d-flex justify-content-between px-2">
+                                <p>{`Dificultad: ${item.dificultad}`}</p>
+                                <p>{item.costo}$</p>
+                            </div>
+                            <hr className="hr" />
+                            <div className="d-flex justify-content-between align-items-center mb-2">
+
+                                <Link to={`/AgregarResultados/${item.id}`} className="panel-item ps-3 py-2 " >
+                                    <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
+                                    <span>Agregar Resultado</span>
+                                </Link>
+                            </div>
+                        </div>
+                    ))}
+                </div> */}

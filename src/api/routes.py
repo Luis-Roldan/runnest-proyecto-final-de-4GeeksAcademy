@@ -536,8 +536,9 @@ def publicar_resultados():
     horas=data.get("horas")
     minutos=data.get("minutos")
     segundos=data.get("segundos")
+    puesto=data.get("puesto")
 
-    data_check = [ participante, carrera_id, edad, horas, minutos, segundos ]
+    data_check = [ participante, carrera_id, edad, horas, minutos, segundos, puesto ]
 
     # Verificar que la data esté completa
     if None in data_check:
@@ -565,7 +566,8 @@ def publicar_resultados():
         edad = edad,
         horas = horas,
         minutos = minutos,
-        segundos = segundos
+        segundos = segundos,
+        puesto = puesto
     )
 
      #enviar la nueva info a la base de datos 
