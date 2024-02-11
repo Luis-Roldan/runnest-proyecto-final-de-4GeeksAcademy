@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { Context } from "../store/appContext";
 import "../../styles/puntuacion.css";
@@ -13,19 +12,10 @@ export const Puntuacion = () => {
   const [currentValue, setCurrentValue] = useState(0);
   const [hoverValue, setHoverValue] = useState(undefined);
   const [feedback, setFeedback] = useState("");
-  
-  const { store, actions } = useContext(Context);
-  const puntuacionStore = store ? store.puntuacion : null;
-  const fetchComments = puntuacionStore ? puntuacionStore.fetchComments : null;
-  const submitFeedback = puntuacionStore ? puntuacionStore.submitFeedback : null;
-  const comments = puntuacionStore ? puntuacionStore.comments || [] : [];
+  const [comments, setComments] = useState([]);
   const url = process.env.REACT_ENV_URL;
 
-  useEffect(() => {
-    if (fetchComments) {
-      fetchComments();
-    }
-  }, [fetchComments]);
+  const { store, actions } = useContext(Context);
 
   const handleClick = (value) => {
     setCurrentValue(value);
@@ -43,22 +33,37 @@ export const Puntuacion = () => {
     setFeedback(event.target.value);
   };
 
+  const fetchComments = async () => {
+    try {
+      const resp = await fetch(url + "/puntuacion", {
+        method: "GET",
+      });
+
+      if (!resp.ok) {
+        throw new Error("There was a problem fetching comments");
+      }
+
+      const data = await resp.json();
+      setComments(data);
+    } catch (error) {
+      console.error("Error fetching comments:", error.message);
+    }
+  };
+
   const handleSubmit = async () => {
     try {
       if (!feedback || !currentValue) {
         throw new Error("Feedback and rating are required");
       }
 
-      const token = localStorage.getItem("accessToken");
-
       const resp = await fetch(url + "/puntuacion", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
         },
         body: JSON.stringify({
-          rating: currentValue,
+          carrera_id: 123, // Reemplaza con el ID de la carrera correspondiente
+          puntuacion: currentValue,
           feedback: feedback,
         }),
       });
@@ -67,9 +72,7 @@ export const Puntuacion = () => {
         throw new Error("There was a problem submitting your feedback");
       }
 
-      if (fetchComments) {
-        fetchComments();
-      }
+      fetchComments();
 
       setFeedback("");
       setCurrentValue(0);
@@ -77,6 +80,10 @@ export const Puntuacion = () => {
       console.error("Error submitting feedback:", error.message);
     }
   };
+
+  useEffect(() => {
+    fetchComments();
+  }, []); // Se llama solo una vez al montar el componente
 
   return (
     <div className="container-puntuacion">
