@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter } from '@fortawesome/free-brands-svg-icons';
 import { faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faMeta } from '@fortawesome/free-brands-svg-icons';
+import {Politicas} from "../pages/politicas.jsx"
+import { Link } from "react-router-dom";
 
 export const Footer = () => (
   <footer className="footer mt-auto py-3 text-center">
@@ -17,6 +19,7 @@ export const Footer = () => (
         <li className="ms-3"><a href="https://www.instagram.com/" target='_blank' rel="noopener noreferrer"><FontAwesomeIcon icon={faInstagram} style={{ color: "black", fontSize: "1.5rem" }} /></a></li>
         <li className="ms-3"><a href="https://www.facebook.com/" target='_blank' rel="noopener noreferrer"><FontAwesomeIcon icon={faMeta} style={{ color: "black", fontSize: "1.4rem" }} /></a></li>
       </ul>
+      <Link className="nav-link text-dark" to="/politicas">Politicas de Privacidad</Link>
     </div>
   </footer>
 );
