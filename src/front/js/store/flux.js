@@ -21,6 +21,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			carreras: [],
 
+			resultados: [],
+
 			imageUrl: "",
 
 			usuario: {
@@ -196,11 +198,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			getResultados: async () => {
 				try {
-					const resultadosResponse = await fetch(url + "/ObtenerResultados/<int:carrera_id>");
+					const resultadosResponse = await fetch(url + "/ObtenerResultados");
 					const resultadosResponseToJson = await resultadosResponse.json()
 					if (resultadosResponse.status == 200) {
 						setStore({
-							puntuacion: resultadosResponseToJson
+							resultados: resultadosResponseToJson
 						});
 					} else {
 						return resultadosResponseToJson

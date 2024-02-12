@@ -587,12 +587,12 @@ def publicar_resultados():
   # ////////////////////////////////////// dsad     
     
 
-@api.route("/ObtenerResultados/<int:carrera_id>", methods =["GET"])
-def obtener_resultados_carrera(carrera_id):
+@api.route("/ObtenerResultados", methods =["GET"])
+def obtener_resultados_carrera():
      #Obtener todas las carreras
-    resultados_carrera = Resultados.query.filter_by(carrera_id=carrera_id).all()
+    resultados_carrera = Resultados.query.all()
 
-    # Verificar si se encontraron resultados para la carrera
+    # Verificar si se encontraron todos los resultados
     if not resultados_carrera:
         return jsonify({
             "msg": "No se encontraron resultados para la carrera especificada"
@@ -608,5 +608,3 @@ def obtener_resultados_carrera(carrera_id):
 
 
 # ////////////////////////////////////// nuevo get
-
-        
