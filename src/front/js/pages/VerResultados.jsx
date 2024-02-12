@@ -37,14 +37,16 @@ export const VerResultados = () => {
                 <h2 className="Titulo">{`Distancia: ${carrera?.distancia}`}</h2>
                 <h2 className="Titulo">{`Lugar: ${carrera?.ciudad}`}</h2>
             </div>
-            <form>
-                <table className="table ">
+            <form className="ContenedorTabla">
+                <table className="table table-dark table-striped ">
                     <thead>
                         <tr className="table-dark">
                             <th scope="col">Puesto</th>
                             <th scope="col">Participante</th>
                             <th scope="col">Edad</th>
-                            <th scope="col">Tiempo</th>
+                            <th scope="col">Horas</th>
+                            <th scope="col">Minutos</th>
+                            <th scope="col">Segundos</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -59,13 +61,17 @@ export const VerResultados = () => {
                                 <td className="Edad">
                                     {resultados.edad}
                                 </td>
-                                <td className="Time">
+                                <td className="Horas">
                                     <span>{resultados.horas}</span>
-                                    <span>:</span>
+                                </td>
+                                <td className="Minutos">
                                     <span>{resultados.minutos}</span>
-                                    <span>:</span>
+                                </td>
+                                <td className="Segundos">
+
                                     <span>{resultados.segundos}</span>
                                 </td>
+
                             </tr>
                         ))}
 

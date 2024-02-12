@@ -1,0 +1,27 @@
+.ContenedorTabla {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.Puesto {
+  width: 10%;
+}
+
+.Participante {
+  width: 50%;
+}
+
+.Edad {
+  width: 10%;
+}
+
+.Horas {
+  width: 10%;
+}
+.Minutos {
+  width: 10%;
+}
+
+.Segundos {
+  width: 10%;
+}
