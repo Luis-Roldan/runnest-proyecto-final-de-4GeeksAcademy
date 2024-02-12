@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import "../../styles/aboutUs.css"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
 
@@ -17,6 +18,7 @@ export const AboutUs = () => {
         <span>En Runnest, nos enorgullecemos de proporcionar contenido de calidad y orientación experta para ayudarte a alcanzar tus objetivos. Nuestro equipo está formado por apasionados corredores y expertos en la materia, comprometidos a brindarte la información más actualizada y relevante para mejorar tu experiencia de running.
         </span>
         <span></span>
+        <span>Nos comprometemos a hacer mejoras continuas a nuestro sitio, planeamos en un futuro brindarte la posibilidad de adquirir productos de la mejor calidad para que puedas correr con la mayor comodidad y confianza, además, estamos viendo la posibilidad de generar un blog para que la comunidad runner pueda interactuar e intercambair fotografías, opiniones y tips, de esta manera, hacer crecer este maravilloso deporte!</span>
 
         <span>¡Únete a nosotros en esta emocionante aventura! Ya sea que estés corriendo tu primera milla o preparándote para tu próximo maratón, estamos aquí para inspirarte, educarte y celebrar tus logros. Juntos, vamos a recorrer kilómetros y alcanzar metas que parecían imposibles.
         </span>
@@ -108,7 +110,21 @@ export const AboutUs = () => {
           </div>
         </div>
       </div>
-<div> </div>
+<div> <strong>Este proyecto fue desarrollado con : </strong> 
+<span>
+<img src="https://logodownload.org/wp-content/uploads/2016/10/html5-logo-1.png" width="30px" height="30px" className="html5"/>  
+<img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/css3-1024.png" width="30px" height="30px" className="css3"/>
+<img src="https://tse2.mm.bing.net/th?id=OIP.I5XOh9o_kbTNsXnsIc53aAHaHa&pid=Api&P=0&h=180" width="30px" height="30px" className="javascript"/>
+<img src="https://tse2.mm.bing.net/th?id=OIP.udRsxeiTDWCEXRaKP_prTAHaHk&pid=Api&P=0&h=180" width="30px" height="30px" className="python"/>
+<img src="https://tse1.mm.bing.net/th?id=OIP.ag7bB6adDWKvvw7BBbntewHaHa&pid=Api&P=0&h=180" width="30px" height="30px" className="python"/>
+<img src="https://tse1.mm.bing.net/th?id=OIP.dvZOtO5OujoVHmYA7Rn-qAHaHv&pid=Api&P=0&h=180" width="30px" height="30px" className="flask"/>
+<img src="https://tse4.mm.bing.net/th?id=OIP.JVt34lGxmm0GAGNNL_mwBgHaHa&pid=Api&P=0&h=180" width="33px" height="33px" className="flask"/>
+<img src="https://tse2.mm.bing.net/th?id=OIP.fByyZnA2MzQb6k_PmVi1gwHaJj&pid=Api&P=0&h=180" width="33px" height="33px" className="flask"/>
+<img src="https://tse2.mm.bing.net/th?id=OIP.R0P2_SJZKDxErOJ_CBmCeQHaD3&pid=Api&P=0&h=180" width="73px" height="43px" className="flask"/>
+
+  </span>
+
+   </div> 
 
     </div>
   )

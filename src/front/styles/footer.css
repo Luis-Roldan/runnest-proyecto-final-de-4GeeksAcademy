@@ -82,3 +82,6 @@
         width: 6rem;
     }
 }
+.col-5 offset-1{
+  float:right;
+}

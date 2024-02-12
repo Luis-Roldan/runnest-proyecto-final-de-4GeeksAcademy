@@ -15,7 +15,13 @@ export const Footer = () => {
 			<footer >
 				<div className="line-above-footer"></div>
 				<div className="row footer-content pt-3">
-
+				<div className="col-2 footer-viajes">
+						<h5>Carreras</h5>
+						<ul className="nav flex-column">
+							<li className="nav-item mb-2"><Link to="/carreras" className="nav-link p-0 text-muted" >Planea tu siguiente carrera</Link></li>
+			
+						</ul>
+					</div>
 					<div className="col-2 footer-business">
 						<h5>Empresa</h5>
 						<ul className="nav flex-column">
