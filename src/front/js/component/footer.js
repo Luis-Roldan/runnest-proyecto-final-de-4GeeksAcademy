@@ -19,6 +19,7 @@ export const Footer = () => {
 						<h5>Carreras</h5>
 						<ul className="nav flex-column">
 							<li className="nav-item mb-2"><Link to="/carreras" className="nav-link p-0 text-muted" >Planea tu siguiente carrera</Link></li>
+							<li className="nav-item mb-2"><Link to="/ayuda" className="nav-link p-0 text-muted" >FAQs</Link></li>
 			
 						</ul>
 					</div>
