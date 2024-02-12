@@ -25,3 +25,10 @@
 .Segundos {
   width: 10%;
 }
+
+.MensajeNoHayResultados {
+  font-size: x-large;
+  text-align: center;
+  color: red;
+  margin-top: 20px;
+}
