@@ -385,7 +385,6 @@ def puntuacion():
             return jsonify({"error": str(e)}), 500
 
     elif request.method == "POST":
-        try:
             carrera_id = data.get("carrera_id")
             puntuacion = data.get("puntuacion")
             feedback = data.get("feedback")
@@ -407,15 +406,16 @@ def puntuacion():
                 puntuacion=puntuacion,
                 feedback=feedback
             )
+            try:
+            
+                # Guardar la nueva puntuacion en la base de datos
+                db.session.add(nueva_puntuacion)
+                db.session.commit()
 
-            # Guardar la nueva puntuacion en la base de datos
-            db.session.add(nueva_puntuacion)
-            db.session.commit()
-
-            return jsonify({"msg": "Puntuación agregada correctamente"}), 201
-        except Exception as error:
-            db.session.rollback()
-            return jsonify({"msg": "Ha ocurrido un error con la base de datos", "error": str(error)}), 500
+                return jsonify({"msg": "Puntuación agregada correctamente"}), 201
+            except Exception as error:
+                db.session.rollback()
+                return jsonify({"msg": "Ha ocurrido un error con la base de datos", "error": str(error)}), 500
 
     #-------------------------------------------------------
 

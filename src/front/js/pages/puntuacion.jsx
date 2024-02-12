@@ -50,6 +50,8 @@ export const Puntuacion = () => {
     }
   };
 
+  const token = localStorage.getItem("accessToken");
+
   const handleSubmit = async () => {
     try {
       if (!feedback || !currentValue) {
@@ -60,9 +62,10 @@ export const Puntuacion = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
         },
         body: JSON.stringify({
-          carrera_id: 123, // Reemplaza con el ID de la carrera correspondiente
+          carrera_id: carrera_id,
           puntuacion: currentValue,
           feedback: feedback,
         }),
