@@ -100,7 +100,7 @@ export const AgregarResultados = () => {
                     <tbody>
                         <tr>
                             <td className="Puesto">
-                                <input type="number" placeholder="edad" min="1" max="3" className="inputEdad" onChange={(e) => setPuesto(e.target.value)}
+                                <input type="number" placeholder="puesto" min="1" max="3" className="inputEdad" onChange={(e) => setPuesto(e.target.value)}
                                     value={puesto} />
                             </td>
                             <td className="Participante">

@@ -6,8 +6,12 @@
   width: 100%;
 }
 
+.Puesto {
+  width: 10%;
+}
+
 .Participante {
-  width: 60%;
+  width: 50%;
 }
 
 .Edad {

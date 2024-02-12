@@ -108,8 +108,8 @@ export const Carreras = () => {
 
             <div className="row justify-content-center row-cols-1 row-cols-sm-4">
                 {carreras.map((item, index) => (
-                    <div key={index} className="card m-3 ImageStyle">
-                        <img src={item.image} className="card-img-top" alt="..." style={{ maxHeight: "100px" }} />
+                    <div key={index} className="card m-3 CardSize">
+                        <img src={item.image} className="card-img-top ImageStyle" alt="..." style={{ maxHeight: "100px" }} />
                         <div className="card-body">
                             <h5 className="card-title">{item.nombre}</h5>
                             <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
@@ -135,6 +135,11 @@ export const Carreras = () => {
                         </div>
 
                         <Link to={`/carreraRender/${index}`} style={{ textDecoration: 'none' }}>Califica esta carrera!</Link>
+
+                        <Link to={`/VerResultados/${item.id}`} className="panel-item ps-3 py-2 " >
+                            <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
+                            <span>Ver Resultados</span>
+                        </Link>
 
                     </div>
                 ))}

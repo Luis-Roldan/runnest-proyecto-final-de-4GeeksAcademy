@@ -4,3 +4,8 @@
   margin-bottom: 10px;
   align-self: center;
 }
+
+.CardSize {
+  width: 300px !important;
+  height: auto;
+}
