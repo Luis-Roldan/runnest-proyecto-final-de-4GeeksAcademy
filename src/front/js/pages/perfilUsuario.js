@@ -2,6 +2,9 @@ import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
 import "../../styles/perfil.css"
+import { useNavigate } from "react-router-dom";
+import { AlertSuccess } from "../component/alertSuccess";
+import { AlertDanger } from "../component/alertDanger";
 
 
 export const PerfilUsuario = () => {
@@ -26,15 +29,23 @@ export const PerfilUsuario = () => {
 
     const handleDeleteFavorite = (favorito_id) => {
         actions.deleteFavorite(favorito_id)
-        actions.getUserData()
+        setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+        setTimeout(() => { setDisplay({ display: "none" }) }, 3500)
+
+        actions.getFavorites()
     };
 
+    //estados para los estilos de los alerts
+    const [display, setDisplay] = useState({ display: "none" })
+    const [displayDanger, setDisplayDanger] = useState({ display: "none" })
+    const [errorMsg, setErrorMsg] = useState("")
 
     //funcion para renderizar en base al boton que se le hace click
     const handleConditionalRendering = () => {
         if (isClicked == "favoritos") {
             return (
                 <div className="row justify-content-center row-cols-1 row-cols-sm-4 bg-dark listaFavoritos">
+                    <AlertSuccess message="Se elimino de favoritos" funcion={() => { setDisplay({ display: "none" }) }} estilo={display} />
                     {store.favoritos.map((item, index) => {
                         const carrera = store.carreras.find(c => c.id === item.carrera_id);
                         console.log(carrera);
