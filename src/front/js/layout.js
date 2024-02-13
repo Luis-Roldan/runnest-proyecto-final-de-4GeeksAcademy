@@ -7,6 +7,7 @@ import { PerfilUsuario } from "./pages/perfilUsuario.js";
 import { PerfilOrganizador } from "./pages/PerfilOrganizador.jsx";
 import { AgregarResultados } from "./pages/AgregarResultados.jsx";
 import { VerResultados } from "./pages/VerResultados.jsx";
+import { ListaDeFavoritos } from "./pages/ListaDeFavoritos.jsx";
 import { LoginUsers } from "./pages/logInUsers.jsx";
 import { LoginForOrganizers } from "./pages/logInForOrganizers.jsx";
 import { Home } from "./pages/home";
@@ -60,6 +61,8 @@ const Layout = () => {
                         <Route element={<SignUpUsers />} path="/signUpUsers" />
                         <Route element={<LoginUsers />} path="/loginUsers" />
                         <Route element={userType == "usuario" ? <PerfilUsuario /> : <Navigate to="/LoginUsers" />} path="/perfil" />
+                        <Route element={<ListaDeFavoritos />} path="/ListaDeFavoritos" />
+
 
                         <Route element={<SignUpForOrganizers />} path="/signUpForOrganizers" />
                         <Route element={<LoginForOrganizers />} path="/LoginForOrganizers" />

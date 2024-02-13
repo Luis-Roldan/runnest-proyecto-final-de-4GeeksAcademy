@@ -1,5 +1,6 @@
 import React, { useEffect, useContext, useState } from "react";
 import { Context } from "../store/appContext";
+import { Link, useParams } from "react-router-dom";
 import "../../styles/perfil.css"
 
 
@@ -14,7 +15,10 @@ export const PerfilUsuario = () => {
     const handleConditionalRendering = () => {
         if (isClicked == "favoritos") {
             return (
-                <div>Favoritos</div>
+                <div><Link to="/ListaDeFavoritos" className="panel-item ps-3 py-2 " >
+                    <span>Ver Lista de Favoritos</span>
+                </Link></div>
+
             )
         } else if (isClicked == "carreras") {
             return "carreras"
@@ -31,7 +35,7 @@ export const PerfilUsuario = () => {
             <section className="TopProfilePartContainer">
                 <div className="LeftSideProfileTop">
                     <img src="https://rajueditor.com/wp-content/uploads/2023/09/fotos-de-perfil-aesthetic.jpg" className="ImgProfile"></img>
-                    <h1 className="text-center pt-4">{`Bienvenido, ${store.usuario.nombre} ${store.usuario.apellido} a la meca de las carreras`}</h1>
+                    <h1 className="text-center pt-4 TitleRight">{`Bienvenido, ${store.usuario.nombre} ${store.usuario.apellido} a la meca de las carreras`}</h1>
                 </div>
                 <div className="RightSideProfileTop">
                     <h2 className="Title">tus datos personales de usuario son:</h2>
