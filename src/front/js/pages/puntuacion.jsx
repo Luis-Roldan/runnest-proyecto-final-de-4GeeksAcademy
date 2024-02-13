@@ -38,7 +38,7 @@ export const Puntuacion = () => {
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value);
   };
-  
+
   const token = localStorage.getItem("accessToken");
 
   const fetchComments = async () => {
@@ -62,7 +62,7 @@ export const Puntuacion = () => {
     }
   };
 
- 
+
 
   const handleSubmit = async () => {
     try {
@@ -90,7 +90,7 @@ export const Puntuacion = () => {
       fetchComments();
 
       setFeedback("");
-      setCurrentValue(0);
+      setCurrentValue("");
     } catch (error) {
       console.error("Error submitting feedback:", error.message);
     }
@@ -103,7 +103,7 @@ export const Puntuacion = () => {
 
   return (
     <div className="container-puntuacion">
-      
+
       <div className="stars">
         {stars.map((_, index) => (
           <FaStar
@@ -138,7 +138,7 @@ export const Puntuacion = () => {
         <ul className="list-group">
           {comments.map((comment, index) => (
             <li key={index} className="list-group-item">
-              <div>Puntuación: {comment.rating}</div>
+              <div>Puntuación: {comment.puntuacion}</div>
               <div>Feedback: {comment.feedback}</div>
             </li>
           ))}

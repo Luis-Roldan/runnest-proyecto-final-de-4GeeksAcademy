@@ -106,6 +106,7 @@ export const Carreras = () => {
         }
     }
 
+
     return (
         <div className="">
             <AlertSuccess message="Registrado satisfactoriamente." estilo={display} funcion={() => { setDisplay({ display: "none" }) }} />
@@ -140,7 +141,7 @@ export const Carreras = () => {
                             />
                         </div>
 
-                        <Link to={`/carreraRender/${item.id}`} style={{ textDecoration: 'none' }}>Califica esta carrera!</Link>
+                        <Link to={`/carreraRender/${item.id}`} style={{ textDecoration: 'none' }} >Califica esta carrera!</Link>
 
                         <Link to={`/VerResultados/${item.id}`} className="panel-item ps-3 py-2 " >
                             <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />

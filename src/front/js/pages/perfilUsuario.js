@@ -11,11 +11,6 @@ export const PerfilUsuario = () => {
     //ejecutar la funcion getUserData para hacer un GET y obtener datos del usuario
     useEffect(() => { actions.getUserData(); }, [])
 
-
-
-
-
-
     useEffect(() => { actions.getFavorites(); }, [])
 
     useEffect(() => {
