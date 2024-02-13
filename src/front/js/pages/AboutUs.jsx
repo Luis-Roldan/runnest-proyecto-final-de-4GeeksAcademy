@@ -84,11 +84,11 @@ export const AboutUs = () => {
                 <p className="card-text">Co-Fundador</p>
               </div>
               <div className="card-footer">
-                <small className="text-body-secondary"><strong>Edad: </strong> </small>
+                <small className="text-body-secondary"><strong>Edad: </strong> 24</small>
                 <br />
-                <small className="text-body-secondary"><strong>Estudios: </strong>  </small>
+                <small className="text-body-secondary"><strong>Estudios: </strong> Derecho  </small>
                 <br />
-                <small className="text-body-secondary"><strong>Hobbies: </strong></small>
+                <small className="text-body-secondary"><strong>Hobbies: </strong> Programar, futbol y dibujar</small>
               </div>
             </div>
           </div>
