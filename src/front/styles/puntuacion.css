@@ -1,4 +1,4 @@
-* .container-puntuacion{
+* .container-puntuacion {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,15 +22,31 @@
   min-height: 100px;
   padding: 20px;
 }
-*/
-
-.title {
+*/ .title {
   margin: 50px;
   text-align: center;
 }
-.back-to{
-  padding:2%;
+.back-to {
+  padding: 2%;
 }
-.comentarios{
-  padding:8%;
+.comentarios {
+  padding: 8%;
+  margin-top: 20px;
+  display: grid;
+  background: black;
+  color: aliceblue;
+}
+
+.buttonSubmit {
+  margin-top: 20px;
+}
+
+.TituloComentarios {
+  margin-bottom: 30px;
+}
+
+.SinComentarios {
+  font-size: x-large;
+  text-wrap: nowrap;
+  color: red;
 }

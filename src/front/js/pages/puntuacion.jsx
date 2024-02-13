@@ -118,7 +118,7 @@ export const Puntuacion = () => {
       </div>
       <div className="feedback">
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
-          What's your feedback?
+          Déjanos un comentario:
         </label>
         <textarea
           className="form-control"
@@ -129,20 +129,24 @@ export const Puntuacion = () => {
         ></textarea>
       </div>
       <div className="button">
-        <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+        <button type="button" className="btn btn-primary buttonSubmit" onClick={handleSubmit}>
           Submit
         </button>
       </div>
       <div className="comentarios">
-        <h3>Comentarios:</h3>
-        <ul className="list-group">
-          {comments.map((comment, index) => (
-            <li key={index} className="list-group-item">
-              <div>Puntuación: {comment.puntuacion}</div>
-              <div>Feedback: {comment.feedback}</div>
-            </li>
-          ))}
-        </ul>
+        <h3 className="TituloComentarios">Comentarios:</h3>
+        {comments.length > 0 ? (
+          <ul className="list-group">
+            {comments.map((comment, index) => (
+              <li key={index} className="list-group-item">
+                <div><strong>Puntuación: </strong> {comment.puntuacion}</div>
+                <div><strong>Feedback: </strong> {comment.feedback}</div>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <span className="SinComentarios">Sin Comentarios</span>
+        )}
       </div>
     </div>
   );
