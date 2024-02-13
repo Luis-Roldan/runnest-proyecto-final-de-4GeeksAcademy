@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from "react";
 import { FaStar } from "react-icons/fa";
 import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
+import { AlertSuccess } from "../component/alertSuccess";
+import { AlertDanger } from "../component/alertDanger";
 import "../../styles/puntuacion.css";
 
 export const Puntuacion = () => {
@@ -15,6 +17,12 @@ export const Puntuacion = () => {
   const [feedback, setFeedback] = useState("");
   const [comments, setComments] = useState([]);
   const { id } = useParams();
+
+
+  //estados para los estilos de los alerts
+  const [display, setDisplay] = useState({ display: "none" })
+  const [displayDanger, setDisplayDanger] = useState({ display: "none" })
+  const [errorMsg, setErrorMsg] = useState("")
 
 
   const url = process.env.REACT_ENV_URL;
@@ -81,6 +89,16 @@ export const Puntuacion = () => {
         }),
       });
 
+      if (response.status == 201) {
+          setDisplay({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+          setTimeout(() => { setDisplay({ display: "none" }) }, 3500)
+      
+
+      } else {
+          setErrorMsg(token.msg)
+          setDisplayDanger({ display: "flex", position: "fixed", zIndex: "1", left: "25%", top: "10%" })
+          return
+      }
       if (!resp.ok) {
         throw new Error("There was a problem submitting your feedback");
       }
@@ -101,6 +119,8 @@ export const Puntuacion = () => {
 
   return (
     <div className="container-puntuacion">
+      <AlertSuccess message="Gracias por tu comentario!" funcion={() => { setDisplay({ display: "none" }) }} estilo={display} />
+      <AlertDanger message={errorMsg} estilo={displayDanger} funcion={() => { setDisplayDanger({ display: "none" }) }} />
       <div className="stars">
         {stars.map((_, index) => (
           <FaStar
