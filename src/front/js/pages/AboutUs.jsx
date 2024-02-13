@@ -100,7 +100,7 @@ export const AboutUs = () => {
                 <p className="card-text">Co-Fundador</p>
               </div>
               <div className="card-footer">
-                <small className="text-body-secondary"><strong>Edad: </strong> </small>
+                <small className="text-body-secondary"><strong>Edad: 27</strong> </small>
                 <br />
                 <small className="text-body-secondary"><strong>Estudios:  </strong>Ing. Sistemas Computacionales  </small>
                 <br />
@@ -110,21 +110,21 @@ export const AboutUs = () => {
           </div>
         </div>
       </div>
-<div> <strong>Este proyecto fue desarrollado con : </strong> 
-<span>
-<img src="https://logodownload.org/wp-content/uploads/2016/10/html5-logo-1.png" width="30px" height="30px" className="html5"/>  
-<img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/css3-1024.png" width="30px" height="30px" className="css3"/>
-<img src="https://tse2.mm.bing.net/th?id=OIP.I5XOh9o_kbTNsXnsIc53aAHaHa&pid=Api&P=0&h=180" width="30px" height="30px" className="javascript"/>
-<img src="https://tse2.mm.bing.net/th?id=OIP.udRsxeiTDWCEXRaKP_prTAHaHk&pid=Api&P=0&h=180" width="30px" height="30px" className="python"/>
-<img src="https://tse1.mm.bing.net/th?id=OIP.ag7bB6adDWKvvw7BBbntewHaHa&pid=Api&P=0&h=180" width="30px" height="30px" className="python"/>
-<img src="https://tse1.mm.bing.net/th?id=OIP.dvZOtO5OujoVHmYA7Rn-qAHaHv&pid=Api&P=0&h=180" width="30px" height="30px" className="flask"/>
-<img src="https://tse4.mm.bing.net/th?id=OIP.JVt34lGxmm0GAGNNL_mwBgHaHa&pid=Api&P=0&h=180" width="33px" height="33px" className="flask"/>
-<img src="https://tse2.mm.bing.net/th?id=OIP.fByyZnA2MzQb6k_PmVi1gwHaJj&pid=Api&P=0&h=180" width="33px" height="33px" className="flask"/>
-<img src="https://tse2.mm.bing.net/th?id=OIP.R0P2_SJZKDxErOJ_CBmCeQHaD3&pid=Api&P=0&h=180" width="73px" height="43px" className="flask"/>
+      <div> <strong>Este proyecto fue desarrollado con : </strong>
+        <span>
+          <img src="https://logodownload.org/wp-content/uploads/2016/10/html5-logo-1.png" width="30px" height="30px" className="html5" />
+          <img src="https://cdn4.iconfinder.com/data/icons/flat-brand-logo-2/512/css3-1024.png" width="30px" height="30px" className="css3" />
+          <img src="https://tse2.mm.bing.net/th?id=OIP.I5XOh9o_kbTNsXnsIc53aAHaHa&pid=Api&P=0&h=180" width="30px" height="30px" className="javascript" />
+          <img src="https://tse2.mm.bing.net/th?id=OIP.udRsxeiTDWCEXRaKP_prTAHaHk&pid=Api&P=0&h=180" width="30px" height="30px" className="python" />
+          <img src="https://tse1.mm.bing.net/th?id=OIP.ag7bB6adDWKvvw7BBbntewHaHa&pid=Api&P=0&h=180" width="30px" height="30px" className="python" />
+          <img src="https://tse1.mm.bing.net/th?id=OIP.dvZOtO5OujoVHmYA7Rn-qAHaHv&pid=Api&P=0&h=180" width="30px" height="30px" className="flask" />
+          <img src="https://tse4.mm.bing.net/th?id=OIP.JVt34lGxmm0GAGNNL_mwBgHaHa&pid=Api&P=0&h=180" width="33px" height="33px" className="flask" />
+          <img src="https://tse2.mm.bing.net/th?id=OIP.fByyZnA2MzQb6k_PmVi1gwHaJj&pid=Api&P=0&h=180" width="33px" height="33px" className="flask" />
+          <img src="https://tse2.mm.bing.net/th?id=OIP.R0P2_SJZKDxErOJ_CBmCeQHaD3&pid=Api&P=0&h=180" width="73px" height="43px" className="flask" />
 
-  </span>
+        </span>
 
-   </div> 
+      </div>
 
     </div>
   )

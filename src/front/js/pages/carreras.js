@@ -63,7 +63,7 @@ export const Carreras = () => {
 
     const postFavorite = async (carrera, carrera_id) => {
         if (userType == "usuario") {
-            subToRace(carrera_id)
+
         } else {
             navigate("/loginUsers")
         }
@@ -134,14 +134,17 @@ export const Carreras = () => {
                             <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Registrarme</button>
                             <FontAwesomeIcon
                                 className="btn btn-light border-1 border-danger heart"
-                                onClick={() => { postFavorite(item, item.id) }}
+                                onClick={() => { postFavorite(item.id) }}
                                 icon="fa-regular fa-heart"
                                 size="xl"
 
                             />
                         </div>
 
-                        <Link to={`/carreraRender/${item.id}`} style={{ textDecoration: 'none' }} onClick={() => handleClick(item.id)}>Califica esta carrera!</Link>
+
+
+
+                        <Link to={userType === "usuario" ? `/carreraRender/${item.id}` : "/loginUsers"} style={{ textDecoration: 'none' }} onClick={() => handleClick(item.id)}>Califica esta carrera!</Link>
 
                         <Link to={`/VerResultados/${item.id}`} className="panel-item ps-3 py-2 " >
                             <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />

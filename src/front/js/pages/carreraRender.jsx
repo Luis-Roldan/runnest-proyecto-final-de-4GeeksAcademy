@@ -12,10 +12,8 @@ export const CarreraRender = () => {
     return (
 
         <div className="container">
-            <span><h1 className="NombreDeCarrera">{carrera.nombre} </h1></span>
+            <span><h1 className="NombreDeCarrera">{carrera?.nombre} </h1></span>
             <Puntuacion />
-
-
 
         </div>
 
