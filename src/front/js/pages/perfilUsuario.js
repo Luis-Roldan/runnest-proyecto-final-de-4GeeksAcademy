@@ -22,8 +22,13 @@ export const PerfilUsuario = () => {
     console.log(store.carreras)
 
 
-
     console.log(store.usuario?.id)
+
+    const handleDeleteFavorite = (favorito_id) => {
+        actions.deleteFavorite(favorito_id)
+        actions.getUserData()
+    };
+
 
     //funcion para renderizar en base al boton que se le hace click
     const handleConditionalRendering = () => {
@@ -31,21 +36,22 @@ export const PerfilUsuario = () => {
             return (
                 <div className="row justify-content-center row-cols-1 row-cols-sm-4 bg-dark listaFavoritos">
                     {store.favoritos.map((item, index) => {
-                        const carrera = store.carreras.find(c => c.id === item.id);
+                        const carrera = store.carreras.find(c => c.id === item.carrera_id);
+                        console.log(carrera);
                         return (
                             <div key={index} className="card m-3 CardSize ">
                                 <div>
-                                    <h5>{item.id}</h5>
+                                    <h5>{index + 1}</h5>
                                 </div>
                                 <div className="card-body bg-dark cardContainer">
                                     <h5 className="card-title">{carrera ? carrera.nombre : 'Nombre no encontrado'}</h5>
                                 </div>
+                                <button onClick={() => handleDeleteFavorite(item.id)} className="btn btn-danger">Borrar de favoritos</button>
 
                             </div>
                         );
                     })}
                 </div>
-
             )
         } else if (isClicked == "carreras") {
             return "carreras"
@@ -55,6 +61,9 @@ export const PerfilUsuario = () => {
             return "resultados"
         }
     }
+
+
+
 
 
     return (

@@ -24,7 +24,15 @@ export const ListaDeFavoritos = () => {
 
     console.log(store.usuario?.id)
 
+    const handleDeleteFavorite = (favorito_id) => {
+        console.log("antes")
+        actions.deleteFavorite(favorito_id);
+        console.log("antes")
+        actions.getFavorites()
+        console.log("despues")
 
+
+    };
 
     return (
         <div className="row justify-content-center row-cols-1 row-cols-sm-4 bg-dark listaFavoritos">
@@ -37,6 +45,7 @@ export const ListaDeFavoritos = () => {
                         </div>
                         <div className="card-body bg-dark cardContainer">
                             <h5 className="card-title">{carrera ? carrera.nombre : 'Nombre no encontrado'}</h5>
+                            <button onClick={() => handleDeleteFavorite(item.id)} className="btn btn-danger">Borrar de favoritos</button>
                         </div>
 
                     </div>

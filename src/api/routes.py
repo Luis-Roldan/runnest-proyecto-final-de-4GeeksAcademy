@@ -490,6 +490,7 @@ def handle_favorite():
     
 
     #--------------------------------------------------
+
     if request.method == "DELETE":
 
         data_favorite = request.json

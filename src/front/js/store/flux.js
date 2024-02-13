@@ -211,6 +211,29 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log(error)
 				}
 			},
+
+			deleteFavorite: (favorito_id) => {
+				const token5 = localStorage.getItem("accessToken")
+				return fetch(url + "/favorito", {
+					method: 'DELETE',
+					headers: {
+						'Content-Type': 'application/json',
+						"Authorization": "Bearer " + token5
+					},
+					body: JSON.stringify({ favorito: favorito_id })
+				})
+					.then(response => {
+						if (!response.ok) {
+							throw new Error('Error al borrar favorito');
+						}
+						return response.json();
+					})
+					.then(data => {
+						console.log(data.msg);
+						return data;
+					})
+					.catch(error => console.error('Error:', error));
+			}
 		}
 	};
 };
