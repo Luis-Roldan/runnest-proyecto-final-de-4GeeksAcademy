@@ -94,6 +94,26 @@ export const RegistroDeCarreras = () => {
                 setTimeout(() => { navigate("/PerfilOrganizador") }, 3500)
 
 
+                fetch(url + "/carrera", {
+                    method: "GET",
+                    headers: {
+                        "Authorization": "Bearer " + token,
+                    },
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Aquí maneja los datos obtenidos en la respuesta del GET, actualiza el estado si es necesario
+                        console.log("Lista de carreras actualizada:", data);
+                    })
+                    .catch((error) => {
+                        console.error("Error al obtener la lista de carreras:", error);
+                    });
+
             })
             .catch((error) => {
                 console.error("Error submitting form:", error);
