@@ -134,7 +134,7 @@ export const Carreras = () => {
                             />
                         </div>
 
-                        <Link to={`/carreraRender/${index}`} style={{ textDecoration: 'none' }}>Califica esta carrera!</Link>
+                        <Link to={`/carreraRender/${item.id}`} style={{ textDecoration: 'none' }}>Califica esta carrera!</Link>
 
                         <Link to={`/VerResultados/${item.id}`} className="panel-item ps-3 py-2 " >
                             <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
