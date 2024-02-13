@@ -11,13 +11,45 @@ export const PerfilUsuario = () => {
     //ejecutar la funcion getUserData para hacer un GET y obtener datos del usuario
     useEffect(() => { actions.getUserData(); }, [])
 
+
+
+
+
+
+    useEffect(() => { actions.getFavorites(); }, [])
+
+    useEffect(() => {
+        actions.getCarreras();
+    }, []);
+
+    console.log(store.usuario)
+    console.log(store.favoritos)
+    console.log(store.carreras)
+
+
+
+    console.log(store.usuario?.id)
+
     //funcion para renderizar en base al boton que se le hace click
     const handleConditionalRendering = () => {
         if (isClicked == "favoritos") {
             return (
-                <div><Link to="/ListaDeFavoritos" className="panel-item ps-3 py-2 " >
-                    <span>Ver Lista de Favoritos</span>
-                </Link></div>
+                <div className="row justify-content-center row-cols-1 row-cols-sm-4 bg-dark listaFavoritos">
+                    {store.favoritos.map((item, index) => {
+                        const carrera = store.carreras.find(c => c.id === item.id);
+                        return (
+                            <div key={index} className="card m-3 CardSize ">
+                                <div>
+                                    <h5>{item.id}</h5>
+                                </div>
+                                <div className="card-body bg-dark cardContainer">
+                                    <h5 className="card-title">{carrera ? carrera.nombre : 'Nombre no encontrado'}</h5>
+                                </div>
+
+                            </div>
+                        );
+                    })}
+                </div>
 
             )
         } else if (isClicked == "carreras") {

@@ -1,0 +1,8 @@
+.cardContainer {
+  color: white;
+  text-align: center;
+}
+
+.listaFavoritos {
+  display: grid;
+}
