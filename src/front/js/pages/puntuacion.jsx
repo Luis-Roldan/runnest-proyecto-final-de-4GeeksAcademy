@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FaStar } from "react-icons/fa";
+import { useParams } from "react-router-dom";
 import { Context } from "../store/appContext";
 import "../../styles/puntuacion.css";
 
@@ -13,6 +14,9 @@ export const Puntuacion = () => {
   const [hoverValue, setHoverValue] = useState(undefined);
   const [feedback, setFeedback] = useState("");
   const [comments, setComments] = useState([]);
+  const { id } = useParams();
+
+
   const url = process.env.REACT_ENV_URL;
 
   const { store, actions } = useContext(Context);
@@ -32,13 +36,19 @@ export const Puntuacion = () => {
   const handleFeedbackChange = (event) => {
     setFeedback(event.target.value);
   };
+  
+  const token = localStorage.getItem("accessToken");
 
   const fetchComments = async () => {
+    console.log("Se esta ejecutando la funcion")
     try {
-      const resp = await fetch(url + "/puntuacion", {
+      const resp = await fetch(url + "/puntuacion/" + id, {
         method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
+        }
       });
-
       if (!resp.ok) {
         throw new Error("There was a problem fetching comments");
       }
@@ -50,6 +60,8 @@ export const Puntuacion = () => {
     }
   };
 
+ 
+
   const handleSubmit = async () => {
     try {
       if (!feedback || !currentValue) {
@@ -60,9 +72,10 @@ export const Puntuacion = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Authorization": "Bearer " + token,
         },
         body: JSON.stringify({
-          carrera_id: 123, // Reemplaza con el ID de la carrera correspondiente
+          carrera_id: id,
           puntuacion: currentValue,
           feedback: feedback,
         }),
@@ -82,6 +95,7 @@ export const Puntuacion = () => {
   };
 
   useEffect(() => {
+    console.log("Se esta ejecutando useEffect")
     fetchComments();
   }, []); // Se llama solo una vez al montar el componente
 

@@ -51,11 +51,14 @@
 }
 
 .ImageStyle1 {
-  width: -webkit-fill-available;
+  width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
   max-height: 200px;
   align-self: center;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .Title {

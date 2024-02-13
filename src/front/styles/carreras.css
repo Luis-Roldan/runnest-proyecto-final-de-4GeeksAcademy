@@ -1,11 +1,22 @@
 .ImageStyle {
-  width: fit-content;
+  width: 100%;
   margin-top: 10px;
   margin-bottom: 10px;
   align-self: center;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
 }
 
 .CardSize {
   width: 300px !important;
   height: auto;
+}
+
+.heart {
+  color: black;
+}
+
+.heart:hover {
+  color: red;
 }
