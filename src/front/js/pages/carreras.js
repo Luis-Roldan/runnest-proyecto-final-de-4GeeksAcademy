@@ -109,7 +109,7 @@ export const Carreras = () => {
             <div className="row justify-content-center row-cols-1 row-cols-sm-4">
                 {carreras.map((item, index) => (
                     <div key={index} className="card m-3 CardSize">
-                        <img src={item.image} className="card-img-top ImageStyle" alt="..." style={{ maxHeight: "100px" }} />
+                        <img src={item.image} className="card-img-top ImageStyle" alt="..." />
                         <div className="card-body">
                             <h5 className="card-title">{item.nombre}</h5>
                             <h6 className="card-subtitle mb-2 text-body-secondary justify-content-between d-flex">
@@ -126,11 +126,11 @@ export const Carreras = () => {
                         <div className="d-flex justify-content-between align-items-center px-3 mb-2">
                             <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Registrarme</button>
                             <FontAwesomeIcon
-                                className="btn btn-light border-1 border-danger"
+                                className="btn btn-light border-1 border-danger heart"
                                 onClick={() => { postFavorite(item.id) }}
-                                icon="fa-solid fa-heart"
+                                icon="fa-regular fa-heart"
                                 size="xl"
-                                style={{ color: "#ff0000" }}
+
                             />
                         </div>
 
@@ -147,3 +147,7 @@ export const Carreras = () => {
         </div>
     )
 }
+
+
+//de fa-regular a fa-solid on click
+
