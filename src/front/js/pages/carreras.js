@@ -61,7 +61,13 @@ export const Carreras = () => {
         }
     }
 
-    const postFavorite = async (carrera) => {
+    const postFavorite = async (carrera, carrera_id) => {
+        if (userType == "usuario") {
+            subToRace(carrera_id)
+        } else {
+            navigate("/loginUsers")
+        }
+
         try {
             const token2 = localStorage.getItem("accessToken")
             console.log(token2)
