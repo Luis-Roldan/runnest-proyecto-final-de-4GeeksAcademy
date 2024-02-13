@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Context } from "../store/appContext";
 import { useParams } from "react-router-dom";
 import "../../styles/carreraRender.css"
-import {Puntuacion} from "../pages/puntuacion.jsx"
+import { Puntuacion } from "../pages/puntuacion.jsx"
 
 export const CarreraRender = () => {
     const { id } = useParams();
@@ -12,9 +12,9 @@ export const CarreraRender = () => {
     return (
 
         <div className="container">
-            <span><h1>{carrera.nombre} </h1></span>
-            <Puntuacion/>
- 
+            <span><h1 className="NombreDeCarrera">{carrera.nombre} </h1></span>
+            <Puntuacion />
+
 
 
         </div>
