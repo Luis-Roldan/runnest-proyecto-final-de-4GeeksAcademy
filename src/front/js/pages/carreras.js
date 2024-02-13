@@ -134,7 +134,7 @@ export const Carreras = () => {
                             <button onClick={() => handleSubscripcion(item.id)} className="btn btn-dark">Registrarme</button>
                             <FontAwesomeIcon
                                 className="btn btn-light border-1 border-danger heart"
-                                onClick={() => { postFavorite(item.id) }}
+                                onClick={() => { postFavorite(item, item.id) }}
                                 icon="fa-regular fa-heart"
                                 size="xl"
 
