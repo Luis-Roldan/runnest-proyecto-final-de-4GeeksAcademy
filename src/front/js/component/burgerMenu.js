@@ -13,7 +13,7 @@ export const BurgerMenu = () => {
         localStorage.removeItem("accessToken")
         localStorage.removeItem("userType")
     }
-
+    //
 
     return (
         <div>
@@ -24,9 +24,9 @@ export const BurgerMenu = () => {
 
             <ul className="menu__box">
                 <li>{userType == "usuario" ? <Link className="menu__item" to="/perfil">Perfil</Link> : <Link className="menu__item" to="/perfilOrganizador">Perfil</Link>}</li>
-                <li><a className="menu__item" href="#">About</a></li>
-                <li><a className="menu__item" href="#">Team</a></li>
-                <li><a className="menu__item" href="#">Contact</a></li>
+                <li><Link className="menu__item" to="/carreras">Carreras</Link></li>
+                <li><Link className="menu__item" to="/contacto">Contacto</Link></li>
+                <li><Link className="menu__item" to="/AboutUs">About Us</Link></li>
                 <li><Link className="menu__item" onClick={handleLogOut} to="/">Log out</Link></li>
             </ul>
         </div>
