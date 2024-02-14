@@ -140,15 +140,15 @@ export const Carreras = () => {
 
                             />
                         </div>
+                        <Link to={userType === "usuario" ? `/carreraRender/${item.id}` : "/loginUsers"} className="panel-item ps-3 py-2 " onClick={() => handleClick(item.id)}>
+                            <span>Califica esta carrera</span>
+                            <i className="fa-solid fa-star" id="star"></i>
+                        </Link>
 
-
-
-
-                        <Link to={userType === "usuario" ? `/carreraRender/${item.id}` : "/loginUsers"} style={{ textDecoration: 'none' }} onClick={() => handleClick(item.id)}>Califica esta carrera!</Link>
 
                         <Link to={`/VerResultados/${item.id}`} className="panel-item ps-3 py-2 " >
-                            <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
                             <span>Ver Resultados</span>
+                             <FontAwesomeIcon className="me-2" icon="a-solid fa-chart-simple" />
                         </Link>
 
                     </div>

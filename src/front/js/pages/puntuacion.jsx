@@ -61,6 +61,7 @@ export const Puntuacion = () => {
       console.error("Error fetching comments:", error.message);
     }
   };
+  
 
 
 

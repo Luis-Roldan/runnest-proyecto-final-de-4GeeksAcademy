@@ -103,7 +103,7 @@ export const Navbar = () => {
               <Link className="nav-link text-dark" to="/contacto">Contacto</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link text-dark" to="/AboutUs">About Us</Link>
+              <Link className="nav-link text-dark" to="/AboutUs">Conócenos</Link>
             </li>
             <div className="mx-2">{handleLogInButton()}</div>
             <div className="mx-2">{handleSignUpButton()}</div>
