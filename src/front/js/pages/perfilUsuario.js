@@ -64,12 +64,6 @@ export const PerfilUsuario = () => {
                     })}
                 </div>
             )
-        } else if (isClicked == "carreras") {
-            return "carreras"
-        } else if (isClicked == "reviews") {
-            return "Reseñas"
-        } else if (isClicked == "resultados") {
-            return "resultados"
         }
     }
 
@@ -93,9 +87,9 @@ export const PerfilUsuario = () => {
             </section>
             <div className="d-flex justify-content-center pt-4">
                 <button onClick={() => { setIsclicked("favoritos") }} className="btn-perfil">Favoritos</button>
-                <button onClick={() => { setIsclicked("carreras") }} className="btn-perfil">Mis carreras</button>
+                {/* <button onClick={() => { setIsclicked("carreras") }} className="btn-perfil">Mis carreras</button>
                 <button onClick={() => { setIsclicked("reviews") }} className="btn-perfil">Reseñas</button>
-                <button onClick={() => { setIsclicked("resultados") }} className="btn-perfil">Resultados</button>
+                <button onClick={() => { setIsclicked("resultados") }} className="btn-perfil">Resultados</button> */}
             </div>
             <div className="d-flex justify-content-center pt-4">
                 {handleConditionalRendering()}

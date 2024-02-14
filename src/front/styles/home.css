@@ -50,3 +50,11 @@ h2 {
   background-color: #23ce6b;
   font-size: larger;
 }
+
+.CarrerasHome {
+  display: grid;
+
+  align-content: center;
+  justify-items: end;
+  justify-content: space-evenly;
+}
